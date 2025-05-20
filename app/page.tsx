@@ -1,10 +1,13 @@
 import React from 'react'
+import Hero from '../components/hero'
+
 
 const page = () => {
   return (
-    <div>
-      this is griffity homepage
-    </div>
+    <main>
+      <Hero/>
+    </main>
+   
   )
 }
 
