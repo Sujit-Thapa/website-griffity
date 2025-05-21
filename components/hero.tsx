@@ -8,7 +8,7 @@ const Hero = () => {
     <div className="relative bg-[url('/images/heroimage.jpg')] bg-cover bg-center h-screen w-full text-white overflow-hidden">
       <div className="absolute inset-0 bg-black bg-opacity-30 z-0"></div>
 
-      <div className="max-w-[1440px] flex flex-col py-10 mx-auto h-full relative z-10">
+      <div className=" px-14 flex flex-col py-10 mx-auto h-full relative z-10">
         <div className="flex justify-between w-full">
           <motion.img
             initial={{ opacity: 0, x: -40 }}
