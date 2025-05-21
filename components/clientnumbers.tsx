@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Client = () => {
+const Clientnumber = () => {
   return (
     <div className='bg-[#06141b] h-screen w-full justify-center items-center'>
 
@@ -13,4 +13,4 @@ const Client = () => {
   )
 }
 
-export default Client
+export default Clientnumber
