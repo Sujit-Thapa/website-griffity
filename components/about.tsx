@@ -1,11 +1,10 @@
-import React from 'react';
+import React from "react";
 
 const About = () => {
   return (
-<div className="relative h-screen w-full bg-[#06141b] text-white overflow-hidden">
-  
+    <div className="relative h-screen w-full bg-body text-white overflow-hidden">
       <h1 className="absolute text-primary top-10 left-10 text-l font-light z-10">
-      [ABOUT GRIFFITY ]
+        [ABOUT GRIFFITY ]
       </h1>
 
       <div className="flex justify-center items-center h-full">
@@ -14,7 +13,6 @@ const About = () => {
         </p>
       </div>
 
-    
       <img
         src="/images/gradient.svg"
         alt="gradient"
