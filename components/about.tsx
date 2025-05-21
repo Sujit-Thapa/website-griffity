@@ -2,7 +2,7 @@ import React from 'react';
 
 const About = () => {
   return (
-<div className="relative h-screen w-full bg-[#06141b] text-white overflow-hidden">
+<div className="relative h-screen w-full bg-[#06141b] text-white ">
   
       <h1 className="absolute text-primary top-10 left-10 text-l font-light z-10">
       [ABOUT GRIFFITY ]
@@ -18,7 +18,7 @@ const About = () => {
       <img
         src="/images/gradient.svg"
         alt="gradient"
-        className="absolute top-2/3 right-28 scale-150 w-auto h-auto z-0"
+        className="absolute top-2/3 right-[16%] scale-150 w-auto h-auto z-0"
       />
     </div>
   );
