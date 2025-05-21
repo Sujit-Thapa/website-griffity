@@ -25,18 +25,18 @@ export default function Loader() {
       initial={{ opacity: 1 }}
       animate={{ opacity: 0 }}
       exit={{ opacity: 0 }}
-      transition={{ delay: 3.2, duration: 0.6, ease: "easeInOut" }}
+      transition={{ delay: 3.2, duration: 0.5, ease: "easeInOut" }}
     >
       <div className="relative ">
         {/* Clear text that will be revealed as blur overlay moves */}
         <motion.div
           className="relative z-10 flex text-h4 md:text-h4 lg:text-h5 font-bold text-white"
           initial={{ scale: 1 }}
-          animate={{ scale: [1, 12] }}
+          animate={{ scale: [1, 25] }}
           transition={{
             scale: {
               times: [0, 0.7, 1],
-              duration: 1,
+              duration: 1.2,
               delay: 2,
               ease: "easeInOut",
             },

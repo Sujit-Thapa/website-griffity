@@ -8,21 +8,22 @@ import Clientnumber from "@/components/clientnumbers";
 import Services from "@/components/services";
 import Client from "@/components/clients";
 import Footer from "@/components/footer";
+import GradientRec from "@/components/gradientRec";
 
 const Page = () => {
   return (
     <>
-      
-     <main>
-      <Loader />
+      <main>
+        <Loader />
         <Hero />
-        <About/>
-        <Clientnumber/>
-        <Services/>
-        <Client/>
-        <Footer/>
-      
-      
+        <div className="relative overflow-hidden">
+          <GradientRec />
+          <About />
+          <Clientnumber />
+        </div>
+        <Services />
+        <Client />
+        <Footer />
       </main>
     </>
   );

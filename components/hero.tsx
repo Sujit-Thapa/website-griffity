@@ -18,16 +18,8 @@ const Hero = () => {
             alt="Logo"
             className="  w-8 h-auto z-10"
           />
-          <motion.p
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.75, delay: 3.8, ease: "easeOut" }}
-            className=" text-h5 z-10 font-extralight"
-          >
-            evolving mystery!
-          </motion.p>
         </div>
-        <div className="flex items-center h-full max-w-[1440px] mx-auto">
+        <div className="flex items-center gap-10 h-full max-w-[1440px] mx-auto">
           <div className=" z-10 ">
             <div className="flex flex-col items-start translate-x-[-5%]">
               <p className="text-h2 font-medium">
@@ -43,7 +35,7 @@ const Hero = () => {
               </motion.p>
             </div>
           </div>
-          <div className=" transform translate-y-5 flex flex-col gap-4 z-50  ">
+          <div className=" transform translate-y-5 flex flex-col gap-8 z-50  ">
             {["about us", "services", "clients", "our team", "contact us"].map(
               (item, index) => (
                 <motion.p

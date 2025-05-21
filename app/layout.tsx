@@ -5,7 +5,7 @@ import { poppins } from "@/fonts";
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body className={`bg-background ${poppins.className}`}>
+      <body className={`bg-body ${poppins.className}`}>
         <main>{children}</main>
       </body>
     </html>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   FaFacebookF,
   FaInstagram,
@@ -6,17 +6,17 @@ import {
   FaYoutube,
   FaXTwitter,
   FaLinkedinIn,
-} from 'react-icons/fa6';
+} from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <div className='bg-[#06141b] h-screen w-full relative'>
+    <div className="] h-screen w-full relative">
       {/* Left bottom: contact info */}
-      <div className='absolute bottom-5 left-10 text-white'>
-        <p className='font-bold text-xl'>
-          GRIFFITY<span className='font-thin'>STUDIOS</span>
+      <div className="absolute bottom-5 left-10 text-white">
+        <p className="font-bold text-xl">
+          GRIFFITY<span className="font-thin">STUDIOS</span>
         </p>
-        <div className='font-light'>
+        <div className="font-light">
           <p>Bhaisepati, Kathmandu</p>
           <p>+977 9861292675</p>
           <p>info@griffitystudios.com</p>
