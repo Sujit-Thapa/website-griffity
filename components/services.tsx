@@ -1,6 +1,6 @@
 import React from 'react'
 
-const About = () => {
+const Services = () => {
   return (
     <div className='bg-[#06141b] h-screen w-full justify-center items-center'>
 
@@ -13,4 +13,4 @@ const About = () => {
   )
 }
 
-export default About
+export default Services
