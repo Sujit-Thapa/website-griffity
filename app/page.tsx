@@ -10,23 +10,19 @@ import Client from "@/components/clients";
 import Footer from "@/components/footer";
 
 const Page = () => {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 30000);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <>
       
      <main>
+      <Loader />
         <Hero />
         <About/>
         <Clientnumber/>
         <Services/>
         <Client/>
         <Footer/>
+      
+      
       </main>
     </>
   );

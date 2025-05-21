@@ -13,7 +13,7 @@ const Hero = () => {
           <motion.img
             initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
+            transition={{ duration: 1, ease: "easeOut", delay: 3.8 }}
             src="/logos/griffity.png"
             alt="Logo"
             className="  w-8 h-auto z-10"
@@ -21,7 +21,7 @@ const Hero = () => {
           <motion.p
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.75, ease: "easeOut" }}
+            transition={{ duration: 0.75, delay: 3.8, ease: "easeOut" }}
             className=" text-h5 z-10 font-extralight"
           >
             evolving mystery!

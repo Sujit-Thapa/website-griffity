@@ -11,7 +11,7 @@ export default function Loader() {
     // Simulate loading time and then hide the loader
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 350000);
+    }, 3800);
 
     return () => clearTimeout(timer);
   }, []);
@@ -21,23 +21,39 @@ export default function Loader() {
 
   return (
     <motion.div
-      className={`fixed inset-0 flex items-center justify-center ${montserrat.className} h-full w-full bg-body z-50
+      className={`fixed inset-0 flex items-center justify-center ${montserrat.className} h-full w-full bg-[#020608] z-50`}
       initial={{ opacity: 1 }}
-      animate={{ opacity: isLoading ? 1 : 0 }}
+      animate={{ opacity: 0 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 120 }}`}
+      transition={{ delay: 3.2, duration: 0.6, ease: "easeInOut" }}
     >
       <div className="relative ">
         {/* Clear text that will be revealed as blur overlay moves */}
-        <div className="relative z-10 flex text-h4 md:text-h4 lg:text-h5 font-bold text-primary">
+        <motion.div
+          className="relative z-10 flex text-h4 md:text-h4 lg:text-h5 font-bold text-white"
+          initial={{ scale: 1 }}
+          animate={{ scale: [1, 12] }}
+          transition={{
+            scale: {
+              times: [0, 0.7, 1],
+              duration: 1,
+              delay: 2,
+              ease: "easeInOut",
+            },
+          }}
+        >
           {TEXT.map((char, i) => (
             <motion.span
               key={i}
               initial={{ opacity: 0, filter: "blur(8px)" }}
-              animate={{ opacity: 1, filter: "blur(0px)" }}
+              animate={{
+                opacity: 1,
+                filter: "blur(0px)",
+              }}
+              className={i < 8 ? "font-bold" : "font-light"}
               transition={{
-                delay: 0.2 + (TEXT.length - 1 - i) * 0.08, // Stagger each letter as blur passes
-                duration: 0.05,
+                delay: 0.5 + (TEXT.length - 1 - i) * 0.08,
+                duration: 0.8,
                 ease: "easeOut",
               }}
               style={{ display: "inline-block" }}
@@ -45,31 +61,31 @@ export default function Loader() {
               {char}
             </motion.span>
           ))}
-        </div>
+        </motion.div>
 
         {/* Blur overlay that moves from right to left */}
         <motion.div
-          className="absolute inset-0 z-20 h-[100%] w-[30%]  bg-body/80"
-          initial={{ x: "100%", backdropFilter: "blur(15px)" }}
+          className="absolute inset-0 z-20 h-[100%] w-[30%]  bg-[#020608]/80"
+          initial={{ x: "250%", backdropFilter: "blur(15px)" }}
           animate={{
-            x: "-100%",
+            x: "-50%",
             opacity: 0,
             transition: {
-              delay: 1,
-              duration: 1,
+              delay: 0.7,
+              duration: 1.3,
               ease: "easeInOut",
             },
           }}
         />
         <motion.div
-          className="absolute inset-0 z-20 h-[100%] w-[10%]  bg-body/80"
-          initial={{ x: "430%", backdropFilter: "blur(15px)" }}
+          className="absolute inset-0 z-20 h-[100%] w-[10%]  bg-[#020608]/60"
+          initial={{ x: "1200%", backdropFilter: "blur(15px)" }}
           animate={{
-            x: "-100%",
+            x: "-50%",
             opacity: 0,
             transition: {
-              duration: 1,
-              delay: 1,
+              duration: 1.3,
+              delay: 0.7,
               ease: "easeInOut",
             },
           }}
