@@ -26,7 +26,7 @@ const GradientRec = () => {
   return (
     <motion.div
       ref={ref}
-      className="absolute top-[20%] -right-[30%] z-0 w-[100%] h-[550px]"
+      className="absolute top-[15%] -right-[30%] z-0 w-[100%] h-[550px]"
       style={{
         y,
         rotate,

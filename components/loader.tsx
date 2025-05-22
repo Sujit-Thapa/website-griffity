@@ -34,7 +34,7 @@ export default function Loader() {
       <div className="relative ">
         {/* Clear text that will be revealed as blur overlay moves */}
         <motion.div
-          className="relative z-10 flex text-h4 md:text-h4 lg:text-h5 font-bold text-white"
+          className="relative z-10 flex heading-h4 md:heading-h4 lg:heading-h5 font-bold text-white"
           initial={{ scale: 1 }}
           animate={{ scale: [1, 25] }}
           transition={{

@@ -10,6 +10,8 @@ module.exports = {
         h4: "2.8125rem", // 45px
         h5: "1.875rem", // 30px
         base: "1.25rem", // 20px for regular paragraph
+        c2: "6.25rem", // 100px
+        c1: "11.374rem", // 182px
       },
       colors: {
         primary: "#DBA039",
