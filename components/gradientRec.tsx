@@ -12,9 +12,9 @@ const GradientRec = () => {
   });
 
   // Transform values for parallax movement
-  const y = useTransform(scrollYProgress, [0, 1], [100, -100]); // Move up as user scrolls down
-  const rotate = useTransform(scrollYProgress, [0, 1], [37, 80]); // Subtle rotation change
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.95, 1, 0.98]); // Subtle scale change
+  const y = useTransform(scrollYProgress, [0, 1], [100, 100]); // Move up as user scrolls down
+  const rotate = useTransform(scrollYProgress, [0, 1], [37.5, 28]); // Subtle rotation change
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.95, 1, 1.3]); // Subtle scale change
 
   // Optional: Add subtle color shift
   const gradientStart = useTransform(
@@ -26,7 +26,7 @@ const GradientRec = () => {
   return (
     <motion.div
       ref={ref}
-      className="absolute top-[450px] -right-[50%] z-0 w-[1820px] h-[550px]"
+      className="absolute top-[20%] -right-[30%] z-0 w-[100%] h-[550px]"
       style={{
         y,
         rotate,
