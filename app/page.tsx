@@ -20,7 +20,7 @@ const Page = () => {
       <main>
         <Loader />
         <Hero />
-        <div className="relative overflow-hidden">
+        <div className="relative overflow-hidden ">
           <GradientRec />
           <About />
           <Clientnumber />

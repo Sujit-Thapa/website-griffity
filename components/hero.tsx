@@ -1,11 +1,21 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const Hero = () => {
+  const navItems = ["about us", "services", "clients", "contact us"];
+  const [visibleItems, setVisibleItems] = useState<number[]>([]);
+  useEffect(() => {
+    navItems.forEach((_, index) => {
+      setTimeout(() => {
+        setVisibleItems((prev) => [...prev, index]);
+      }, 3800 + index * 200); // delay in ms
+    });
+  }, []);
+
   return (
-    <div className="relative bg-[url('/images/heroimage.png')] bg-cover bg-center h-screen w-full text-white overflow-hidden">
+    <div className="relative bg-[url('/images/heroimage.png')] bg-cover bg-center h-screen  w-full z-20 text-white overflow-hidden">
       {/* <div className="absolute inset-0 bg-black bg-opacity-30 z-0"></div> */}
 
       <div className=" px-14 flex flex-col py-10 mx-auto h-full relative z-10">
@@ -28,30 +38,27 @@ const Hero = () => {
               <motion.p
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, ease: "easeOut" }}
+                transition={{ duration: 0.7, delay: 4, ease: "easeOut" }}
                 className="text-h4 text-right self-end mt-4 font-extralight"
               >
                 your brand's loudest whisper!
               </motion.p>
             </div>
           </div>
-          <div className=" transform translate-y-5 flex flex-col gap-8 z-50  ">
-            {["about us", "services", "clients", "our team", "contact us"].map(
-              (item, index) => (
-                <motion.p
-                  key={index}
-                  whileHover={{
-                    scale: 1.1,
-                    x: 10,
-                    color: "#dba039",
-                  }}
-                  transition={{ type: "spring" }}
-                  className="cursor-pointer"
-                >
-                  {item}
-                </motion.p>
-              )
-            )}
+          {/* Navigation Items */}
+          <div className="translate-y-8 flex flex-col gap-8 z-50">
+            {navItems.map((item, index) => (
+              <p
+                key={index}
+                className={`transition-all duration-300 ease-out transform cursor-pointer text-base hover:text-[#dba039] hover:translate-x-2 hover:scale-110 ${
+                  visibleItems.includes(index)
+                    ? "opacity-100 translate-x-0"
+                    : "opacity-0 translate-x-10"
+                }`}
+              >
+                {item}
+              </p>
+            ))}
           </div>
         </div>
       </div>
