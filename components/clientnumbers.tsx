@@ -67,11 +67,11 @@ const CountUp = ({
       className="space-y-1 w-full"
     >
       <div className="flex flex-col  w-full">
-        <p className="text-8xl text-white">
+        <p className="heading-h3 text-white">
           {formatNumber(count)}
-          <span className="text-5xl ">{label}</span>
+          <span className="heading-h4 ">{label}</span>
         </p>
-        <p className="text-xl text-primary text-center whitespace-nowrap">
+        <p className="p-base text-primary text-center whitespace-nowrap">
           {desc}
         </p>
       </div>
@@ -93,7 +93,7 @@ const Clientnumber = () => {
   ];
 
   return (
-    <div className="min-h-screen w-full  py-20 max-h-[900px]  h-screen max-w-screen-2xl mx-auto text-white relative flex flex-col">
+    <div className="min-h-screen w-full mb-32 py-20 max-h-[900px]  h-screen max-w-screen-2xl mx-auto text-white relative flex flex-col">
       {/* Heading */}
       <div className="mb-16 pl-16">
         <h1 className="text-7xl text-primary font-bold mb-2">

@@ -55,7 +55,7 @@ const Services = () => {
   const moreInView = useInView(moreRef, { once: false, margin: " -20% 0px" });
 
   return (
-    <div className=" text-white max-w-screen-2xl  py-5 mx-auto w-full justify-center items-center z-">
+    <div className=" text-white max-w-screen-2xl mt-20  py-5 mx-auto w-full justify-center items-center z-">
       <div className="flex justify-between  items-start px-5 mt-2">
         <div className="flex flex-col mt-5 gap-2">
           <motion.p className="heading-h4 z-10 font-semibold ">
