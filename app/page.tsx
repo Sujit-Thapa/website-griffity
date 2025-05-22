@@ -13,10 +13,10 @@ import GradientRec from "@/components/gradientRec";
 const Page = () => {
   return (
     <>
-      <main>
+      <main className="overflow-hidden ">
         <Loader />
         <Hero />
-        <div className="relative overflow-hidden ">
+        <div className="relative ">
           <GradientRec />
           <About />
           <Clientnumber />

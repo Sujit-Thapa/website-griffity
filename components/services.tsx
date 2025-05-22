@@ -55,8 +55,8 @@ const Services = () => {
   const moreInView = useInView(moreRef, { once: false, margin: " -20% 0px" });
 
   return (
-    <div className=" text-white max-w-screen-2xl py-5 mx-auto w-full justify-center items-center z-">
-      <div className="flex justify-between items-start px-5 mt-2">
+    <div className=" text-white max-w-screen-2xl  py-5 mx-auto w-full justify-center items-center z-">
+      <div className="flex justify-between  items-start px-5 mt-2">
         <div className="flex flex-col mt-5 gap-2">
           <motion.p className="text-h4 z-10 font-semibold ">
             WE BRING YOUR VISION{" "}
@@ -71,13 +71,13 @@ const Services = () => {
       </div>
       <div
         ref={containerRef}
-        className="flex flex-col text-primary text-h2/none  gap-10 mt-32 px-5"
+        className="flex flex-col  text-primary text-h2/none  gap-10 mt-32  px-5"
       >
         <motion.div
           ref={brandingRef}
           style={{ scale: brandingScale }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          className="border-b  border-primary w-full flex items-center "
+          className="border-b  border-primary w-full  origin-center flex items-center "
         >
           <p className=" z-10 font-semibold w-2/3  branding ">BRANDING</p>
           <motion.ul
@@ -86,7 +86,7 @@ const Services = () => {
               brandingInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }
             }
             transition={{ duration: 0.3, ease: "easeOut", delay: 0.3 }}
-            className="text-base/normal text-white font-extralight mb-6 "
+            className="text-base/normal text-white w-1/3 font-extralight mb-6 "
           >
             <li className="font-medium">&#8594;VISUAL IDENTITY</li>
             <li>LOGO DESIGN</li>
@@ -108,7 +108,7 @@ const Services = () => {
               marketingInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }
             }
             transition={{ duration: 0.3, ease: "easeOut", delay: 0.3 }}
-            className="text-base/normal text-white font-extralight mb-6"
+            className="text-base/normal text-white w-1/3 font-extralight mb-6"
           >
             <li className="font-medium">&#8594;CONTENT STRATEGY</li>
             <li>MARKETING CAMPAIGNS</li>
@@ -130,7 +130,7 @@ const Services = () => {
               productionInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }
             }
             transition={{ duration: 0.3, ease: "easeOut", delay: 0.3 }}
-            className="text-base/normal text-white font-extralight mb-6"
+            className="text-base/normal w-1/3 text-white font-extralight mb-6"
           >
             <li className="font-medium">&#8594;STORYTELLING & MEDIA</li>
             <li>PHOTOGRAPHY</li>
@@ -152,7 +152,7 @@ const Services = () => {
               webappInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }
             }
             transition={{ duration: 0.3, ease: "easeOut", delay: 0.3 }}
-            className="text-base/normal text-white font-extralight mb-6"
+            className="text-base/normal w-1/3 text-white font-extralight mb-6"
           >
             <li className="font-medium">&#8594;DIGITAL EXPERIENCE</li>
             <li>UI/UX DESIGN</li>
@@ -174,7 +174,7 @@ const Services = () => {
               modelingInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }
             }
             transition={{ duration: 0.3, ease: "easeOut", delay: 0.3 }}
-            className="text-base/normal text-white font-extralight mb-6"
+            className="text-base/normal w-1/3 text-white font-extralight mb-6"
           >
             <li className="font-medium">&#8594;VISUALIZATION & ARCHITECTURE</li>
             <li>Product Prototyping</li>
@@ -197,7 +197,7 @@ const Services = () => {
               eventsInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }
             }
             transition={{ duration: 0.3, ease: "easeOut", delay: 0.3 }}
-            className="text-base/normal text-white font-extralight mb-6"
+            className="text-base/normal w-1/3 text-white font-extralight mb-6"
           >
             <li className="font-medium">&#8594;IMMERSIVE BRAND EXPERIENCES</li>
             <li>Event Planning & Execution</li>
@@ -217,7 +217,7 @@ const Services = () => {
             initial={{ opacity: 0, x: 30 }}
             animate={moreInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
             transition={{ duration: 0.3, ease: "easeOut", delay: 0.3 }}
-            className="text-base/normal text-white font-extralight mb-6"
+            className="text-base/normal w-1/3 text-white font-extralight mb-6"
           >
             <li className="font-medium">&#8594;SPECIALIZED SERVICES</li>
             <li>TAILORED SERVICE</li>
