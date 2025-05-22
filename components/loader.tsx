@@ -21,7 +21,11 @@ export default function Loader() {
 
   return (
     <motion.div
-      className={`fixed inset-0 flex items-center justify-center ${montserrat.className} h-full w-full bg-[#020608] z-50`}
+      className={`fixed inset-0 flex items-center justify-center ${
+        montserrat.className
+      } h-full w-full bg-[#020608] transition-z duration-500 ${
+        isLoading ? "z-50" : "-z-10"
+      }`}
       initial={{ opacity: 1 }}
       animate={{ opacity: 0 }}
       exit={{ opacity: 0 }}
