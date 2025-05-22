@@ -1,3 +1,4 @@
+
 import { indigo } from "@/fonts";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
@@ -7,13 +8,11 @@ const About = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "0px 0px -20% 0px" });
 
-  // Scroll-based animations
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start 120vh", "end -120vh"],
   });
 
-  // Parallax transforms
   const y1 = useTransform(scrollYProgress, [0, 1], [0, -100]);
   const y2 = useTransform(scrollYProgress, [0, 1], [0, -200]);
   const y3 = useTransform(scrollYProgress, [0, 1], [0, -300]);
@@ -23,7 +22,6 @@ const About = () => {
     [0.3, 1, 1, 0.3]
   );
 
-  // Particle styles
   const particleStyles = Array.from({ length: 15 }, (_, i) => ({
     width: Math.random() * 10 + 5,
     height: Math.random() * 10 + 5,
@@ -38,7 +36,7 @@ const About = () => {
       ref={containerRef}
       className="relative h-screen max-w-screen-2xl w-full mx-auto text-white overflow-hidden"
     >
-      {/* Parallax background elements */}
+      {/* Background elements */}
       <motion.div className="absolute inset-0 z-0 opacity-20" style={{ y: y1 }}>
         <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-primary/30 blur-3xl" />
         <div className="absolute bottom-40 right-20 w-80 h-80 rounded-full bg-primary/20 blur-3xl" />
@@ -56,20 +54,12 @@ const About = () => {
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.75, delay: 0.2, ease: "easeOut" }}
           style={{ y: y2 }}
-          className="text-h4 z-10 font-extralight"
+          className="text-h4 overflow-hidden z-10 font-extralight"
         >
           evolving mystery!
         </motion.p>
       </div>
 
-<<<<<<< HEAD
-    
-      <img
-        src="/images/gradient.svg"
-        alt="gradient"
-        className="absolute top-2/3 right-[16%] scale-150 w-auto h-auto z-0"
-      />
-=======
       <div
         ref={ref}
         className="flex pt-24 justify-center w-[80%] mx-auto gap-6"
@@ -160,7 +150,6 @@ const About = () => {
         </motion.span>
       </motion.div>
 
-      {/* Floating particles with parallax */}
       <motion.div className="absolute inset-0 z-0 pointer-events-none">
         {particleStyles.map((style, i) => (
           <motion.div
@@ -170,7 +159,6 @@ const About = () => {
           />
         ))}
       </motion.div>
->>>>>>> c267d9effaa74532780afaf6393e27bc843c860e
     </div>
   );
 };
