@@ -10,7 +10,7 @@ import {
 
 const Footer = () => {
   return (
-    <div className="] h-screen w-full relative">
+    <div className="max-h-[900px] max-w-screen-2xl  mx-auto h-screen w-full relative">
       {/* Left bottom: contact info */}
       <div className="absolute bottom-5 left-10 text-white">
         <p className="font-bold text-xl">
