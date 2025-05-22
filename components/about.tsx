@@ -1,3 +1,4 @@
+
 import { indigo } from "@/fonts";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
@@ -7,7 +8,6 @@ const About = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { margin: "-40% 0px" });
 
-  // Scroll-based animations
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
