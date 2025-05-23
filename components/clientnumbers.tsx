@@ -107,15 +107,10 @@ const Clientnumber = () => {
   ];
 
   return (
-<<<<<<< HEAD
-    <div className= "min-h-screen w-full  py-20 max-h-[900px]  h-screen max-w-screen-2xl mx-auto text-white relative flex flex-col">
-      <div className={`${indigo.className} text-primary `}>
-=======
     <div
       ref={sectionRef}
       className=" w-full mb-32 py-20 max-h-[900px] z-20  h-screen max-w-screen-2xl mx-auto  text-white relative flex flex-col"
     >
->>>>>>> 0f5fb3ed148b6eb1d3a0d55ec1d58309a26870fa
       {/* Heading */}
       <div className="mb-16 pl-16">
         <h1 className="text-7xl text-primary font-bold mb-2">
@@ -123,8 +118,7 @@ const Clientnumber = () => {
         </h1>
         <h2 className="text-7xl text-primary font-bold">SOLUTIONS?</h2>
       </div>
-        </div>
-
+        </div>)
       {/* Stats Section */}
       <div className="flex px-44 flex-row  z-20">
         {/* Left Column */}
@@ -163,9 +157,11 @@ const Clientnumber = () => {
         ))}
       </div>
       */}
+      
       </div>
-    </div>
-  );
+
+      
+
 };
 
 export default Clientnumber;
