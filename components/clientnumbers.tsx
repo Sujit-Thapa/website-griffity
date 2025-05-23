@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import GriffityBg from "./bg-logo";
 
 // Format large numbers like 20000 to 20k
 const formatNumber = (num: number): string => {
@@ -64,14 +65,14 @@ const CountUp = ({
       initial={{ opacity: 0, y: 30 }}
       animate={isVisible ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6 }}
-      className="space-y-1 w-full"
+      className="space-y-1 w-full flex flex-col items-start"
     >
-      <div className="flex flex-col  w-full">
+      <div className="flex flex-col leading-tight ">
         <p className="heading-h3 text-white">
           {formatNumber(count)}
-          <span className="heading-h4 ">{label}</span>
+          <span className="heading-h4  font-medium">{label}</span>
         </p>
-        <p className="p-base text-primary text-center whitespace-nowrap">
+        <p className="p-base font-medium text-primary text-right   whitespace-nowrap">
           {desc}
         </p>
       </div>
@@ -80,6 +81,19 @@ const CountUp = ({
 };
 
 const Clientnumber = () => {
+  const sectionRef = useRef(null);
+
+  // Track scroll progress for this section
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start 0.5", "end 0.5"], // triggers animation as section enters/leaves viewport
+  });
+
+  // Animate from bottom-right to top-left (adjust values as needed)
+  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const x = useTransform(scrollYProgress, [0, 1], [-300, 200]);
+  const opacity = useTransform(scrollYProgress, [0, 0.95, 1], [1, 1, 0]);
+
   const statsLeft = [
     { end: 4, label: " years", desc: "of experience" },
     { end: 31, label: "+ projects", desc: "done" },
@@ -93,7 +107,10 @@ const Clientnumber = () => {
   ];
 
   return (
-    <div className=" w-full mb-32 py-20 max-h-[900px]  h-screen max-w-screen-2xl mx-auto text-white relative flex flex-col">
+    <div
+      ref={sectionRef}
+      className=" w-full mb-32 py-20 max-h-[900px] z-20  h-screen max-w-screen-2xl mx-auto  text-white relative flex flex-col"
+    >
       {/* Heading */}
       <div className="mb-16 pl-16">
         <h1 className="text-7xl text-primary font-bold mb-2">
@@ -103,7 +120,7 @@ const Clientnumber = () => {
       </div>
 
       {/* Stats Section */}
-      <div className="flex ml-36 flex-row px-44 gap-20">
+      <div className="flex px-44 flex-row  z-20">
         {/* Left Column */}
         <div className="flex flex-col space-y-20 w-full">
           {statsLeft.map(({ end, label, desc }, idx) => (
@@ -118,7 +135,12 @@ const Clientnumber = () => {
           ))}
         </div>
       </div>
-
+      <motion.div
+        style={{ x, y, opacity }}
+        className="absolute bottom-0 right-0 w-full h-full"
+      >
+        <GriffityBg />
+      </motion.div>
       {/* 
       <div className="absolute bottom-6 left-6 ml-32 text-primary text-xl space-y-1">
         {["your growth is our", "mission and we", "will make it happen"].map(
