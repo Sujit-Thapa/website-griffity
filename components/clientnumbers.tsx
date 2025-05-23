@@ -91,8 +91,8 @@ const Clientnumber = () => {
   });
 
   // Animate from bottom-right to top-left (adjust values as needed)
-  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
-  const x = useTransform(scrollYProgress, [0, 1], [-300, 200]);
+  const y = useTransform(scrollYProgress, [0, 1], [200, -100]);
+  const x = useTransform(scrollYProgress, [0, 1], [-250, 200]);
   const opacity = useTransform(scrollYProgress, [0, 0.95, 1], [1, 1, 0]);
 
   const statsLeft = [
