@@ -201,7 +201,7 @@ const Services = () => {
           >
             <li className="font-medium">&#8594;IMMERSIVE BRAND EXPERIENCES</li>
             <li>Event Planning & Execution</li>
-            <li>SPONSERSHIP MANAGEMENT</li>
+            <li>SPONSORSHIP MANAGEMENT</li>
             <li>BRANDING & MARKETING</li>
             <li>LOGISTICS & MORE</li>
           </motion.ul>
@@ -222,7 +222,8 @@ const Services = () => {
             <li className="font-medium">&#8594;SPECIALIZED SERVICES</li>
             <li>TAILORED SERVICE</li>
             <li>WORKSHOP & TRAINING</li>
-            <li>TREND FORECASTING R&D FOR NEW MEDIA</li>
+            <li>TREND FORECASTING </li>
+            <li>R&D FOR NEW MEDIA</li>
           </motion.ul>
         </motion.div>
       </div>
