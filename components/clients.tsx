@@ -19,7 +19,7 @@ const Client = () => {
   const singleClients = [
     { name: "nepal", text: "NEPAL" },
     { name: "ntc", text: "NEPAL TELECOME" },
-    { name: "acem", text: "ACEM" },
+    { name: "acem", text: "ADVANCED COLLEGE OF ENGINEERING & MANAGEMENT" },
   ];
 
   interface PairedClient {
