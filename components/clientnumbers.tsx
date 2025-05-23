@@ -121,7 +121,7 @@ const Clientnumber = () => {
         </h1>
         <h2 className="text-7xl text-primary font-bold">SOLUTIONS?</h2>
       </div>
-
+        </div>)
       {/* Stats Section */}
       <div className="flex px-44 flex-row  z-20">
         {/* Left Column */}
@@ -136,7 +136,7 @@ const Clientnumber = () => {
           {statsRight.map(({ end, label, desc }, idx) => (
             <CountUp key={idx} end={end} label={label} desc={desc} />
           ))}
-        </div>
+      
       </div>
       <motion.div
         style={{ x, y, opacity }}
@@ -160,8 +160,11 @@ const Clientnumber = () => {
         ))}
       </div>
       */}
-    </div>
-  );
+      
+      </div>
+
+      
+
 };
 
 export default Clientnumber;
