@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import GriffityBg from "./bg-logo";
+import { indigo } from "@/fonts";
 
 // Format large numbers like 20000 to 20k
 const formatNumber = (num: number): string => {
@@ -113,7 +114,9 @@ const Clientnumber = () => {
     >
       {/* Heading */}
       <div className="mb-16 pl-16">
-        <h1 className="text-7xl text-primary font-bold mb-2">
+        <h1
+          className={`text-7xl ${indigo.className} text-primary font-bold mb-2`}
+        >
           TIRED OF OUTDATED
         </h1>
         <h2 className="text-7xl text-primary font-bold">SOLUTIONS?</h2>
