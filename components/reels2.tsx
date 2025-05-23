@@ -14,20 +14,20 @@ const cardContents = [
   { title: "Card 8", description: "This is the eighth card" },
 ];
 
-const Reels = () => {
+const Reels2 = () => {
   const [holesCount, setHolesCount] = useState(0);
   const [cardRepeatCount, setCardRepeatCount] = useState(1);
 
   // Scroll tracking
   const { scrollYProgress } = useScroll();
-  const x = useTransform(scrollYProgress, [0, 1], [-1500, 1500]);
+  const x = useTransform(scrollYProgress, [0, 1], [1500, -1500]); // Opposite of Reels
 
   useEffect(() => {
     const updateLayout = () => {
       const screenWidth = window.innerWidth;
 
       const holeSize = 16 + 8; // w-4 (16px) + gap (~8px)
-      const cardSize = 320 + 20; // w-80 (320px) + gap (~20px)
+      const cardSize = 288 + 20; // w-72 (288px) + gap (~20px)
 
       setHolesCount(Math.ceil(screenWidth / holeSize));
       setCardRepeatCount(Math.ceil(screenWidth / (8 * cardSize)));
@@ -51,7 +51,7 @@ const Reels = () => {
         cards.push(
           <div
             key={`${r}-${i}`}
-            className="bg-white h-44 w-80 shrink-0 rounded shadow p-4 flex flex-col justify-between"
+            className="bg-white h-36 w-72 shrink-0 rounded shadow p-4 flex flex-col justify-between"
           >
             <h3 className="text-lg font-semibold">{content.title}</h3>
             <p className="text-sm text-gray-600">{content.description}</p>
@@ -64,14 +64,14 @@ const Reels = () => {
 
   return (
     <motion.div
-      className="h-64 bg-primary flex flex-col justify-evenly px-5 shadow-[-16px_-19px_9px_-8px_rgba(0,0,0,0.1)]  z-40"
-      style={{ x, rotate: -6, y: 60 }} // Apply x-translation based on scroll
+      className=" h-56 bg-primary flex flex-col justify-evenly px-5 rotate-3"
+      style={{ x, rotate: 3.7, scale: 0.9 }} // Apply opposite x-translation
     >
       <div className="flex gap-5 justify-center">{renderHoles()}</div>
-      <div className="flex gap-5">{renderCards()}</div>
+      <div className="flex gap-5 ">{renderCards()}</div>
       <div className="flex gap-5 justify-center">{renderHoles()}</div>
     </motion.div>
   );
 };
 
-export default Reels;
+export default Reels2;

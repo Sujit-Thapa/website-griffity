@@ -11,6 +11,8 @@ import GradientRec from "@/components/gradientRec";
 
 import dynamic from "next/dynamic";
 import TrustedClient from "@/components/trustedClient";
+import Reels from "@/components/reels";
+import Reels2 from "@/components/reels2";
 
 const About = dynamic(() => import("@/components/about"), { ssr: false });
 
@@ -26,7 +28,10 @@ const Page = () => {
           <Clientnumber />
           <Services />
         </div>
-
+        <div className="h-screen flex flex-col justify-center items-center overflow-hidden">
+          <Reels2 />
+          <Reels />
+        </div>
         <TrustedClient />
 
         <Client />
