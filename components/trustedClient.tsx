@@ -5,77 +5,97 @@ import { useRef, useState, useEffect } from "react";
 
 const TrustedClients = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const [animationState, setAnimationState] = useState<
+    "hidden" | "visible" | "exitingBottom"
+  >("hidden");
 
   // Text to animate
   const TEXT = "[TRUSTED CLIENTS]";
   const TEXT_BLOCKS = ["COMPANIES WE HAVE", "WORKED WITH"];
 
+  // Handle scroll to control animation states
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        } else {
-          setIsVisible(false);
-        }
-      },
-      {
-        root: null,
-        rootMargin: "0px",
-        threshold: 0.05,
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const fullHeight = document.documentElement.scrollHeight;
+
+      // Check if near the bottom (within 100px)
+      if (scrollTop + windowHeight >= fullHeight - 100) {
+        setAnimationState("exitingBottom");
+        return;
       }
-    );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
+      // Check if section is in view
       if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+        const rect = sectionRef.current.getBoundingClientRect();
+        const isInView = rect.top < windowHeight && rect.bottom > 0;
+        setAnimationState(isInView ? "visible" : "hidden");
       }
     };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Trigger on mount
+
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Animation variants for clearer state management
+  const textVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+    exitingBottom: { opacity: 0, y: -20 }, // Reverse direction for bottom exit
+  };
+
+  const wordVariants = {
+    hidden: { opacity: 0, y: 10, filter: "blur(20px)" },
+    visible: { opacity: 1, y: 0, filter: "blur(0px)" },
+    exitingBottom: { opacity: 0, y: -10, filter: "blur(20px)" }, // Reverse direction
+  };
+
   return (
-    <div ref={sectionRef} className="flex flex-col mt-[300px] ">
-      {isVisible && (
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, ease: "easeOut", delay: 0.7 }}
-          className="text-primary font-medium p-base text-center"
-        >
-          {TEXT}
-        </motion.p>
-      )}
+    <div
+      ref={sectionRef}
+      className="flex sticky top-[200px] flex-col mt-[300px] z-30"
+    >
+      <motion.p
+        variants={textVariants}
+        initial="hidden"
+        animate={animationState}
+        transition={{ duration: 0.4, ease: "easeOut", delay: 0.7 }}
+        className="text-primary font-medium p-base text-center"
+      >
+        {TEXT}
+      </motion.p>
+
       <div className="w-fit mx-auto text-center text-primary heading-h2 scale-75 leading-none">
         {TEXT_BLOCKS.map((line, lineIndex) => {
-          const lineDelay = 0.5 + lineIndex * 0.7; // Delay each line more
+          const lineDelay = 0.5 + lineIndex * 0.7;
           return (
-            <div key={lineIndex} className="">
-              {isVisible &&
-                line.split(" ").map((word, wordIndex) => (
-                  <motion.span
-                    key={wordIndex}
-                    initial={{ opacity: 0, y: 10, filter: "blur(20px)" }}
-                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                    transition={{
-                      delay: lineDelay + wordIndex * 0.2, // stagger inside each line
-                      duration: 0.5,
-                      ease: "easeOut",
-                    }}
-                    className={`inline-block mx-1 ${
-                      lineIndex === 0
-                        ? "font-semibold tracking-widest"
-                        : "font-semibold"
-                    }`}
-                  >
-                    {word}
-                  </motion.span>
-                ))}
+            <div key={lineIndex}>
+              {line.split(" ").map((word, wordIndex) => (
+                <motion.span
+                  key={wordIndex}
+                  variants={wordVariants}
+                  initial="hidden"
+                  animate={animationState}
+                  transition={{
+                    delay:
+                      animationState === "visible"
+                        ? lineDelay + wordIndex * 0.2
+                        : 0,
+                    duration: 0.4,
+                    ease: "easeOut",
+                  }}
+                  className={`inline-block mx-1 ${
+                    lineIndex === 0
+                      ? "font-semibold tracking-widest"
+                      : "font-semibold"
+                  }`}
+                >
+                  {word}
+                </motion.span>
+              ))}
             </div>
           );
         })}

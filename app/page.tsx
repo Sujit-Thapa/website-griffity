@@ -27,9 +27,7 @@ const Page = () => {
           <Services />
         </div>
 
-        <div className="sticky top-[200px]  w-full">
-          <TrustedClient />
-        </div>
+        <TrustedClient />
 
         <Client />
         <Footer />
