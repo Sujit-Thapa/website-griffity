@@ -52,7 +52,7 @@ const Client = () => {
                       i === 0 ? "translate-y-32" : ""
                     }`}
                   >
-                    <div className="flex items-center p-10 justify-center w-[336px] h-[382px] border border-primary z-40">
+                    <div className="flex items-center p-14 justify-center w-[336px] h-[382px] border border-primary z-40">
                       <Image
                         width={336}
                         height={382}
@@ -72,7 +72,7 @@ const Client = () => {
             {singleClients[idx] && (
               <div className="flex flex-col items-center mb-32 translate-y-32">
                 <div className="flex flex-col w-[336px]">
-                  <div className="flex items-center justify-center h-[382px] z-40 border border-primary">
+                  <div className="flex items-center justify-center p-14 h-[382px] z-40 border border-primary">
                     <Image
                       width={336}
                       height={382}
