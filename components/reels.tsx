@@ -21,6 +21,7 @@ const Reels = () => {
   // Scroll tracking
   const { scrollYProgress } = useScroll();
   const x = useTransform(scrollYProgress, [0, 1], [-1500, 1500]);
+  const scale = useTransform(scrollYProgress, [0, 1], [0.5, 1.7]);
 
   useEffect(() => {
     const updateLayout = () => {
@@ -65,7 +66,7 @@ const Reels = () => {
   return (
     <motion.div
       className="h-64 bg-primary flex flex-col justify-evenly px-5 shadow-[-16px_-19px_9px_-8px_rgba(0,0,0,0.1)]  z-40"
-      style={{ x, rotate: -6, y: 60 }} // Apply x-translation based on scroll
+      style={{ x, rotate: -6, y: 60, scale }} // Apply x-translation based on scroll
     >
       <div className="flex gap-5 justify-center">{renderHoles()}</div>
       <div className="flex gap-5">{renderCards()}</div>
