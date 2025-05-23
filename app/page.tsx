@@ -9,23 +9,28 @@ import Client from "@/components/clients";
 import Footer from "@/components/footer";
 import GradientRec from "@/components/gradientRec";
 
-
 import dynamic from "next/dynamic";
+import TrustedClient from "@/components/trustedClient";
 
 const About = dynamic(() => import("@/components/about"), { ssr: false });
 
 const Page = () => {
   return (
     <>
-      <main>
+      <main className="relative ">
         <Loader />
         <Hero />
-        <div className="relative overflow-hidden ">
+        <div className="relative overflow-hidden">
           <GradientRec />
           <About />
           <Clientnumber />
+          <Services />
         </div>
-        <Services />
+
+        <div className="sticky top-[200px]  w-full">
+          <TrustedClient />
+        </div>
+
         <Client />
         <Footer />
       </main>

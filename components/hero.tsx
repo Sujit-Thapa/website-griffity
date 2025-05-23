@@ -32,14 +32,14 @@ const Hero = () => {
         <div className="flex items-center gap-10 h-full max-w-[1440px] mx-auto">
           <div className=" z-10 ">
             <div className="flex flex-col items-start translate-x-[-5%]">
-              <p className="text-h2 font-medium">
+              <p className="heading-h2 font-medium">
                 welcome to <span className="font-bold">griffity</span>
               </p>
               <motion.p
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 4, ease: "easeOut" }}
-                className="text-h4 text-right self-end mt-4 font-extralight"
+                className="heading-h4 text-right self-end mt-4 font-extralight"
               >
                 your brand's loudest whisper!
               </motion.p>
@@ -50,7 +50,7 @@ const Hero = () => {
             {navItems.map((item, index) => (
               <p
                 key={index}
-                className={`transition-all duration-300 ease-out transform cursor-pointer text-base hover:text-[#dba039] hover:translate-x-2 hover:scale-110 ${
+                className={`transition-all duration-300 ease-out transform cursor-pointer p-base hover:text-[#dba039] hover:translate-x-2 hover:scale-110 ${
                   visibleItems.includes(index)
                     ? "opacity-100 translate-x-0"
                     : "opacity-0 translate-x-10"

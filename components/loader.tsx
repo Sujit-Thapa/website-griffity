@@ -34,7 +34,7 @@ export default function Loader() {
       <div className="relative ">
         {/* Clear text that will be revealed as blur overlay moves */}
         <motion.div
-          className="relative z-10 flex text-h4 md:text-h4 lg:text-h5 font-bold text-white"
+          className="relative z-10 flex heading-h4 md:heading-h4 lg:heading-h5 font-semibold text-white"
           initial={{ scale: 1 }}
           animate={{ scale: [1, 25] }}
           transition={{
@@ -54,7 +54,7 @@ export default function Loader() {
                 opacity: 1,
                 filter: "blur(0px)",
               }}
-              className={i < 8 ? "font-bold" : "font-light"}
+              className={i < 8 ? "font-semibold" : "font-light"}
               transition={{
                 delay: 0.5 + (TEXT.length - 1 - i) * 0.08,
                 duration: 0.8,

@@ -10,11 +10,11 @@ import {
 
 const Footer = () => {
   return (
-    <div className="max-h-[900px] max-w-screen-2xl  mx-auto h-screen w-full relative">
+    <div className="max-h-[900px] max-w-screen-2xl  mx-auto h-screen mt-20  w-full relative">
       {/* Left bottom: contact info */}
       <div className="absolute bottom-5 left-10 text-white">
-        <p className="font-bold text-xl">
-          GRIFFITY<span className="font-thin">STUDIOS</span>
+        <p className="font-semibold text-2xl mb-1">
+          GRIFFITY<span className="font-light">STUDIOS</span>
         </p>
         <div className="font-light">
           <p>Bhaisepati, Kathmandu</p>
