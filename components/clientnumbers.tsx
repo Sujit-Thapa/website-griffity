@@ -93,7 +93,7 @@ const Clientnumber = () => {
   ];
 
   return (
-    <div className="min-h-screen w-full mb-32 py-20 max-h-[900px]  h-screen max-w-screen-2xl mx-auto text-white relative flex flex-col">
+    <div className=" w-full mb-32 py-20 max-h-[900px]  h-screen max-w-screen-2xl mx-auto text-white relative flex flex-col">
       {/* Heading */}
       <div className="mb-16 pl-16">
         <h1 className="text-7xl text-primary font-bold mb-2">

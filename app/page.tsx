@@ -17,16 +17,20 @@ const About = dynamic(() => import("@/components/about"), { ssr: false });
 const Page = () => {
   return (
     <>
-      <main className="overflow-hidden relative ">
+      <main className="relative ">
         <Loader />
         <Hero />
-        <div className="relative ">
+        <div className="relative overflow-hidden">
           <GradientRec />
           <About />
           <Clientnumber />
+          <Services />
         </div>
-        <Services />
-        {/* <TrustedClient /> */}
+
+        <div className="sticky top-[200px]  w-full">
+          <TrustedClient />
+        </div>
+
         <Client />
         <Footer />
       </main>

@@ -1,126 +1,94 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
+import { text } from "stream/consumers";
 
 const Client = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const pairedClients = [
+    { name: "ncell", text: "NCELL" },
+    { name: "prvu", text: "PRABHU BANK" },
+    { name: "veda", text: "VEDA STUDIOS" },
+    { name: "aitc", text: "AITC" },
+    { name: "eureka", text: "EUREKA" },
+    { name: "hult", text: "HULT PRIZE" },
+    { name: "cafe", text: "CAFE BOH" },
+    { name: "maha", text: "MAHAK MAHA" },
+  ];
 
-  // Text to animate
-  const TEXT = "[TRUSTED CLIENTS]";
-  const TEXT_BLOCKS = ["COMPANIES WE HAVE", "WORKED WITH"];
+  const singleClients = [
+    { name: "nepal", text: "NEPAL" },
+    { name: "ntc", text: "NEPAL TELECOME" },
+    { name: "acem", text: "ACEM" },
+  ];
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        } else {
-          setIsVisible(false);
-        }
-      },
-      {
-        root: null,
-        rootMargin: "0px",
-        threshold: 0.05,
-      }
-    );
+  interface PairedClient {
+    name: string;
+    text: string;
+  }
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
+  interface SingleClient {
+    name: string;
+  }
 
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
+  const pairedGroups: PairedClient[][] = [];
+  for (let i = 0; i < pairedClients.length; i += 2) {
+    pairedGroups.push(pairedClients.slice(i, i + 2));
+  }
+
+  const maxLength = Math.max(pairedGroups.length, singleClients.length);
 
   return (
-    <div className="relative w-full" ref={sectionRef}>
-      {/* Fixed text with character animation */}
-      <div
-        className={`fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 w-full pointer-events-none transition-all duration-500 ease-out ${
-          isVisible ? "opacity-100" : "opacity-0"
-        }`}
-      >
-        <div className="flex flex-col ">
-          {isVisible && (
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, ease: "easeOut", delay: 0.7 }}
-              className="text-primary font-medium p-base text-center"
-            >
-              {TEXT}
-            </motion.p>
-          )}
-          <div className="w-fit mx-auto text-center text-primary heading-h2 leading-snug">
-            {TEXT_BLOCKS.map((line, lineIndex) => {
-              const lineDelay = 0.5 + lineIndex * 0.7; // Delay each line more
-              return (
-                <div key={lineIndex} className="mb-1">
-                  {isVisible &&
-                    line.split(" ").map((word, wordIndex) => (
-                      <motion.span
-                        key={wordIndex}
-                        initial={{ opacity: 0, y: 10, filter: "blur(20px)" }}
-                        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                        transition={{
-                          delay: lineDelay + wordIndex * 0.2, // stagger inside each line
-                          duration: 0.5,
-                          ease: "easeOut",
-                        }}
-                        className={`inline-block mx-1 ${
-                          lineIndex === 0
-                            ? "font-bold tracking-widest"
-                            : "font-medium"
-                        }`}
-                      >
-                        {word}
-                      </motion.span>
-                    ))}
+    <div className="relative w-full">
+      <div className="max-w-screen-2xl mt-52 w-full mx-auto">
+        {Array.from({ length: maxLength }).map((_, idx) => (
+          <div key={idx}>
+            {pairedGroups[idx] && (
+              <div className="flex justify-between mb-32">
+                {pairedGroups[idx].map((client, i) => (
+                  <div
+                    key={i}
+                    className={`flex flex-col items-start ${
+                      i === 0 ? "translate-y-32" : ""
+                    }`}
+                  >
+                    <div className="flex items-center p-10 justify-center w-[336px] h-[382px] border border-primary z-40">
+                      <Image
+                        width={336}
+                        height={382}
+                        src={`/images/clientLogo/${client.name}.svg`}
+                        alt={client.text}
+                        className="max-h-full max-w-full object-contain"
+                      />
+                    </div>
+                    <p className="p-base font-semibold text-primary mt-3">
+                      {client.text}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {singleClients[idx] && (
+              <div className="flex flex-col items-center mb-32 translate-y-32">
+                <div className="flex flex-col w-[336px]">
+                  <div className="flex items-center justify-center h-[382px] z-40 border border-primary">
+                    <Image
+                      width={336}
+                      height={382}
+                      src={`/images/clientLogo/${singleClients[idx].name}.svg`}
+                      alt={singleClients[idx].text}
+                      className="max-h-full max-w-full object-contain"
+                    />
+                  </div>
+                  <p className="text-left p-base font-semibold text-primary mt-3">
+                    {singleClients[idx].text}
+                  </p>
                 </div>
-              );
-            })}
+              </div>
+            )}
           </div>
-        </div>
-      </div>
-
-      {/* Client boxes that scroll with the page */}
-      <div className="max-w-screen-2xl  mt-96 w-full mx-auto">
-        <div className="flex justify-between mb-32">
-          <div className="flex items-center justify-center w-[336px] h-[382px] translate-y-32  "></div>
-          <div className="flex items-center justify-center w-[336px] h-[382px]  "></div>
-        </div>
-
-        <div className="flex justify-between mb-32">
-          <div className="flex items-center justify-center w-[336px] h-[382px] translate-y-32 border border-primary bg-white">
-            <p className="text-gray-400">Client 1</p>
-          </div>
-          <div className="flex items-center justify-center w-[336px] h-[382px] border border-primary bg-white">
-            <p className="text-gray-400">Client 2</p>
-          </div>
-        </div>
-        <div className="flex justify-between mb-32">
-          <div className="flex items-center justify-center w-[336px] h-[382px] translate-y-32 border border-primary bg-white">
-            <p className="text-gray-400">Client 3</p>
-          </div>
-          <div className="flex items-center justify-center w-[336px] h-[382px] border border-primary bg-white">
-            <p className="text-gray-400">Client 4</p>
-          </div>
-        </div>
-        <div className="flex justify-between mb-32">
-          <div className="flex items-center justify-center w-[336px] h-[382px] translate-y-32 border border-primary bg-white">
-            <p className="text-gray-400">Client 5</p>
-          </div>
-          <div className="flex items-center justify-center w-[336px] h-[382px] border border-primary bg-white">
-            <p className="text-gray-400">Client 6</p>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );
