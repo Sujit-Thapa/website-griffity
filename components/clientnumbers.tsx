@@ -91,8 +91,8 @@ const Clientnumber = () => {
   });
 
   // Animate from bottom-right to top-left (adjust values as needed)
-  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
-  const x = useTransform(scrollYProgress, [0, 1], [-300, 200]);
+  const y = useTransform(scrollYProgress, [0, 1], [200, -100]);
+  const x = useTransform(scrollYProgress, [0, 1], [-250, 200]);
   const opacity = useTransform(scrollYProgress, [0, 0.95, 1], [1, 1, 0]);
 
   const statsLeft = [
@@ -121,7 +121,7 @@ const Clientnumber = () => {
         </h1>
         <h2 className="text-7xl text-primary font-bold">SOLUTIONS?</h2>
       </div>
-        </div>)
+
       {/* Stats Section */}
       <div className="flex px-44 flex-row  z-20">
         {/* Left Column */}
@@ -136,7 +136,7 @@ const Clientnumber = () => {
           {statsRight.map(({ end, label, desc }, idx) => (
             <CountUp key={idx} end={end} label={label} desc={desc} />
           ))}
-      
+        </div>
       </div>
       <motion.div
         style={{ x, y, opacity }}
@@ -160,11 +160,8 @@ const Clientnumber = () => {
         ))}
       </div>
       */}
-      
-      </div>
-
-      
-
+    </div>
+  );
 };
 
 export default Clientnumber;
