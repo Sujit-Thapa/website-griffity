@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { indigo } from "@/fonts";
 
 // Format large numbers like 20000 to 20k
 const formatNumber = (num: number): string => {
@@ -93,7 +94,8 @@ const Clientnumber = () => {
   ];
 
   return (
-    <div className="min-h-screen w-full  py-20 max-h-[900px]  h-screen max-w-screen-2xl mx-auto text-white relative flex flex-col">
+    <div className= "min-h-screen w-full  py-20 max-h-[900px]  h-screen max-w-screen-2xl mx-auto text-white relative flex flex-col">
+      <div className={`${indigo.className} text-primary `}>
       {/* Heading */}
       <div className="mb-16 pl-16">
         <h1 className="text-7xl text-primary font-bold mb-2">
@@ -101,6 +103,7 @@ const Clientnumber = () => {
         </h1>
         <h2 className="text-7xl text-primary font-bold">SOLUTIONS?</h2>
       </div>
+        </div>
 
       {/* Stats Section */}
       <div className="flex ml-36 flex-row px-44 gap-20">
@@ -116,7 +119,7 @@ const Clientnumber = () => {
           {statsRight.map(({ end, label, desc }, idx) => (
             <CountUp key={idx} end={end} label={label} desc={desc} />
           ))}
-        </div>
+      
       </div>
 
       {/* 
@@ -135,6 +138,7 @@ const Clientnumber = () => {
         ))}
       </div>
       */}
+      </div>
     </div>
   );
 };
