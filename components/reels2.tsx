@@ -21,7 +21,7 @@ const Reels2 = () => {
   // Scroll tracking
   const { scrollYProgress } = useScroll();
   const x = useTransform(scrollYProgress, [0, 1], [1500, -1500]); // Opposite of Reels
-  const scale = useTransform(scrollYProgress, [0, 1], [1.5, 0.001]);
+
   useEffect(() => {
     const updateLayout = () => {
       const screenWidth = window.innerWidth;
@@ -65,7 +65,7 @@ const Reels2 = () => {
   return (
     <motion.div
       className=" h-56 bg-primary flex flex-col justify-evenly px-5 rotate-3"
-      style={{ x, rotate: 3.7, scale }} // Apply opposite x-translation
+      style={{ x, rotate: 3.7, scale: 0.9 }} // Apply opposite x-translation
     >
       <div className="flex gap-5 justify-center">{renderHoles()}</div>
       <div className="flex gap-5 ">{renderCards()}</div>
