@@ -3,15 +3,16 @@
 import React, { useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
+// Replace with your actual image and video paths
 const cardContents = [
-  { title: "Card 1", description: "This is the first card" },
-  { title: "Card 2", description: "This is the second card" },
-  { title: "Card 3", description: "This is the third card" },
-  { title: "Card 4", description: "This is the fourth card" },
-  { title: "Card 5", description: "This is the fifth card" },
-  { title: "Card 6", description: "This is the sixth card" },
-  { title: "Card 7", description: "This is the seventh card" },
-  { title: "Card 8", description: "This is the eighth card" },
+  { type: "image", src: "/reelsmedia/11.jpg" },
+  { type: "video", src: "/reelsmedia/3d.mp4" },
+  { type: "image", src: "/reelsmedia/2.jpg" },
+  { type: "video", src: "/reelsmedia/2.mp4" },
+  { type: "image", src: "/reelsmedia/13.jpg" },
+  { type: "video", src: "/reelsmedia/2.mp4" },
+  { type: "image", src: "/reelsmedia/10.jpg" },
+  { type: "image", src: "/reelsmedia/9.jpg" },
 ];
 
 const Reels2 = () => {
@@ -20,7 +21,7 @@ const Reels2 = () => {
 
   // Scroll tracking
   const { scrollYProgress } = useScroll();
-  const x = useTransform(scrollYProgress, [0, 1], [1500, -1500]); // Opposite of Reels
+  const x = useTransform(scrollYProgress, [0, 1], [1500, -1500]); // Opposite scroll
 
   useEffect(() => {
     const updateLayout = () => {
@@ -51,10 +52,24 @@ const Reels2 = () => {
         cards.push(
           <div
             key={`${r}-${i}`}
-            className="bg-white h-36 w-72 shrink-0 rounded shadow p-4 flex flex-col justify-between"
+            className="bg-white h-36 w-72 shrink-0 rounded shadow overflow-hidden flex items-center justify-center"
           >
-            <h3 className="text-lg font-semibold">{content.title}</h3>
-            <p className="text-sm text-gray-600">{content.description}</p>
+            {content.type === "image" ? (
+              <img
+                src={content.src}
+                alt="Media"
+                className="object-cover w-full h-full"
+              />
+            ) : content.type === "video" ? (
+              <video
+                src={content.src}
+                className="w-full h-full object-cover"
+                autoPlay
+                muted
+                loop
+                playsInline
+              />
+            ) : null}
           </div>
         );
       }
@@ -64,11 +79,11 @@ const Reels2 = () => {
 
   return (
     <motion.div
-      className=" h-56 bg-primary flex flex-col justify-evenly px-5 rotate-3"
-      style={{ x, rotate: 3.7, scale: 0.9 }} // Apply opposite x-translation
+      className="h-56 bg-primary flex flex-col justify-evenly px-5 rotate-3"
+      style={{ x, rotate: 3.7, scale: 0.9 }}
     >
       <div className="flex gap-5 justify-center">{renderHoles()}</div>
-      <div className="flex gap-5 ">{renderCards()}</div>
+      <div className="flex gap-5">{renderCards()}</div>
       <div className="flex gap-5 justify-center">{renderHoles()}</div>
     </motion.div>
   );
