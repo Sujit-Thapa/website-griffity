@@ -11,12 +11,12 @@ html {
 
 @layer components {
   .heading-h1 {
-    @apply text-[2.5rem]/none sm:text-[4.375rem]/none md:text-[6.875rem]/none lg:text-h1/none;
+    @apply text-[2.5rem]/none sm:text-[4.375rem]/none md:text-[4.875rem]/none xl:text-h1/none;
     /* 40px → 2.5rem, 70px → 4.375rem, 110px → 6.875rem, 157px = h1 */
   }
 
   .heading-h2 {
-    @apply text-[1.875rem] sm:text-[3.125rem] md:text-[5rem] lg:text-h2;
+    @apply text-[1.875rem] sm:text-[3.125rem] md:text-[5rem] xl:text-h2;
     /* 30px → 1.875rem, 50px → 3.125rem, 80px → 5rem, 110px = h2 */
   }
 
