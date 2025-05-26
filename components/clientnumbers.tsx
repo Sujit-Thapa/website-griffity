@@ -174,12 +174,12 @@ const Clientnumber = () => {
           ))}
         </div>
       </div>
-      <motion.div
+      {/* <motion.div
         style={{ x, y, opacity }}
         className="absolute bottom-0 right-0 w-full h-full"
       >
         <GriffityBg />
-      </motion.div>
+      </motion.div> */}
       {/* 
       <div className="absolute bottom-6 left-6 ml-32 text-primary text-xl space-y-1">
         {["your growth is our", "mission and we", "will make it happen"].map(
