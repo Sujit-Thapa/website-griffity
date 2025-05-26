@@ -1,6 +1,6 @@
 "use client";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 const Services = () => {
   const containerRef = useRef(null);
@@ -19,6 +19,11 @@ const Services = () => {
     offset: ["start 0.92", "end 0.5"],
   });
 
+  const containerInView = useInView(containerRef, {
+    once: true,
+    margin: "-36% 0px",
+  });
+
   // Create a staggered animation effect for each service section
   const brandingScale = useTransform(scrollYProgress, [0, 0.15], [1.2, 1]);
   const marketingScale = useTransform(scrollYProgress, [0.15, 0.3], [1.2, 1]);
@@ -29,33 +34,48 @@ const Services = () => {
   const moreScale = useTransform(scrollYProgress, [0.9, 1], [1.2, 1]);
 
   const brandingInView = useInView(brandingRef, {
-    once: false,
+    once: true,
     margin: " -20% 0px",
   });
+
+  // useEffect(() => {
+  //   if (containerInView) {
+  //     document.body.classList.remove("bg-body", "text-white");
+  //     document.body.classList.add("bg-white", "text-[#1a2e38]");
+  //   } else {
+  //     document.body.classList.remove("bg-white", "text-[#1a2e38]");
+  //     document.body.classList.add("bg-body", "text-white");
+  //   }
+  //   return () => {
+  //     document.body.classList.remove("bg-white", "text-[#1a2e38]");
+  //     document.body.classList.add("bg-body", "text-white");
+  //   };
+  // }, [containerInView]);
+
   const marketingInView = useInView(marketingRef, {
-    once: false,
+    once: true,
     margin: " -20% 0px",
   });
   const productionInView = useInView(productionRef, {
-    once: false,
+    once: true,
     margin: " -20% 0px",
   });
   const webappInView = useInView(webappRef, {
-    once: false,
+    once: true,
     margin: " -20% 0px",
   });
   const modelingInView = useInView(modelingRef, {
-    once: false,
+    once: true,
     margin: " -20% 0px",
   });
   const eventsInView = useInView(eventsRef, {
-    once: false,
+    once: true,
     margin: " -20% 0px",
   });
-  const moreInView = useInView(moreRef, { once: false, margin: " -20% 0px" });
+  const moreInView = useInView(moreRef, { once: true, margin: " -20% 0px" });
 
   return (
-    <div className=" text-white max-w-screen-2xl mt-20  py-5 mx-auto w-full justify-center items-center z-">
+    <div className=" max-w-screen-2xl mt-20  py-5 mx-auto w-full justify-center items-center z-">
       <div className="flex justify-between  items-start px-5 mt-2">
         <div className="flex flex-col mt-5 gap-2">
           <motion.p className="heading-h4 z-10 font-semibold ">
@@ -65,28 +85,33 @@ const Services = () => {
             TO LIFE WITH DYNAMIC DESIGN SOLUTIONS
           </motion.p>
         </div>
-        <motion.h1 className="text-white p-base font-semibold z-10">
+        <motion.h1 className="p-base font-semibold z-10">
           [OUR SERVICES ]
         </motion.h1>
       </div>
       <div
         ref={containerRef}
-        className="flex flex-col  text-primary heading-h2  gap-10 mt-32  px-5"
+        className="flex flex-col   heading-h2  gap-10 mt-32  px-5"
       >
         <motion.div
           ref={brandingRef}
-          style={{ scale: brandingScale }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
+          initial={{ opacity: 0, x: 30 }}
+          animate={
+            brandingInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }
+          }
+          transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
           className="border-b  border-primary w-full  origin-center flex items-center "
         >
-          <p className=" z-10 font-semibold w-2/3  branding ">BRANDING</p>
+          <p className=" z-10 font-semibold w-2/3 text-primary  branding ">
+            BRANDING
+          </p>
           <motion.ul
             initial={{ opacity: 0, x: 30 }}
             animate={
               brandingInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }
             }
-            transition={{ duration: 0.3, ease: "easeOut", delay: 0.3 }}
-            className="p-base text-white w-1/3 font-extralight mb-6 "
+            transition={{ duration: 0.3, ease: "easeOut", delay: 0.6 }}
+            className="p-base w-1/3 font-extralight mb-6 "
           >
             <li className="font-medium">&#8594;VISUAL IDENTITY</li>
             <li>LOGO DESIGN</li>
@@ -97,18 +122,21 @@ const Services = () => {
         </motion.div>
         <motion.div
           ref={marketingRef}
-          style={{ scale: marketingScale }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+          initial={{ opacity: 0, x: 30 }}
+          animate={
+            marketingInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }
+          }
+          transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
           className="border-b border-primary w-full flex items-center "
         >
-          <p className=" z-10 font-semibold w-2/3">MARKETING</p>
+          <p className=" z-10 font-semibold w-2/3 text-primary">MARKETING</p>
           <motion.ul
             initial={{ opacity: 0, x: 30 }}
             animate={
               marketingInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }
             }
-            transition={{ duration: 0.3, ease: "easeOut", delay: 0.3 }}
-            className="p-base text-white w-1/3 font-extralight mb-6"
+            transition={{ duration: 0.3, ease: "easeOut", delay: 0.6 }}
+            className="p-base w-1/3 font-extralight mb-6"
           >
             <li className="font-medium">&#8594;CONTENT STRATEGY</li>
             <li>MARKETING CAMPAIGNS</li>
@@ -119,18 +147,21 @@ const Services = () => {
         </motion.div>
         <motion.div
           ref={productionRef}
-          style={{ scale: productionScale }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+          initial={{ opacity: 0, x: 30 }}
+          animate={
+            productionInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }
+          }
+          transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
           className="border-b border-primary w-full flex items-center "
         >
-          <p className=" z-10 font-semibold w-2/3">PRODUCTION</p>
+          <p className=" z-10 font-semibold w-2/3 text-primary">PRODUCTION</p>
           <motion.ul
             initial={{ opacity: 0, x: 30 }}
             animate={
               productionInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }
             }
-            transition={{ duration: 0.3, ease: "easeOut", delay: 0.3 }}
-            className="p-base w-1/3 text-white font-extralight mb-6"
+            transition={{ duration: 0.3, ease: "easeOut", delay: 0.6 }}
+            className="p-base w-1/3 font-extralight mb-6"
           >
             <li className="font-medium">&#8594;STORYTELLING & MEDIA</li>
             <li>PHOTOGRAPHY</li>
@@ -141,18 +172,19 @@ const Services = () => {
         </motion.div>
         <motion.div
           ref={webappRef}
-          style={{ scale: webappScale }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+          initial={{ opacity: 0, x: 30 }}
+          animate={webappInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+          transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
           className="border-b border-primary w-full flex items-center "
         >
-          <p className=" z-10 font-semibold w-2/3">WEB & APP</p>
+          <p className=" z-10 font-semibold w-2/3 text-primary">WEB & APP</p>
           <motion.ul
             initial={{ opacity: 0, x: 30 }}
             animate={
               webappInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }
             }
-            transition={{ duration: 0.3, ease: "easeOut", delay: 0.3 }}
-            className="p-base w-1/3 text-white font-extralight mb-6"
+            transition={{ duration: 0.3, ease: "easeOut", delay: 0.6 }}
+            className="p-base w-1/3 font-extralight mb-6"
           >
             <li className="font-medium">&#8594;DIGITAL EXPERIENCE</li>
             <li>UI/UX DESIGN</li>
@@ -163,18 +195,21 @@ const Services = () => {
         </motion.div>
         <motion.div
           ref={modelingRef}
-          style={{ scale: modelingScale }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+          initial={{ opacity: 0, x: 30 }}
+          animate={
+            modelingInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }
+          }
+          transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
           className="border-b border-primary w-full flex items-center "
         >
-          <p className=" z-10 font-semibold w-2/3">3D MODELING</p>
+          <p className=" z-10 font-semibold w-2/3 text-primary">3D MODELING</p>
           <motion.ul
             initial={{ opacity: 0, x: 30 }}
             animate={
               modelingInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }
             }
-            transition={{ duration: 0.3, ease: "easeOut", delay: 0.3 }}
-            className="p-base w-1/3 text-white font-extralight mb-6"
+            transition={{ duration: 0.3, ease: "easeOut", delay: 0.6 }}
+            className="p-base w-1/3 font-extralight mb-6"
           >
             <li className="font-medium">&#8594;VISUALIZATION & ARCHITECTURE</li>
             <li>Product Prototyping</li>
@@ -186,18 +221,19 @@ const Services = () => {
         </motion.div>
         <motion.div
           ref={eventsRef}
-          style={{ scale: eventsScale }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+          initial={{ opacity: 0, x: 30 }}
+          animate={eventsInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+          transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
           className="border-b border-primary w-full flex items-center "
         >
-          <p className=" z-10 font-semibold w-2/3">EVENTS</p>
+          <p className=" z-10 font-semibold w-2/3 text-primary">EVENTS</p>
           <motion.ul
             initial={{ opacity: 0, x: 30 }}
             animate={
               eventsInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }
             }
-            transition={{ duration: 0.3, ease: "easeOut", delay: 0.3 }}
-            className="p-base w-1/3 text-white font-extralight mb-6"
+            transition={{ duration: 0.3, ease: "easeOut", delay: 0.6 }}
+            className="p-base w-1/3 font-extralight mb-6"
           >
             <li className="font-medium">&#8594;IMMERSIVE BRAND EXPERIENCES</li>
             <li>Event Planning & Execution</li>
@@ -208,16 +244,17 @@ const Services = () => {
         </motion.div>
         <motion.div
           ref={moreRef}
-          style={{ scale: moreScale }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+          initial={{ opacity: 0, x: 30 }}
+          animate={moreInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+          transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
           className="border-b border-primary w-full flex items-center "
         >
-          <p className=" z-10 font-semibold w-2/3">MORE</p>
+          <p className=" z-10 font-semibold w-2/3 text-primary">MORE</p>
           <motion.ul
             initial={{ opacity: 0, x: 30 }}
             animate={moreInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
-            transition={{ duration: 0.3, ease: "easeOut", delay: 0.3 }}
-            className="p-base w-1/3 text-white font-extralight mb-6"
+            transition={{ duration: 0.3, ease: "easeOut", delay: 0.6 }}
+            className="p-base w-1/3 font-extralight mb-6"
           >
             <li className="font-medium">&#8594;SPECIALIZED SERVICES</li>
             <li>TAILORED SERVICE</li>

@@ -32,6 +32,18 @@ const useInView = (
   return [ref, isVisible];
 };
 
+type DescType =
+  | "of experience"
+  | "collaborated"
+  | "completed"
+  | "recognition"
+  | "managed"
+  | "hours"
+  | "years"
+  | "brands"
+  | "events"
+  | "work";
+
 const CountUp = ({
   end,
   label,
@@ -39,10 +51,17 @@ const CountUp = ({
 }: {
   end: number;
   label: string;
-  desc: string;
+  desc: DescType;
 }) => {
   const [ref, isVisible] = useInView({ threshold: 0.5 });
   const [count, setCount] = useState(0);
+
+  // Override formatNumber to avoid decimals
+  const formatNumberNoDecimal = (num: number): string => {
+    if (num >= 1000000) return Math.floor(num / 1000000) + "M";
+    if (num >= 1000) return Math.floor(num / 1000) + "k";
+    return num.toString();
+  };
 
   useEffect(() => {
     if (isVisible && count === 0) {
@@ -55,10 +74,23 @@ const CountUp = ({
           start = end;
           clearInterval(interval);
         }
-        setCount(start);
+        setCount(Math.floor(start));
       }, duration / (end / increment));
     }
   }, [isVisible, end, count]);
+
+  const fontSizeMap = {
+    "of experience": "text-[1.0001rem]",
+    collaborated: "text-[1.39rem]",
+    completed: "text-[1.8rem]",
+    recognition: "text-[1.79rem]",
+    managed: "text-[1.67rem]",
+    hours: "text-[1.99rem]",
+    years: "text-[2.84375rem]",
+    brands: "text-[2.84375rem]",
+    events: "text-[2.3125rem]",
+    work: "text-[2.5rem]",
+  };
 
   return (
     <motion.div
@@ -66,16 +98,20 @@ const CountUp = ({
       initial={{ opacity: 0, y: 30 }}
       animate={isVisible ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6 }}
-      className="space-y-1 w-full flex flex-col items-start"
+      className="space-y-1 w-full "
     >
-      <div className="flex flex-col leading-tight ">
-        <p className="heading-h3 text-white">
-          {formatNumber(count)}
-          <span className="heading-h4  font-medium">{label}</span>
+      <div className="flex  leading-none items-end ">
+        <p className="heading- text-[115px] font-semibold text-white">
+          +{formatNumberNoDecimal(count)}
         </p>
-        <p className="p-base font-medium text-primary text-right   whitespace-nowrap">
-          {desc}
-        </p>
+        <div className="flex flex-col ml-2 pb-3 font-light">
+          <span className="text-[2.5rem] mb-1 ">{label}</span>
+          <p
+            className={`p-base  text-primary text-right ${fontSizeMap[desc]}   whitespace-nowrap`}
+          >
+            {desc}
+          </p>
+        </div>
       </div>
     </motion.div>
   );
@@ -96,15 +132,15 @@ const Clientnumber = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.95, 1], [1, 1, 0]);
 
   const statsLeft = [
-    { end: 4, label: " years", desc: "of experience" },
-    { end: 31, label: "+ projects", desc: "done" },
-    { end: 11, label: "+ events", desc: "done" },
+    { end: 4, label: "years", desc: "of experience" as const },
+    { end: 31, label: "projects", desc: "completed" as const },
+    { end: 11, label: "events", desc: "managed" as const },
   ];
 
   const statsRight = [
-    { end: 21, label: "+ brands", desc: "collaborated" },
-    { end: 5, label: "+ awards", desc: "won" },
-    { end: 20000, label: "+ work", desc: "hours" },
+    { end: 21, label: "brands", desc: "collaborated" as const },
+    { end: 5, label: "industry", desc: "recognition" as const },
+    { end: 20000, label: "work", desc: "hours" as const },
   ];
 
   return (

@@ -1,92 +1,284 @@
+"use client";
 
 import { indigo } from "@/fonts";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { motion, useInView, useScroll } from "framer-motion";
 import { useRef } from "react";
+
+const AnimatedText = ({
+  text,
+  className,
+  inView,
+  baseDelay = 0,
+}: {
+  text: string;
+  className: string;
+  inView: boolean;
+  baseDelay?: number;
+}) => {
+  return (
+    <span className={className}>
+      {text.split("").map((char, index) => (
+        <motion.span
+          key={index}
+          initial={{ y: 400 }}
+          animate={inView ? { y: 0 } : { y: 400 }}
+          transition={{
+            duration: 0.57,
+            ease: [0.6, 0.01, -0.05, 0.95],
+            delay: baseDelay + index * 0.1,
+          }}
+          style={{ display: "inline-block" }}
+        >
+          {char === " " ? "\u00A0" : char}
+        </motion.span>
+      ))}
+    </span>
+  );
+};
 
 const About = () => {
   const containerRef = useRef(null);
   const ref = useRef(null);
-  const inView = useInView(ref, { margin: "-40% 0px" });
+  const inView = useInView(ref, {
+    once: true,
+    margin: "-40% 0px",
+  });
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
+  const floatingAnimation = {
+    y: [0, -10, 0],
+    transition: {
+      duration: 3,
+      repeat: Number.POSITIVE_INFINITY,
+      ease: "easeInOut",
+    },
+  };
+
   return (
-    <div
+    <motion.div
       ref={containerRef}
-      className="sticky flex flex-col max-h-[900px]  max-w-screen-2xl w-full mx-auto text-white"
+      className="sticky flex flex-col max-h-[900px] max-w-screen-2xl w-full mx-auto text-white"
+      initial={{ opacity: 0, y: 30 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      transition={{ duration: 1 }}
     >
-      <div className="flex justify-between items-center px-5 mt-2">
+      <motion.div className="flex justify-between items-center px-5 mt-2">
         <motion.h1 className="text-primary p-base font-semibold z-10">
           [ABOUT GRIFFITY ]
         </motion.h1>
-        <motion.p className="heading-h4 z-10 font-extralight">
+        <motion.p
+          className="heading-h4 z-10 font-extralight"
+          initial={{ opacity: 0, y: 40 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
           evolving mystery!
         </motion.p>
-      </div>
+      </motion.div>
 
       <div className="flex flex-col items-center justify-center flex-1">
-        <div
+        <motion.div
           ref={ref}
           className="flex justify-center lg:mt-24 w-[80%] mx-auto gap-6"
+          initial={{ opacity: 0, scale: 0.95, y: 60 }}
+          animate={
+            inView
+              ? { opacity: 1, scale: 1, y: 0 }
+              : { opacity: 0, scale: 0.95, y: 60 }
+          }
+          transition={{ duration: 0.8, delay: 0.3 }}
         >
-          <motion.p className="heading-h4 w-1/2 font-extralight text-right z-10">
+          <motion.p
+            className="heading-h4 font-extralight text-right z-10"
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+          >
             driven by
           </motion.p>
-          <div className="-translate-y-10">
+          <motion.div
+            className="-translate-y-10"
+            initial={{ opacity: 0, y: 40 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
             <motion.p
-              initial={{ x: 100, opacity: 0 }}
-              animate={inView ? { x: 30, opacity: 1 } : { x: 100, opacity: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className={`${indigo.className} text-primary heading-h1`}
+              className={`${indigo.className} text-primary heading-h1 overflow-hidden`}
             >
-              innovation,
+              <AnimatedText
+                text="innovation,"
+                className=""
+                inView={inView}
+                baseDelay={0.1}
+              />
             </motion.p>
 
             <motion.p
-              initial={{ x: -130, opacity: 0 }}
-              animate={
-                inView ? { x: -80, opacity: 1 } : { x: -130, opacity: 0 }
-              }
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-              className={`${indigo.className} text-primary custom-c2 `}
+              className={`${indigo.className} text-primary overflow-hidden custom-c2 `}
             >
-              creativity, &nbsp; &nbsp;<span className="text-white"> &</span>
+              <AnimatedText
+                text="creativity,"
+                className=""
+                inView={inView}
+                baseDelay={0.1}
+              />
+              &nbsp; &nbsp;
+              <AnimatedText
+                text="&"
+                inView={inView}
+                baseDelay={1.1}
+                className="text-white"
+              />
             </motion.p>
 
             <motion.p
-              initial={{ x: 130, opacity: 0 }}
-              style={{ y: -20 }}
-              animate={inView ? { x: 60, opacity: 1 } : { x: 130, opacity: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
-              className={`${indigo.className} text-primary custom-c1  `}
+              className={`${indigo.className} text-primary overflow-hidden custom-c1`}
             >
-              excellence
+              <AnimatedText
+                text="excellence"
+                className=""
+                inView={inView}
+                baseDelay={0.1}
+              />
             </motion.p>
-          </div>
-        </div>
-        <motion.p className="p-base font-semibold w-[87%] text-center mx-auto z-10 mt-10">
-          <span className="text-primary/80">GRIFFITY</span> TURNS{" "}
-          <span className="text-primary/80"> IDEAS</span> INTO{" "}
-          <span className="text-primary/80">VISUAL STORIES</span> AND{" "}
-          <span className="text-primary/80"> MEANINGFUL EXPERIENCES.</span> WE
-          BLEND <span className="text-primary/80">DESIGN STRATEGY</span> AND{" "}
-          <span className="text-primary/90"> COLLABORATION </span>TO BUILD
-          BRANDS THAT ARE <span className="text-primary/80">SEEN HEARD </span>
+          </motion.div>
+        </motion.div>
+
+        <motion.p
+          className="p-base font-semibold w-[87%] text-center mx-auto z-10 mt-10"
+          initial={{ opacity: 0, y: 50 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+        >
+          <motion.span
+            className="text-primary/80"
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 1.2 }}
+          >
+            GRIFFITY
+          </motion.span>{" "}
+          TURNS{" "}
+          <motion.span
+            className="text-primary/80"
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 1.4 }}
+          >
+            {" "}
+            IDEAS
+          </motion.span>{" "}
+          INTO{" "}
+          <motion.span
+            className="text-primary/80"
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 1.6 }}
+          >
+            VISUAL STORIES
+          </motion.span>{" "}
+          AND{" "}
+          <motion.span
+            className="text-primary/80"
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 1.8 }}
+          >
+            {" "}
+            MEANINGFUL EXPERIENCES.
+          </motion.span>{" "}
+          WE BLEND{" "}
+          <motion.span
+            className="text-primary/80"
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 2.0 }}
+          >
+            DESIGN STRATEGY
+          </motion.span>{" "}
+          AND{" "}
+          <motion.span
+            className="text-primary/90"
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 2.2 }}
+          >
+            {" "}
+            COLLABORATION{" "}
+          </motion.span>
+          TO BUILD BRANDS THAT ARE{" "}
+          <motion.span
+            className="text-primary/80"
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 2.4 }}
+          >
+            SEEN HEARD{" "}
+          </motion.span>
           AND
-          <span className="text-primary/80"> REMEMBERED.</span>
+          <motion.span
+            className="text-primary/80"
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 2.6 }}
+          >
+            {" "}
+            REMEMBERED.
+          </motion.span>
         </motion.p>
       </div>
 
-      <motion.div className="flex  w-full mt-14 justify-center gap-72 mx-auto font-extralight heading-h5">
-        <motion.span>inspire</motion.span>
-        <motion.span>endure</motion.span>
-        <motion.span>create</motion.span>
-        <motion.span>engage</motion.span>
+      <motion.div className="flex w-full mt-14 justify-center gap-72 mx-auto font-extralight heading-h5">
+        <motion.span
+          initial={{ opacity: 0, scale: 0.9, y: 30 }}
+          animate={
+            inView
+              ? { opacity: 1, scale: 1, y: 0 }
+              : { opacity: 0, scale: 0.9, y: 30 }
+          }
+          transition={{ duration: 0.6, delay: 1.0 }}
+        >
+          inspire
+        </motion.span>
+        <motion.span
+          initial={{ opacity: 0, scale: 0.9, y: 30 }}
+          animate={
+            inView
+              ? { opacity: 1, scale: 1, y: 0 }
+              : { opacity: 0, scale: 0.9, y: 30 }
+          }
+          transition={{ duration: 0.6, delay: 1.2 }}
+        >
+          endure
+        </motion.span>
+        <motion.span
+          initial={{ opacity: 0, scale: 0.9, y: 30 }}
+          animate={
+            inView
+              ? { opacity: 1, scale: 1, y: 0 }
+              : { opacity: 0, scale: 0.9, y: 30 }
+          }
+          transition={{ duration: 0.6, delay: 1.4 }}
+        >
+          create
+        </motion.span>
+        <motion.span
+          initial={{ opacity: 0, scale: 0.9, y: 30 }}
+          animate={
+            inView
+              ? { opacity: 1, scale: 1, y: 0 }
+              : { opacity: 0, scale: 0.9, y: 30 }
+          }
+          transition={{ duration: 0.6, delay: 1.6 }}
+        >
+          engage
+        </motion.span>
       </motion.div>
-    </div>
+    </motion.div>
   );
 };
 

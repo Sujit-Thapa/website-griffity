@@ -19,7 +19,7 @@ const Reels = () => {
   const [cardRepeatCount, setCardRepeatCount] = useState(1);
 
   const { scrollYProgress } = useScroll();
-  const x = useTransform(scrollYProgress, [0, 1], [-1500, 1500]);
+  const x = useTransform(scrollYProgress, [0, 1], [-2500, 2500]);
 
   useEffect(() => {
     const updateLayout = () => {
