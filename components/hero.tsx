@@ -1,11 +1,13 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Hero = () => {
   const navItems = ["about us", "services", "clients", "contact us"];
   const [visibleItems, setVisibleItems] = useState<number[]>([]);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   useEffect(() => {
     navItems.forEach((_, index) => {
       setTimeout(() => {
@@ -14,43 +16,81 @@ const Hero = () => {
     });
   }, []);
 
-  return (
-    <div className="relative bg-[url('/images/heroimage.png')] bg-cover bg-center h-screen  w-full z-20 text-white overflow-hidden">
-      {/* <div className="absolute inset-0 bg-black bg-opacity-30 z-0"></div> */}
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
 
-      <div className=" px-14  flex flex-col py-10 mx-auto h-full relative z-10">
-        <div className="flex justify-between w-full">
+  return (
+    <div className="relative bg-[url('/images/heroimage.png')] bg-cover bg-center h-screen w-full z-20 text-white overflow-hidden">
+      <div className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 flex flex-col py-6 sm:py-8 md:py-10 mx-auto h-full relative z-10">
+        <div className="flex justify-between items-center w-full">
           <motion.img
             initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, ease: "easeOut", delay: 3.8 }}
             src="/logos/griffity.png"
             alt="Logo"
-            className="  w-8 h-auto z-10"
+            className="w-6 sm:w-7 md:w-8 h-auto z-10"
           />
+
+          {/* Burger Menu Button - Only visible on mobile/tablet */}
+          <motion.button
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 3.8 }}
+            onClick={toggleMobileMenu}
+            className="lg:hidden z-50 relative w-8 h-8 flex flex-col justify-center items-center"
+            aria-label="Toggle menu"
+          >
+            <motion.span
+              animate={{
+                rotate: isMobileMenuOpen ? 45 : 0,
+                y: isMobileMenuOpen ? 0 : -6,
+              }}
+              transition={{ duration: 0.3 }}
+              className="w-6 h-0.5 bg-white block absolute"
+            />
+            <motion.span
+              animate={{
+                opacity: isMobileMenuOpen ? 0 : 1,
+              }}
+              transition={{ duration: 0.3 }}
+              className="w-6 h-0.5 bg-white block absolute"
+            />
+            <motion.span
+              animate={{
+                rotate: isMobileMenuOpen ? -45 : 0,
+                y: isMobileMenuOpen ? 0 : 6,
+              }}
+              transition={{ duration: 0.3 }}
+              className="w-6 h-0.5 bg-white block absolute"
+            />
+          </motion.button>
         </div>
+
         <div className="flex items-center gap-10 h-full max-w-[1440px] mx-auto">
-          <div className=" z-10 ">
-            <div className="flex flex-col items-start translate-x-[-5%]">
-              <p className="heading-h2 font-medium">
+          <div className="z-10 flex-1">
+            <div className="flex flex-col items-start lg:translate-x-[-5%]">
+              <p className="text-4xl sm:text-6xl  md:text-[4.2rem] xl:text-8xl 2xl:text-h2 font-medium leading-tight">
                 welcome to <span className="font-bold">griffity</span>
               </p>
               <motion.p
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 4, ease: "easeOut" }}
-                className="heading-h4 text-right self-end mt-4 font-extralight"
+                className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-left sm:text-right self-start sm:self-end mt-2 sm:mt-4 font-extralight"
               >
                 your brand's loudest whisper!
               </motion.p>
             </div>
           </div>
-          {/* Navigation Items */}
-          <div className="translate-y-8 flex flex-col gap-8 z-50">
+
+          {/* Desktop Navigation Items - Hidden on mobile/tablet */}
+          <div className="hidden lg:flex lg:translate-y-8 flex-col gap-8 z-50">
             {navItems.map((item, index) => (
               <p
                 key={index}
-                className={`transition-all duration-300 ease-out transform cursor-pointer p-base hover:text-[#dba039] hover:translate-x-2 hover:scale-110 ${
+                className={`transition-all duration-300 ease-out transform cursor-pointer text-base hover:text-[#dba039] hover:translate-x-2 hover:scale-110 ${
                   visibleItems.includes(index)
                     ? "opacity-100 translate-x-0"
                     : "opacity-0 translate-x-10"
@@ -62,6 +102,48 @@ const Hero = () => {
           </div>
         </div>
       </div>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="fixed top-0 right-0 w-full sm:w-80 h-full bg-black bg-opacity-95 backdrop-blur-sm z-40 lg:hidden"
+          >
+            <div className="flex flex-col items-center justify-center h-full gap-8 px-8">
+              {navItems.map((item, index) => (
+                <motion.p
+                  key={index}
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-2xl sm:text-3xl font-light cursor-pointer hover:text-[#dba039] transition-colors duration-300 text-center"
+                >
+                  {item}
+                </motion.p>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Mobile Menu Backdrop */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden"
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 };
