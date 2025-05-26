@@ -61,12 +61,12 @@ const About = () => {
   return (
     <motion.div
       ref={containerRef}
-      className="sticky flex flex-col max-h-[900px] max-w-screen-2xl w-full mx-auto text-white"
+      className="sticky flex flex-col sm:min-h-screen  max-w-screen-3xl px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 py-6 sm:py-8 md:py-10 w-full 2xl:mx-auto text-white"
       initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
       transition={{ duration: 1 }}
     >
-      <motion.div className="flex justify-between items-center px-5 mt-2">
+      <motion.div className="flex justify-between items-center  mt-2">
         <motion.h1 className="text-primary p-base font-semibold z-10">
           [ABOUT GRIFFITY ]
         </motion.h1>
@@ -83,7 +83,7 @@ const About = () => {
       <div className="flex flex-col items-center justify-center flex-1">
         <motion.div
           ref={ref}
-          className="flex justify-center lg:mt-24 w-[80%] mx-auto gap-6"
+          className="flex justify-center sm:mt-24 mt-20  mx-auto gap-6"
           initial={{ opacity: 0, scale: 0.95, y: 60 }}
           animate={
             inView
@@ -93,7 +93,7 @@ const About = () => {
           transition={{ duration: 0.8, delay: 0.3 }}
         >
           <motion.p
-            className="heading-h4 font-extralight text-right z-10"
+            className="heading-h4 font-extralight  z-10"
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.6, delay: 0.5 }}
@@ -118,7 +118,7 @@ const About = () => {
             </motion.p>
 
             <motion.p
-              className={`${indigo.className} text-primary overflow-hidden custom-c2 `}
+              className={`${indigo.className} text-primary overflow-hidden custom-c2 2xl:-translate-x-24 sm:-translate-x-20 -translate-x-7`}
             >
               <AnimatedText
                 text="creativity,"
@@ -136,7 +136,7 @@ const About = () => {
             </motion.p>
 
             <motion.p
-              className={`${indigo.className} text-primary overflow-hidden custom-c1`}
+              className={`${indigo.className} text-primary overflow-hidden custom-c1 2xl:translate-x-2 lg:-translate-x-3 translate-x-8 `}
             >
               <AnimatedText
                 text="excellence"
@@ -149,7 +149,7 @@ const About = () => {
         </motion.div>
 
         <motion.p
-          className="p-base font-semibold w-[87%] text-center mx-auto z-10 mt-10"
+          className="sm:p-base text-xs font-semibold w-[87%] text-center mx-auto z-10 mt-10"
           initial={{ opacity: 0, y: 50 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8, delay: 0.8 }}
