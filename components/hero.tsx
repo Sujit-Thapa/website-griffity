@@ -22,7 +22,7 @@ const Hero = () => {
 
   return (
     <div className="relative bg-[url('/images/heroimage.png')] bg-cover bg-center h-screen w-full z-20 text-white overflow-hidden">
-      <div className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 flex flex-col py-6 sm:py-8 md:py-10 mx-auto h-full relative z-10">
+      <div className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 py-6 sm:py-8 md:py-10 flex flex-col  mx-auto h-full relative z-10">
         <div className="flex justify-between items-center w-full">
           <motion.img
             initial={{ opacity: 0, x: -40 }}
@@ -68,10 +68,10 @@ const Hero = () => {
           </motion.button>
         </div>
 
-        <div className="flex items-center gap-10 h-full max-w-[1440px] mx-auto">
+        <div className="flex items-center gap-10 h-full max-w-screen-3xl mx-auto">
           <div className="z-10 flex-1">
             <div className="flex flex-col items-start lg:translate-x-[-5%]">
-              <p className="text-4xl sm:text-6xl  md:text-[4.2rem] xl:text-8xl 2xl:text-h2 font-medium leading-tight">
+              <p className="text-2xl sm:text-6xl  md:text-[4.2rem] xl:text-8xl 2xl:text-h2 font-medium leading-tight">
                 welcome to <span className="font-bold">griffity</span>
               </p>
               <motion.p
