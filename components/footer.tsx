@@ -45,7 +45,7 @@ const Footer = () => {
       {/* Floating Contact Button */}
       <motion.button
         onClick={() => setIsContactOpen(true)}
-        className="fixed bottom-6 right-6 bg-primary text-white p-4 rounded-full shadow-lg z-50"
+        className="fixed bottom-6 right-6 bg-primary text-white p-4 rounded-full shadow-lg z-40"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         animate={{
@@ -79,7 +79,7 @@ const Footer = () => {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.8, y: 50 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-xl p-8 w-full max-w-md z-50 shadow-lg"
+              className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-xl p-8 w-full max-w-md z-40 shadow-lg"
             >
               {/* Close Button */}
               <button

@@ -28,7 +28,7 @@ const Reels2 = () => {
 
   // Scroll tracking
   const { scrollYProgress } = useScroll();
-  const x = useTransform(scrollYProgress, [0, 1], [1500, -1500]); // Opposite scroll
+  const x = useTransform(scrollYProgress, [0, 1], [2000, -2000]); // Opposite scroll
 
   useEffect(() => {
     const updateLayout = () => {
@@ -130,7 +130,7 @@ const Reels2 = () => {
 
   return (
     <motion.div
-      className="bg-primary flex flex-col justify-evenly px-2 sm:px-5 z-40"
+      className="bg-primary flex flex-col justify-evenly px-2 sm:px-5 z-20"
       style={{
         x,
         rotate: 3.7,
