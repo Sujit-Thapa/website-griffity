@@ -80,7 +80,7 @@ const About = () => {
         </motion.p>
       </motion.div>
 
-      <div className="flex flex-col items-center justify-center flex-1">
+      <div className="flex flex-col items-center justify-evenly flex-1">
         <motion.div
           ref={ref}
           className="flex justify-center sm:mt-24 mt-20  mx-auto gap-6"
@@ -149,13 +149,13 @@ const About = () => {
         </motion.div>
 
         <motion.p
-          className="sm:p-base text-xs font-semibold w-[87%] text-center mx-auto z-10 mt-10"
+          className="sm:p-base xs:text-sm text-[0.5rem] xl:text-[1.3rem] font-semibold md:w-[87%] text-center mx-auto z-10 mt-10"
           initial={{ opacity: 0, y: 50 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8, delay: 0.8 }}
         >
           <motion.span
-            className="text-primary/80"
+            className="text-primary/80 "
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 1.2 }}
@@ -164,7 +164,7 @@ const About = () => {
           </motion.span>{" "}
           TURNS{" "}
           <motion.span
-            className="text-primary/80"
+            className="text-primary/80 "
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 1.4 }}
@@ -174,7 +174,7 @@ const About = () => {
           </motion.span>{" "}
           INTO{" "}
           <motion.span
-            className="text-primary/80"
+            className="text-primary/80 "
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 1.6 }}
@@ -232,7 +232,7 @@ const About = () => {
         </motion.p>
       </div>
 
-      <motion.div className="flex w-full mt-14 justify-center gap-72 mx-auto font-extralight heading-h5">
+      <motion.div className="flex w-full mt-14  justify-evenly mx-auto font-extralight xl:heading-h5 text-[0.7rem] xs:text-lg md:text-3xl ">
         <motion.span
           initial={{ opacity: 0, scale: 0.9, y: 30 }}
           animate={

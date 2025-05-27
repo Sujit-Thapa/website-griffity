@@ -68,7 +68,7 @@ const TrustedClients = () => {
         {TEXT}
       </motion.p>
 
-      <div className="w-fit mx-auto text-center text-primary heading-h2 scale-75 leading-none">
+      <div className="w-fit mx-auto text-center text-primary text-[1.4rem] xs:text-[1.7rem] sm:text-[2.3rem] md:text-[2.8rem] lg:text-[4rem] xl:text-[6rem] leading-none">
         {TEXT_BLOCKS.map((line, lineIndex) => {
           const lineDelay = 0.5 + lineIndex * 0.7;
           return (

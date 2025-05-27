@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState } from "react"
+import type React from "react";
+import { useState } from "react";
 import {
   FaFacebookF,
   FaInstagram,
@@ -13,33 +13,35 @@ import {
   FaEnvelope,
   FaUser,
   FaXmark,
-} from "react-icons/fa6"
-import { motion, AnimatePresence } from "framer-motion"
+} from "react-icons/fa6";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Footer = () => {
-  const [isContactOpen, setIsContactOpen] = useState(false)
+  const [isContactOpen, setIsContactOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
-  })
+  });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
-    })
-  }
+    });
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log("Form submitted:", formData)
-    setIsContactOpen(false)
-    setFormData({ name: "", email: "", message: "" })
-  }
+    e.preventDefault();
+    console.log("Form submitted:", formData);
+    setIsContactOpen(false);
+    setFormData({ name: "", email: "", message: "" });
+  };
 
   return (
-    <div className="relative w-full max-w-screen-2xl mx-auto px-6 py-16">
+    <div className="relative w-full max-w-screen-3xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 py-6 sm:py-8 md:py-10">
       {/* Floating Contact Button */}
       <motion.button
         onClick={() => setIsContactOpen(true)}
@@ -89,8 +91,12 @@ const Footer = () => {
 
               {/* Form Header */}
               <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold text-gray-800 mb-2">Get In Touch</h3>
-                <p className="text-gray-500">Let's create something amazing together</p>
+                <h3 className="text-2xl font-bold text-gray-800 mb-2">
+                  Get In Touch
+                </h3>
+                <p className="text-gray-500">
+                  Let's create something amazing together
+                </p>
               </div>
 
               {/* Form */}
@@ -152,7 +158,9 @@ const Footer = () => {
       <div className="flex flex-col md:flex-row items-center justify-between gap-10 mt-16">
         {/* Left: Contact Info */}
         <div className="text-center md:text-left text-white">
-          <p className="text-2xl font-semibold">GRIFFITY<span className="font-light">STUDIOS</span></p>
+          <p className="text-2xl font-semibold">
+            GRIFFITY<span className="font-light">STUDIOS</span>
+          </p>
           <p className="text-sm">Bhaisepati, Kathmandu</p>
           <p className="text-sm">+977 9861292675</p>
           <p className="text-sm">info@griffitystudios.com</p>
@@ -160,7 +168,14 @@ const Footer = () => {
 
         {/* Social Icons */}
         <div className="flex gap-5 text-xl text-white">
-          {[FaFacebookF, FaInstagram, FaTiktok, FaYoutube, FaXTwitter, FaLinkedinIn].map((Icon, index) => (
+          {[
+            FaFacebookF,
+            FaInstagram,
+            FaTiktok,
+            FaYoutube,
+            FaXTwitter,
+            FaLinkedinIn,
+          ].map((Icon, index) => (
             <motion.div
               key={index}
               whileHover={{ scale: 1.2, rotate: index % 2 === 0 ? 5 : -5 }}
@@ -177,7 +192,7 @@ const Footer = () => {
         © 2025 Griffity Studio Pvt. Ltd.
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

@@ -40,19 +40,20 @@ const Client = () => {
 
   return (
     <div className="relative w-full">
-      <div className="max-w-screen-2xl mt-52 w-full mx-auto">
+      <div className="max-w-screen-3xl mt-52 w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 py-6 sm:py-8 md:py-10 flex flex-col gap-40">
         {Array.from({ length: maxLength }).map((_, idx) => (
           <div key={idx}>
             {pairedGroups[idx] && (
-              <div className="flex justify-between mb-32">
+              <div className="flex flex-col sm:flex-row justify-between gap-10">
                 {pairedGroups[idx].map((client, i) => (
                   <div
                     key={i}
-                    className={`flex flex-col items-start ${
-                      i === 0 ? "translate-y-32" : ""
-                    }`}
+                    className={`flex flex-col 
+                    ${i === 0 ? "sm:items-start" : ""}
+                    ${i % 2 !== 0 ? "items-end" : ""}
+                  `}
                   >
-                    <div className="flex items-center p-14 justify-center w-[336px] h-[382px] border border-primary z-40">
+                    <div className="w-[150px] xs:w-[200px] md:w-[250px]  lg:w-[336px]  aspect-[336/382] border border-primary flex items-center justify-center p-[10%] sm:p-14 z-40">
                       <Image
                         width={336}
                         height={382}
@@ -71,8 +72,8 @@ const Client = () => {
 
             {singleClients[idx] && (
               <div className="flex flex-col items-center mb-32 translate-y-32">
-                <div className="flex flex-col w-[336px]">
-                  <div className="flex items-center justify-center p-14 h-[382px] z-40 border border-primary">
+                <div className="flex flex-col  w-[150px] xs:w-[200px] md:w-[250px]  lg:w-[336px] ">
+                  <div className="flex items-center justify-center  p-[10%] w-[150px] xs:w-[200px] md:w-[250px]  lg:w-[336px]  aspect-[336/382] z-40 border border-primary">
                     <Image
                       width={336}
                       height={382}

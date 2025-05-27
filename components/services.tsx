@@ -75,23 +75,23 @@ const Services = () => {
   const moreInView = useInView(moreRef, { once: true, margin: " -20% 0px" });
 
   return (
-    <div className=" max-w-screen-2xl mt-20  py-5 mx-auto w-full justify-center items-center z-">
-      <div className="flex justify-between  items-start px-5 mt-2">
+    <div className=" max-w-screen-3xl mt-20  px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 py-6 sm:py-8 md:py-10 mx-auto w-full justify-center items-center z-">
+      <div className="flex md:justify-between  items-start  mt-2">
         <div className="flex flex-col mt-5 gap-2">
-          <motion.p className="heading-h4 z-10 font-semibold ">
+          <motion.span className="heading-h4 z-10 font-semibold ">
             WE BRING YOUR VISION{" "}
-          </motion.p>
-          <motion.p className="heading-h4 z-10 font-semibold ">
+          </motion.span>
+          <motion.span className="heading-h4 z-10 font-semibold ">
             TO LIFE WITH DYNAMIC DESIGN SOLUTIONS
-          </motion.p>
+          </motion.span>
         </div>
-        <motion.h1 className="p-base font-semibold z-10">
+        <motion.h1 className="p-base w-fit font-semibold z-10 flex-shrink-0">
           [OUR SERVICES ]
         </motion.h1>
       </div>
       <div
         ref={containerRef}
-        className="flex flex-col   heading-h2  gap-10 mt-32  px-5"
+        className="flex flex-col   heading-h2  gap-10 mt-32  "
       >
         <motion.div
           ref={brandingRef}

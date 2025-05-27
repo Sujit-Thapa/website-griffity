@@ -13,8 +13,7 @@ import dynamic from "next/dynamic";
 import TrustedClient from "@/components/trustedClient";
 import Reels from "@/components/reels";
 import Reels2 from "@/components/reels2";
-
-const About = dynamic(() => import("@/components/about"), { ssr: false });
+import About from "@/components/about";
 
 const Page = () => {
   return (

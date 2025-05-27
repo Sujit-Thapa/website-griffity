@@ -80,16 +80,22 @@ const CountUp = ({
   }, [isVisible, end, count]);
 
   const fontSizeMap = {
-    "of experience": "text-[1.0001rem]",
-    collaborated: "text-[1.39rem]",
-    completed: "text-[1.8rem]",
-    recognition: "text-[1.79rem]",
-    managed: "text-[1.67rem]",
-    hours: "text-[1.99rem]",
-    years: "text-[2.84375rem]",
-    brands: "text-[2.84375rem]",
-    events: "text-[2.3125rem]",
-    work: "text-[2.5rem]",
+    "of experience":
+      "xl:text-[1.0001rem] md:text-[0.7rem] sm:text-[0.6rem] xs:text-[0.5rem] text-[0.58rem]",
+    collaborated:
+      "xl:text-[1.39rem] md:text-[0.8rem] sm:text-[0.7rem] xs:text-[0.6rem] text-[0.73rem]",
+    completed:
+      "xl:text-[1.8rem] md:text-[1.1rem] sm:text-[0.99rem] xs:text-[0.7rem] text-[0.98rem]",
+    recognition:
+      "xl:text-[1.79rem] md:text-[1.09rem] sm:text-[0.9rem] xs:text-[0.7rem] text-[0.9rem]",
+    managed:
+      "xl:text-[1.67rem] md:text-[1.03em] sm:text-[0.9rem] xs:text-[0.7rem] text-[0.87rem]",
+    hours:
+      "xl:text-[1.99rem] md:text-1ZZ sm:text-[0.99rem] xs:text-[0.9rem] text-[1.2rem]",
+    years: "xs:text-[2.84375rem] ",
+    brands: "xs:text-[2.84375rem] ",
+    events: "xs:text-[2.3125rem] ",
+    work: "xs:text-[2.5rem] ",
   };
 
   return (
@@ -98,20 +104,20 @@ const CountUp = ({
       initial={{ opacity: 0, y: 30 }}
       animate={isVisible ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6 }}
-      className="space-y-1 w-full "
+      className="space-y-1 w-full flex  leading-none items-end"
     >
-      <div className="flex  leading-none items-end ">
-        <p className="heading- text-[115px] font-semibold text-white">
-          +{formatNumberNoDecimal(count)}
+      <p className="heading- xs:text-5xl md:text-8xl xl:text-[7.2rem] sm:text-7xl xl:leading-[7rem] text-5xl/8 font-semibold text-white">
+        +{formatNumberNoDecimal(count)}
+      </p>
+      <div className="flex flex-col ml-2 sm:pb-3 xs:pb-1 font-light">
+        <span className="xl:text-[2.5rem] md:text-[1.5rem] sm:text-[1.3rem] xs:text-[0.9rem] text-[1.3rem] mb-1 ">
+          {label}
+        </span>
+        <p
+          className={`   text-primary text-right ${fontSizeMap[desc]}   whitespace-nowrap`}
+        >
+          {desc}
         </p>
-        <div className="flex flex-col ml-2 pb-3 font-light">
-          <span className="text-[2.5rem] mb-1 ">{label}</span>
-          <p
-            className={`p-base  text-primary text-right ${fontSizeMap[desc]}   whitespace-nowrap`}
-          >
-            {desc}
-          </p>
-        </div>
       </div>
     </motion.div>
   );
@@ -146,29 +152,33 @@ const Clientnumber = () => {
   return (
     <div
       ref={sectionRef}
-      className=" w-full mb-32 py-20 max-h-[900px] z-20  h-screen max-w-screen-2xl mx-auto  text-white relative flex flex-col"
+      className="  mb-32 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 py-6 sm:py-8 md:py-10 max-h-[900px] z-20  h-screen max-w-screen-3xl mx-auto  text-white relative flex flex-col"
     >
       {/* Heading */}
-      <div className="mb-16 pl-16">
+      <div
+        className={`lg:mb-16 mb-10 sm:left-[10%] xs:left-[5%] left-[10%] ${indigo.className} relative`}
+      >
         <h1
-          className={`text-7xl ${indigo.className} text-primary font-bold mb-2`}
+          className={`xl:text-7xl  text-[1.5rem] xs:text-3xl  text-primary font-bold mb-2`}
         >
           TIRED OF OUTDATED
         </h1>
-        <h2 className="text-7xl text-primary font-bold">SOLUTIONS?</h2>
+        <h2 className="xl:text-7xl text-[1.5rem] xs:text-3xl text-primary font-bold">
+          SOLUTIONS?
+        </h2>
       </div>
 
       {/* Stats Section */}
-      <div className="flex px-44 flex-row  z-20">
+      <div className="relative flex flex-col sm:gap-10 xs:gap-0 gap-10 sm:left-[15%] left-[15%] xs:left-[5%] sm:w-1/2 xs:flex-row z-20">
         {/* Left Column */}
-        <div className="flex flex-col space-y-20 w-full">
+        <div className="flex flex-col xs:space-y-20 space-y-10 w-full">
           {statsLeft.map(({ end, label, desc }, idx) => (
             <CountUp key={idx} end={end} label={label} desc={desc} />
           ))}
         </div>
 
         {/* Right Column */}
-        <div className="flex flex-col space-y-20 w-full">
+        <div className="flex flex-col  xs:space-y-20  space-y-10 w-full">
           {statsRight.map(({ end, label, desc }, idx) => (
             <CountUp key={idx} end={end} label={label} desc={desc} />
           ))}

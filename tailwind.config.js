@@ -19,6 +19,7 @@ module.exports = {
         white: "#FFFFFF",
       },
       screens: {
+        xs: "375px", // added xs breakpoint
         sm: "640px",
         md: "768px",
         lg: "1024px",

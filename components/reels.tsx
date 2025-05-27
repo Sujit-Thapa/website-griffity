@@ -15,21 +15,58 @@ const cardContents = [
 ];
 
 const Reels = () => {
+  const [screenSize, setScreenSize] = useState<"mobile" | "tablet" | "desktop">(
+    "desktop"
+  );
   const [holesCount, setHolesCount] = useState(0);
   const [cardRepeatCount, setCardRepeatCount] = useState(1);
 
   const { scrollYProgress } = useScroll();
   const x = useTransform(scrollYProgress, [0, 1], [-2500, 2500]);
 
+  // Responsive sizes
+  const [holeSize, setHoleSize] = useState(20);
+  const [cardSize, setCardSize] = useState(320);
+  const [gapSize, setGapSize] = useState(20);
+
   useEffect(() => {
     const updateLayout = () => {
       const screenWidth = window.innerWidth;
 
-      const holeSize = 16 + 8; // w-4 (16px) + gap (~8px)
-      const cardSize = 320 + 20; // w-80 (320px) + gap (~20px)
+      // Determine screen size category
+      let currentScreenSize: "mobile" | "tablet" | "desktop";
+      if (screenWidth < 640) {
+        currentScreenSize = "mobile";
+      } else if (screenWidth < 1024) {
+        currentScreenSize = "tablet";
+      } else {
+        currentScreenSize = "desktop";
+      }
+      setScreenSize(currentScreenSize);
 
-      setHolesCount(Math.ceil(screenWidth / holeSize));
-      setCardRepeatCount(Math.ceil(screenWidth / (8 * cardSize)));
+      // Responsive hole and card sizing
+      let _holeSize, _cardSize, _gapSize;
+
+      if (currentScreenSize === "mobile") {
+        _holeSize = 12; // w-3
+        _cardSize = 200; // w-48
+        _gapSize = 12;
+      } else if (currentScreenSize === "tablet") {
+        _holeSize = 16; // w-4
+        _cardSize = 256; // w-64
+        _gapSize = 16;
+      } else {
+        _holeSize = 20; // w-5
+        _cardSize = 320; // w-80
+        _gapSize = 20;
+      }
+
+      setHoleSize(_holeSize);
+      setCardSize(_cardSize);
+      setGapSize(_gapSize);
+
+      setHolesCount(Math.ceil(screenWidth / (_holeSize + _gapSize)));
+      setCardRepeatCount(Math.ceil(screenWidth / (8 * (_cardSize + _gapSize))));
     };
 
     updateLayout();
@@ -39,7 +76,15 @@ const Reels = () => {
 
   const renderHoles = () =>
     Array.from({ length: 4 * holesCount }, (_, i) => (
-      <span key={i} className="bg-body h-4 w-4 rounded-sm shrink-0"></span>
+      <span
+        key={i}
+        className="bg-body rounded-sm shrink-0"
+        style={{
+          width: holeSize,
+          height: holeSize,
+          marginRight: i !== 4 * holesCount - 1 ? gapSize : 0,
+        }}
+      ></span>
     ));
 
   const renderCards = () => {
@@ -50,7 +95,17 @@ const Reels = () => {
         cards.push(
           <div
             key={`${r}-${i}`}
-            className="bg-white h-44 w-80 shrink-0 rounded shadow overflow-hidden flex items-center justify-center"
+            className="bg-white shrink-0 rounded shadow overflow-hidden flex items-center justify-center"
+            style={{
+              width: cardSize,
+              height:
+                screenSize === "mobile"
+                  ? 120
+                  : screenSize === "tablet"
+                  ? 160
+                  : 176,
+              marginRight: gapSize,
+            }}
           >
             {content.type === "image" ? (
               <img
@@ -75,15 +130,20 @@ const Reels = () => {
     return cards;
   };
 
-  // ✅ You were missing this return block
   return (
     <motion.div
-      className="h-64 bg-primary flex flex-col justify-evenly px-5 shadow-[-16px_-19px_9px_-8px_rgba(0,0,0,0.1)] z-40"
-      style={{ x, rotate: -6, y: 60 }}
+      className="bg-primary flex flex-col justify-evenly px-2 sm:px-5 shadow-[-16px_-19px_9px_-8px_rgba(0,0,0,0.1)] z-40"
+      style={{
+        x,
+        rotate: -6,
+        y: 60,
+        height:
+          screenSize === "mobile" ? 180 : screenSize === "tablet" ? 220 : 256, // desktop
+      }}
     >
-      <div className="flex gap-5 justify-center">{renderHoles()}</div>
-      <div className="flex gap-5">{renderCards()}</div>
-      <div className="flex gap-5 justify-center">{renderHoles()}</div>
+      <div className="flex gap-0 justify-center">{renderHoles()}</div>
+      <div className="flex gap-0">{renderCards()}</div>
+      <div className="flex gap-0 justify-center">{renderHoles()}</div>
     </motion.div>
   );
 };

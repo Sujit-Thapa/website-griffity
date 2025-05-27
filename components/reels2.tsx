@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-// Replace with your actual image and video paths
 const cardContents = [
   { type: "image", src: "/reelsmedia/11.jpg" },
   { type: "video", src: "/reelsmedia/3d.mp4" },
@@ -16,8 +15,16 @@ const cardContents = [
 ];
 
 const Reels2 = () => {
+  const [screenSize, setScreenSize] = useState<"mobile" | "tablet" | "desktop">(
+    "desktop"
+  );
   const [holesCount, setHolesCount] = useState(0);
   const [cardRepeatCount, setCardRepeatCount] = useState(1);
+
+  // Responsive sizes
+  const [holeSize, setHoleSize] = useState(16);
+  const [cardSize, setCardSize] = useState(288);
+  const [gapSize, setGapSize] = useState(20);
 
   // Scroll tracking
   const { scrollYProgress } = useScroll();
@@ -27,11 +34,37 @@ const Reels2 = () => {
     const updateLayout = () => {
       const screenWidth = window.innerWidth;
 
-      const holeSize = 16 + 8; // w-4 (16px) + gap (~8px)
-      const cardSize = 288 + 20; // w-72 (288px) + gap (~20px)
+      let currentScreenSize: "mobile" | "tablet" | "desktop";
+      if (screenWidth < 640) {
+        currentScreenSize = "mobile";
+      } else if (screenWidth < 1024) {
+        currentScreenSize = "tablet";
+      } else {
+        currentScreenSize = "desktop";
+      }
+      setScreenSize(currentScreenSize);
 
-      setHolesCount(Math.ceil(screenWidth / holeSize));
-      setCardRepeatCount(Math.ceil(screenWidth / (8 * cardSize)));
+      let _holeSize, _cardSize, _gapSize;
+      if (currentScreenSize === "mobile") {
+        _holeSize = 12; // w-3
+        _cardSize = 180; // ~w-44
+        _gapSize = 10;
+      } else if (currentScreenSize === "tablet") {
+        _holeSize = 16; // w-4
+        _cardSize = 224; // ~w-56
+        _gapSize = 16;
+      } else {
+        _holeSize = 20; // w-5
+        _cardSize = 288; // w-72
+        _gapSize = 20;
+      }
+
+      setHoleSize(_holeSize);
+      setCardSize(_cardSize);
+      setGapSize(_gapSize);
+
+      setHolesCount(Math.ceil(screenWidth / (_holeSize + _gapSize)));
+      setCardRepeatCount(Math.ceil(screenWidth / (8 * (_cardSize + _gapSize))));
     };
 
     updateLayout();
@@ -41,7 +74,15 @@ const Reels2 = () => {
 
   const renderHoles = () =>
     Array.from({ length: 4 * holesCount }, (_, i) => (
-      <span key={i} className="bg-body h-4 w-4 rounded-sm shrink-0"></span>
+      <span
+        key={i}
+        className="bg-body rounded-sm shrink-0"
+        style={{
+          width: holeSize,
+          height: holeSize,
+          marginRight: i !== 4 * holesCount - 1 ? gapSize : 0,
+        }}
+      ></span>
     ));
 
   const renderCards = () => {
@@ -52,7 +93,17 @@ const Reels2 = () => {
         cards.push(
           <div
             key={`${r}-${i}`}
-            className="bg-white h-36 w-72 shrink-0 rounded shadow overflow-hidden flex items-center justify-center"
+            className="bg-white shrink-0 rounded shadow overflow-hidden flex items-center justify-center"
+            style={{
+              width: cardSize,
+              height:
+                screenSize === "mobile"
+                  ? 100
+                  : screenSize === "tablet"
+                  ? 140
+                  : 160,
+              marginRight: gapSize,
+            }}
           >
             {content.type === "image" ? (
               <img
@@ -79,12 +130,18 @@ const Reels2 = () => {
 
   return (
     <motion.div
-      className="h-56 bg-primary flex flex-col justify-evenly px-5 rotate-3"
-      style={{ x, rotate: 3.7, scale: 0.9 }}
+      className="bg-primary flex flex-col justify-evenly px-2 sm:px-5 z-40"
+      style={{
+        x,
+        rotate: 3.7,
+        scale: 0.9,
+        height:
+          screenSize === "mobile" ? 140 : screenSize === "tablet" ? 180 : 220,
+      }}
     >
-      <div className="flex gap-5 justify-center">{renderHoles()}</div>
-      <div className="flex gap-5">{renderCards()}</div>
-      <div className="flex gap-5 justify-center">{renderHoles()}</div>
+      <div className="flex gap-0 justify-center">{renderHoles()}</div>
+      <div className="flex gap-0">{renderCards()}</div>
+      <div className="flex gap-0 justify-center">{renderHoles()}</div>
     </motion.div>
   );
 };
