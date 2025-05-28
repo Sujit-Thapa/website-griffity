@@ -11,9 +11,23 @@ export const montserrat = Montserrat({
     subsets: ['latin'],
 })
 
-export const indigo = localFont({
-    src: './public/font/Indigo_Regular.otf',
-    weight: '400',
-    style: 'normal',
-    display: 'swap',
-})
+export const indigo = localFont(
+    {
+        src: './public/font/Indigo_Regular.otf',
+        weight: '400',
+        style: 'normal',
+        display: 'swap',
+    }
+
+
+)
+export const brush = localFont(
+    {
+        src: './public/font/Regular_Brush.ttf',
+        weight: '400',
+        style: 'normal',
+        display: 'swap',
+    }
+
+
+)
