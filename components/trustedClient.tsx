@@ -56,7 +56,7 @@ const TrustedClients = () => {
   return (
     <div
       ref={sectionRef}
-      className="flex sticky top-[200px] flex-col mt-[100px] z-30"
+      className="flex sticky top-[200px] flex-col mt-[100px] z-10"
     >
       <motion.p
         variants={textVariants}

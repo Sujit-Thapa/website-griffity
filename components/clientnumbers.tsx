@@ -152,18 +152,18 @@ const Clientnumber = () => {
   return (
     <div
       ref={sectionRef}
-      className="  mb-32 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 py-6 sm:py-8 md:py-10 max-h-[900px] z-20  h-screen max-w-screen-3xl mx-auto  text-white relative flex flex-col"
+      className="  mb-32 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 py-6 sm:py-8 mt-5 md:py-10 max-h-[900px] z-10   max-w-screen-3xl mx-auto  text-white relative flex flex-col"
     >
       {/* Heading */}
       <div
         className={`lg:mb-16 mb-10 sm:left-[10%] xs:left-[5%] left-[10%] ${indigo.className} relative`}
       >
         <h1
-          className={`xl:text-7xl  text-[1.5rem] xs:text-3xl  text-primary font-bold mb-2`}
+          className={`xl:text-7xl  text-[1.5rem] xs:text-3xl tracking-wider text-primary font-bold mb-2`}
         >
           TIRED OF OUTDATED
         </h1>
-        <h2 className="xl:text-7xl text-[1.5rem] xs:text-3xl text-primary font-bold">
+        <h2 className="xl:text-7xl text-[1.5rem] xs:text-3xl md:text-[6xl] tracking-wider text-primary font-bold">
           SOLUTIONS?
         </h2>
       </div>

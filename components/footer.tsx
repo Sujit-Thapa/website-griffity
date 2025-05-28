@@ -45,7 +45,7 @@ const Footer = () => {
       {/* Floating Contact Button */}
       <motion.button
         onClick={() => setIsContactOpen(true)}
-        className="fixed bottom-6 right-6 bg-primary text-white p-4 rounded-full shadow-lg z-40"
+        className="fixed bottom-6 right-6 bg-primary text-white p-4 rounded-full shadow-lg z-10"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         animate={{
@@ -69,7 +69,7 @@ const Footer = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-20"
               onClick={() => setIsContactOpen(false)}
             />
 

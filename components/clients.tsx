@@ -53,7 +53,7 @@ const Client = () => {
                     ${i % 2 !== 0 ? "items-end" : ""}
                   `}
                   >
-                    <div className="w-[150px] xs:w-[200px] md:w-[250px]  lg:w-[336px]  aspect-[336/382] border border-primary flex items-center justify-center p-[10%] sm:p-14 z-40">
+                    <div className="w-[150px] xs:w-[200px] md:w-[250px]  lg:w-[336px]  aspect-[336/382] border border-primary flex items-center justify-center p-[10%] sm:p-14 z-10">
                       <Image
                         width={336}
                         height={382}

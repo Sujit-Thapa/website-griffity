@@ -132,7 +132,7 @@ const Reels = () => {
 
   return (
     <motion.div
-      className="bg-primary flex flex-col justify-evenly px-2 sm:px-5 shadow-[-16px_-19px_9px_-8px_rgba(0,0,0,0.1)] z-30"
+      className="bg-primary flex flex-col justify-evenly px-2 sm:px-5 shadow-[-16px_-19px_9px_-8px_rgba(0,0,0,0.1)] z-10"
       style={{
         x,
         rotate: -6,

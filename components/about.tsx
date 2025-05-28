@@ -61,12 +61,12 @@ const About = () => {
   return (
     <motion.div
       ref={containerRef}
-      className="sticky flex flex-col sm:min-h-screen  max-w-screen-3xl px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 py-6 sm:py-8 md:py-10 w-full 2xl:mx-auto text-white"
+      className="sticky flex flex-col  max-w-screen-3xl px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 py-2 w-full 2xl:mx-auto text-white"
       initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
       transition={{ duration: 1 }}
     >
-      <motion.div className="flex justify-between items-center  mt-2">
+      <motion.div className="flex justify-between items-center">
         <motion.h1 className="text-primary p-base font-semibold z-10">
           [ABOUT GRIFFITY ]
         </motion.h1>
