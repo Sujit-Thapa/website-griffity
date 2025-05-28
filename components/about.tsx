@@ -61,7 +61,7 @@ const About = () => {
   return (
     <motion.div
       ref={containerRef}
-      className="sticky flex flex-col  max-w-screen-3xl px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 py-2 w-full 2xl:mx-auto text-white"
+      className="sticky flex flex-col  max-w-screen-3xl px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 py-2 w-full 2xl:mx-auto text-white about"
       initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
       transition={{ duration: 1 }}
