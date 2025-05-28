@@ -14,6 +14,7 @@ import TrustedClient from "@/components/trustedClient";
 import Reels from "@/components/reels";
 import Reels2 from "@/components/reels2";
 import About from "@/components/about";
+import JoinUs from "@/components/join-us";
 
 const Page = () => {
   return (
@@ -34,6 +35,7 @@ const Page = () => {
         <TrustedClient />
 
         <Client />
+        <JoinUs />
         <Footer />
       </main>
     </>
