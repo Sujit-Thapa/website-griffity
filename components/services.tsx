@@ -189,8 +189,8 @@ const Services = () => {
             <li className="font-medium">&#8594;DIGITAL EXPERIENCE</li>
             <li>UI/UX DESIGN</li>
             <li>ECOMMERCE PLATFORMS & CMS SOLUTIONS</li>
-            <li>SEO & Performance Optimization</li>
-            <li>Maintenance & Updates</li>
+            <li>SEO & PERFORMANCE OPTIMIZATION</li>
+            <li>MAINTENANCE & UPDATES</li>
           </motion.ul>
         </motion.div>
         <motion.div
@@ -212,11 +212,11 @@ const Services = () => {
             className="p-base w-1/3 font-extralight mb-6"
           >
             <li className="font-medium">&#8594;VISUALIZATION & ARCHITECTURE</li>
-            <li>Product Prototyping</li>
-            <li>AR/VR Ready Models</li>
-            <li>Brand Guidelines</li>
-            <li>Architectural Visualization</li>
-            <li>Conceptual Design Models </li>
+            <li className="uppercase">Product Prototyping</li>
+            <li className="uppercase">AR/VR Ready Models</li>
+            <li className="uppercase">Brand Guidelines</li>
+            <li className="uppercase">Architectural Visualization</li>
+            <li className="uppercase">Conceptual Design Models </li>
           </motion.ul>
         </motion.div>
         <motion.div

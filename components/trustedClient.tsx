@@ -20,8 +20,23 @@ const TrustedClients = () => {
       const windowHeight = window.innerHeight;
       const fullHeight = document.documentElement.scrollHeight;
 
-      // Check if near the bottom (within 100px)
-      if (scrollTop + windowHeight >= fullHeight - 100) {
+      // Get the heights of the .about and .join-us sections
+      const aboutSection = document.querySelector(
+        ".about"
+      ) as HTMLElement | null;
+      const joinUsSection = document.querySelector(
+        ".join-us"
+      ) as HTMLElement | null;
+      const aboutHeight = aboutSection ? aboutSection.offsetHeight : 0;
+      const joinUsHeight = joinUsSection ? joinUsSection.offsetHeight : 0;
+      console.log(
+        `About Height: ${aboutHeight}, Join Us Height: ${joinUsHeight}`
+      );
+      // Check if near the bottom (within 100px + about + join-us heights)
+      if (
+        scrollTop + windowHeight >=
+        fullHeight - (aboutHeight + joinUsHeight)
+      ) {
         setAnimationState("exitingBottom");
         return;
       }
