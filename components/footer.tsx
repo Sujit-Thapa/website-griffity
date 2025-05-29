@@ -164,7 +164,7 @@ const Footer = () => {
           <p className="text-2xl font-semibold">
             GRIFFITY<span className="font-light">STUDIOS</span>
           </p>
-          <p className="text-sm">Bhaisepati, Kathmandu</p>
+          <p className="text-sm">Mahalaxmisthan, Lalitpur</p>
           <p className="text-sm">+977 9861292675</p>
           <p className="text-sm">info@griffitystudios.com</p>
         </div>

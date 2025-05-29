@@ -17,7 +17,7 @@ const Client = () => {
   ];
 
   const singleClients = [
-    { name: "nepal", text: "OFFICE OF PRIME MINISTER" },
+    { name: "nepal", text: "OFFICE OF PRIME MINISTER & COUNCIL OF MINISTERS" },
     { name: "ntc", text: "NEPAL TELECOM" },
     { name: "acem", text: "ADVANCED COLLEGE OF ENGINEERING & MANAGEMENT" },
   ];
