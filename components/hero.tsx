@@ -30,7 +30,7 @@ const Hero = () => {
             transition={{ duration: 1, ease: "easeOut", delay: 3.8 }}
             src="/logos/griffity.png"
             alt="Logo"
-            className="w-6 sm:w-7 md:w-8 h-auto z-10"
+            className="w-6 sm:w-7 md:w-8 h-auto ml-5 z-10"
           />
 
           {/* Burger Menu Button - Only visible on mobile/tablet */}
@@ -71,14 +71,14 @@ const Hero = () => {
         <div className="flex items-center gap-10 h-full max-w-screen-3xl mx-auto">
           <div className="z-10 flex-1">
             <div className="flex flex-col items-start lg:translate-x-[-5%]">
-              <p className="text-4xl sm:text-6xl  md:text-[4.2rem] xl:text-8xl 2xl:text-h2 font-medium leading-tight">
+              <p className="text-2xl xs:text-3xl sm:text-6xl  md:text-[4.2rem] xl:text-8xl 2xl:text-h2 font-medium leading-tight">
                 welcome to <span className="font-bold">griffity</span>
               </p>
               <motion.p
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 4, ease: "easeOut" }}
-                className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-left sm:text-right self-start sm:self-end mt-2 sm:mt-4 font-extralight"
+                className="text-sm sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-left sm:text-right self-start sm:self-end mt-2 sm:mt-4 font-extralight"
               >
                 your brand's loudest whisper!
               </motion.p>
