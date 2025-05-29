@@ -41,7 +41,10 @@ const Footer = () => {
   };
 
   return (
-    <div className="relative w-full max-w-screen-3xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 py-6 sm:py-8 md:py-10">
+    <div
+      className="relative w-full max-w-screen-3xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 py-6 sm:py-8 md:py-10"
+      id="contact-us"
+    >
       {/* Floating Contact Button */}
       <motion.button
         onClick={() => setIsContactOpen(true)}

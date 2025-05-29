@@ -39,7 +39,7 @@ const Client = () => {
   const maxLength = Math.max(pairedGroups.length, singleClients.length);
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full" id="clients">
       <div className="max-w-screen-3xl mt-52 w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 py-6 sm:py-8 md:py-10 flex flex-col gap-40">
         {Array.from({ length: maxLength }).map((_, idx) => (
           <div key={idx}>

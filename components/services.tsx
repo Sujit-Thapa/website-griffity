@@ -75,7 +75,10 @@ const Services = () => {
   const moreInView = useInView(moreRef, { once: true, margin: " -20% 0px" });
 
   return (
-    <div className=" max-w-screen-3xl mt-20  px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 py-6 sm:py-8 md:py-10 mx-auto w-full justify-center items-center z-">
+    <div
+      id="services"
+      className=" max-w-screen-3xl mt-20  px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 py-6 sm:py-8 md:py-10 mx-auto w-full justify-center items-center z-"
+    >
       <div className="flex md:justify-between  items-start  mt-2">
         <div className="flex flex-col mt-5 gap-2">
           <motion.span className="heading-h4 z-10 font-semibold ">

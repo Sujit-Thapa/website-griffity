@@ -22,7 +22,10 @@ const JoinUs = () => {
   };
 
   return (
-    <section className="relative max-w-screen-3xl mx-auto bg-[#081C26] bg-[url('/images/img-join-us.jpg')] bg-cover bg-center bg-no-repeat join-us">
+    <section
+      id="career"
+      className="relative max-w-screen-3xl mx-auto bg-[#081C26] bg-[url('/images/img-join-us.jpg')] bg-cover bg-center bg-no-repeat join-us"
+    >
       <div className="absolute inset-0 bg-[#081C26]/80" />
       <form
         ref={formRef}
