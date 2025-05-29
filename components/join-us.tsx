@@ -96,6 +96,7 @@ const JoinUs = () => {
             type="file"
             id="cvUpload"
             name="cvUpload"
+            accept=".pdf,.doc,.docx" // Only allow these formats
             className="text-white file:bg-white file:text-black file:font-normal file:rounded-md file:px-2 file:py-2 file:border-0"
           />
           <p className="sm:text-sm text-xs text-white mt-2">
