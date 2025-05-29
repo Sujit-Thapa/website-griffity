@@ -1,6 +1,5 @@
 "use client";
 
-import type React from "react";
 import { useState } from "react";
 import {
   FaFacebookF,
@@ -23,6 +22,8 @@ const Footer = () => {
     email: "",
     message: "",
   });
+  const [loading, setLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -33,11 +34,38 @@ const Footer = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    setIsContactOpen(false);
-    setFormData({ name: "", email: "", message: "" });
+    setLoading(true);
+
+    try {
+      const body = new FormData();
+      body.append("name", formData.name);
+      body.append("email", formData.email);
+      body.append("message", formData.message);
+
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        body,
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        setSuccessMessage("Message sent successfully!");
+        setFormData({ name: "", email: "", message: "" });
+        setTimeout(() => {
+          setSuccessMessage("");
+          setIsContactOpen(false);
+        }, 2000);
+      } else {
+        alert("Failed to send message.");
+      }
+    } catch (err) {
+      console.error("Error:", err);
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -67,7 +95,6 @@ const Footer = () => {
       <AnimatePresence>
         {isContactOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -76,7 +103,6 @@ const Footer = () => {
               onClick={() => setIsContactOpen(false)}
             />
 
-            {/* Contact Form */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8, y: 50 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -84,7 +110,6 @@ const Footer = () => {
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
               className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-xl p-8 w-full max-w-md z-40 shadow-lg"
             >
-              {/* Close Button */}
               <button
                 onClick={() => setIsContactOpen(false)}
                 className="absolute top-4 right-4 text-gray-500 hover:text-black"
@@ -92,7 +117,6 @@ const Footer = () => {
                 <FaXmark className="text-xl" />
               </button>
 
-              {/* Form Header */}
               <div className="text-center mb-6">
                 <h3 className="text-2xl font-bold text-gray-800 mb-2">
                   Get In Touch
@@ -102,7 +126,6 @@ const Footer = () => {
                 </p>
               </div>
 
-              {/* Form */}
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="relative">
                   <FaUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -112,7 +135,7 @@ const Footer = () => {
                     placeholder="Your Name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    className="w-full border rounded-lg pl-10 pr-4 py-3 text-gray-800 placeholder-gray-400 focus:outline-none focus:border-body transition"
+                    className="w-full border rounded-lg pl-10 pr-4 py-3 text-gray-800 placeholder-gray-400 focus:outline-none focus:border-primary transition"
                     required
                   />
                 </div>
@@ -125,7 +148,7 @@ const Footer = () => {
                     placeholder="Your Email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="w-full border rounded-lg pl-10 pr-4 py-3 text-gray-800 placeholder-gray-400 focus:outline-none focus:border-body transition"
+                    className="w-full border rounded-lg pl-10 pr-4 py-3 text-gray-800 placeholder-gray-400 focus:outline-none focus:border-primary transition"
                     required
                   />
                 </div>
@@ -137,7 +160,7 @@ const Footer = () => {
                     value={formData.message}
                     onChange={handleInputChange}
                     rows={4}
-                    className="w-full border rounded-lg px-4 py-3 text-gray-800 placeholder-gray-400 focus:outline-none focus:border-body transition resize-none"
+                    className="w-full border rounded-lg px-4 py-3 text-gray-800 placeholder-gray-400 focus:outline-none focus:border-primary transition resize-none"
                     required
                   />
                 </div>
@@ -146,11 +169,18 @@ const Footer = () => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   type="submit"
-                  className="w-full bg-body text-white py-3 rounded-lg font-semibold flex items-center justify-center gap-2 transition-all duration-300"
+                  disabled={loading}
+                  className="w-full bg-body text-white py-3 rounded-lg font-semibold flex items-center justify-center gap-2 transition-all duration-300 disabled:opacity-50"
                 >
                   <FaPaperPlane className="text-sm" />
-                  Send Message
+                  {loading ? "Sending..." : "Send Message"}
                 </motion.button>
+
+                {successMessage && (
+                  <p className="text-green-600 text-center mt-2">
+                    {successMessage}
+                  </p>
+                )}
               </form>
             </motion.div>
           </>
@@ -158,9 +188,8 @@ const Footer = () => {
       </AnimatePresence>
 
       {/* Footer Content */}
-      <div className="flex flex-col md:flex-row items-center justify-between gap-10 mt-16">
-        {/* Left: Contact Info */}
-        <div className="text-center md:text-left text-white">
+      <div className="flex flex-col md:flex-row items-center justify-between gap-10 mt-16 text-white">
+        <div className="text-center md:text-left">
           <p className="text-2xl font-semibold">
             GRIFFITY<span className="font-light">STUDIOS</span>
           </p>
@@ -169,8 +198,7 @@ const Footer = () => {
           <p className="text-sm">info@griffitystudios.com</p>
         </div>
 
-        {/* Social Icons */}
-        <div className="flex gap-5 text-xl text-white">
+        <div className="flex gap-5 text-xl">
           {[
             FaFacebookF,
             FaInstagram,
@@ -190,7 +218,6 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Bottom Center: Copyright */}
       <div className="mt-10 text-center text-white text-l">
         © 2025 Griffity Studio Pvt. Ltd.
       </div>
