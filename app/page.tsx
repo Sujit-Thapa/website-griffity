@@ -29,8 +29,8 @@ const Page = () => {
           <Services />
         </div>
         <div className="h-screen flex flex-col justify-center items-center overflow-hidden mb-96">
-          {/* <Reels2 />
-          <Reels /> */}
+          <Reels2 />
+          <Reels />
         </div>
         <TrustedClient />
 

@@ -73,7 +73,7 @@ const Client = () => {
             {singleClients[idx] && (
               <div className="flex flex-col items-center mb-32 translate-y-32">
                 <div className="flex flex-col  w-[150px] xs:w-[200px] md:w-[250px]  lg:w-[336px] ">
-                  <div className="flex items-center justify-center  p-[10%] w-[150px] xs:w-[200px] md:w-[250px]  lg:w-[336px]  aspect-[336/382] z-40 border border-primary">
+                  <div className="flex items-center justify-center  p-[10%] w-[150px] xs:w-[200px] md:w-[250px]  lg:w-[336px]  aspect-[336/382] z-20 border border-primary ">
                     <Image
                       width={336}
                       height={382}
