@@ -150,7 +150,7 @@ const About = () => {
         </motion.div>
 
         <motion.p
-          className="sm:p-base xs:text-sm text-[0.5rem] xl:text-[1.3rem] font-semibold md:w-[87%] text-center mx-auto z-10 mt-10"
+          className="sm:p-base xs:text-sm text-[0.5rem] xl:text-[1.3rem] font-semibold md:w-[87%] text-left sm:text-center mx-auto z-10 mt-10"
           initial={{ opacity: 0, y: 50 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8, delay: 0.8 }}

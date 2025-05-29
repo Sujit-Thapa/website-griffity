@@ -75,7 +75,7 @@ const Reels = () => {
   }, []);
 
   const renderHoles = () =>
-    Array.from({ length: 4 * holesCount }, (_, i) => (
+    Array.from({ length: 8 * holesCount }, (_, i) => (
       <span
         key={i}
         className="bg-body rounded-sm shrink-0"
