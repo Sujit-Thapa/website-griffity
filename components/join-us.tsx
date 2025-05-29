@@ -96,7 +96,7 @@ const JoinUs = () => {
             type="file"
             id="cvUpload"
             name="cvUpload"
-            className="text-white file:bg-white file:text-black file:font-medium file:rounded-md file:px-4 file:py-2 file:border-0"
+            className="text-white file:bg-white file:text-black file:font-normal file:rounded-md file:px-2 file:py-2 file:border-0"
           />
           <p className="sm:text-sm text-xs text-white mt-2">
             Accepted Formats:{" "}
@@ -105,7 +105,7 @@ const JoinUs = () => {
         </div>
         <button
           type="submit"
-          className="mt-8 px-8 py-3 bg-primary text-white font-bold rounded"
+          className="mt-8 px-8 py-2 bg-primary text-white font-normal rounded"
         >
           {status === "sending"
             ? "Sending..."
