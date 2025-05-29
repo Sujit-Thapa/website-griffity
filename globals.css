@@ -11,7 +11,7 @@ html {
 
 @layer components {
   .heading-h1 {
-    @apply text-[2rem]/none xs:text-[2.8rem] sm:text-[4.375rem]/none md:text-[5.5rem]/none xl:text-h1/none;
+    @apply text-[2.8rem]/none xs:text-[3.2rem] xsm:text-[4rem] sm:text-[4.375rem]/none md:text-[5.5rem]/none xl:text-h1/none;
     /* 40px → 2.5rem, 70px → 4.375rem, 110px → 6.875rem, 157px = h1 */
   }
 
@@ -35,12 +35,12 @@ html {
     /* 18px → 1.125rem, 24px → 1.5rem, 28px → 1.75rem, 30px = h5 */
   }
   .custom-c1 {
-    @apply text-[2rem]/none xs:text-[3rem] sm:text-[4rem]/none md:text-[5.3rem]/none lg:text-[9rem]  xl:text-c1/none;
+    @apply text-[3rem]/none xs:text-[3.5rem] xsm:text-[4.6rem] sm:text-[5rem]/none md:text-[5.3rem]/none lg:text-[9rem]  xl:text-c1/none;
     /* 40px → 2.5rem, 80px → 5rem, 128px → 8rem, 182px = c1 */
   }
 
   .custom-c2 {
-    @apply text-[1.575rem]/none xs:text-[2rem] sm:text-[3.75rem]/none md:text-[4.1rem]/none lg:text-7xl xl:text-c2/none;
+    @apply text-[1.9rem]/none xs:text-[2.2rem] xsm:text-[2.6rem] sm:text-[3.75rem]/none md:text-[4.1rem]/none lg:text-7xl xl:text-c2/none;
     /* 30px → 1.875rem, 60px → 3.75rem, 80px → 5rem, 100px = c2 */
   }
   .p-base {

@@ -66,12 +66,12 @@ const About = () => {
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
       transition={{ duration: 1 }}
     >
-      <motion.div className="flex justify-between items-center">
+      <motion.div className="flex justify-center sm:justify-between items-center">
         <motion.h1 className="text-primary p-base font-semibold z-10">
           [ABOUT GRIFFITY ]
         </motion.h1>
         <motion.p
-          className="heading-h4 z-10 font-extralight"
+          className="heading-h4 z-10 font-extralight hidden sm:block"
           initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
           transition={{ duration: 0.8, delay: 0.4 }}
@@ -83,7 +83,7 @@ const About = () => {
       <div className="flex flex-col items-center justify-evenly flex-1">
         <motion.div
           ref={ref}
-          className="flex justify-center sm:mt-24 mt-20  mx-auto gap-6"
+          className="flex justify-center sm:mt-24 flex-col items-center sm:items-start sm:flex-row mx-auto gap-1 sm:gap-6"
           initial={{ opacity: 0, scale: 0.95, y: 60 }}
           animate={
             inView
@@ -93,7 +93,7 @@ const About = () => {
           transition={{ duration: 0.8, delay: 0.3 }}
         >
           <motion.p
-            className="heading-h4 font-extralight  z-10"
+            className="text-[0.6rem] xs:text-[1.3rem] sm:text-[1.75rem] md:text-[2.4rem] lg:text-h4; font-extralight  z-10"
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.6, delay: 0.5 }}
@@ -118,7 +118,7 @@ const About = () => {
             </motion.p>
 
             <motion.p
-              className={`${indigo.className} text-primary overflow-hidden custom-c2 2xl:-translate-x-24 sm:-translate-x-20 -translate-x-7`}
+              className={`${indigo.className} text-primary overflow-hidden custom-c2 2xl:-translate-x-24 sm:-translate-x-20  -translate-x-6`}
             >
               <AnimatedText
                 text="creativity,"
