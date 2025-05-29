@@ -105,7 +105,7 @@ const JoinUs = () => {
         </div>
         <button
           type="submit"
-          className="mt-8 px-8 py-2 bg-primary text-white font-normal rounded"
+          className="mt-8 sm:px-8 px-5 py-2 bg-primary text-white font-normal rounded"
         >
           {status === "sending"
             ? "Sending..."
