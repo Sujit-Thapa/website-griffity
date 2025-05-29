@@ -28,7 +28,7 @@ const Page = () => {
           <Clientnumber />
           <Services />
         </div>
-        <div className="h-screen flex flex-col justify-center items-center overflow-hidden mb-96">
+        <div className="h-screen flex flex-col justify-center items-center overflow-hidden mb-10 sm:mb-96">
           <Reels2 />
           <Reels />
         </div>
