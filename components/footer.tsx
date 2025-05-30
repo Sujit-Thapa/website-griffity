@@ -192,17 +192,51 @@ const Footer = () => {
         </div>
 
         <div className="flex gap-5 text-xl">
-          {[FaFacebookF, FaInstagram, FaTiktok, FaYoutube, FaXTwitter, FaLinkedinIn].map(
-            (Icon, index) => (
-              <motion.div
-                key={index}
-                whileHover={{ scale: 1.2, rotate: index % 2 === 0 ? 5 : -5 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <Icon className="cursor-pointer hover:text-primary transition" />
-              </motion.div>
-            )
-          )}
+          {[
+            {
+              Icon: FaFacebookF,
+              href: "https://facebook.com/griffitystudios",
+              label: "Facebook",
+            },
+            {
+              Icon: FaInstagram,
+              href: "https://instagram.com/griffitystudios",
+              label: "Instagram",
+            },
+            {
+              Icon: FaTiktok,
+              href: "https://tiktok.com/@griffitystudios",
+              label: "TikTok",
+            },
+            {
+              Icon: FaYoutube,
+              href: "https://youtube.com/@griffitystudios",
+              label: "YouTube",
+            },
+            {
+              Icon: FaXTwitter,
+              href: "https://twitter.com/griffitystudios",
+              label: "Twitter",
+            },
+            {
+              Icon: FaLinkedinIn,
+              href: "https://linkedin.com/company/griffitystudios",
+              label: "LinkedIn",
+            },
+          ].map(({ Icon, href, label }, index) => (
+            <motion.a
+              key={index}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={label}
+              whileHover={{ scale: 1.2, rotate: index % 2 === 0 ? 5 : -5 }}
+              whileTap={{ scale: 0.9 }}
+              className="inline-block"
+            >
+              <Icon className="cursor-pointer hover:text-primary transition" />
+            </motion.a>
+          ))}
         </div>
       </div>
 
