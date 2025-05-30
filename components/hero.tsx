@@ -21,8 +21,15 @@ const Hero = () => {
   };
 
   return (
-    <div className="relative bg-[url('/images/heroimage.png')] bg-cover bg-center h-screen w-full z-20 text-white overflow-hidden">
-      <div className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 py-6 sm:py-8 md:py-10 flex flex-col  mx-auto h-full relative z-10">
+<div className="relative h-screen w-full overflow-hidden">
+  <video
+    className="absolute top-0 left-0 w-full h-full object-cover z-10"
+    src="/reelsmedia/bg.mp4"
+    autoPlay
+    loop
+    muted
+    playsInline
+  />      <div className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 py-6 sm:py-8 md:py-10 flex flex-col  mx-auto h-full relative z-10">
         <div className="flex justify-between items-center w-full">
           <motion.img
             initial={{ opacity: 0, x: -40 }}
