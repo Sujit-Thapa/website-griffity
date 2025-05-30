@@ -39,17 +39,16 @@ const Footer = () => {
     setLoading(true);
 
     try {
-      const body = new FormData();
-      body.append("name", formData.name);
-      body.append("email", formData.email);
-      body.append("message", formData.message);
-
-      const res = await fetch("/api/contact", {
+      const res = await fetch("/api/message", {
         method: "POST",
-        body,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       });
 
       const data = await res.json();
+
       if (data.success) {
         setSuccessMessage("Message sent successfully!");
         setFormData({ name: "", email: "", message: "" });
@@ -79,14 +78,8 @@ const Footer = () => {
         className="fixed bottom-6 right-6 bg-primary text-white p-4 rounded-full shadow-lg z-10"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
-        animate={{
-          y: [0, -5, 0],
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+        animate={{ y: [0, -5, 0] }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
       >
         <FaEnvelope className="text-xl" />
       </motion.button>
@@ -199,22 +192,17 @@ const Footer = () => {
         </div>
 
         <div className="flex gap-5 text-xl">
-          {[
-            FaFacebookF,
-            FaInstagram,
-            FaTiktok,
-            FaYoutube,
-            FaXTwitter,
-            FaLinkedinIn,
-          ].map((Icon, index) => (
-            <motion.div
-              key={index}
-              whileHover={{ scale: 1.2, rotate: index % 2 === 0 ? 5 : -5 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <Icon className="cursor-pointer hover:text-primary transition" />
-            </motion.div>
-          ))}
+          {[FaFacebookF, FaInstagram, FaTiktok, FaYoutube, FaXTwitter, FaLinkedinIn].map(
+            (Icon, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ scale: 1.2, rotate: index % 2 === 0 ? 5 : -5 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <Icon className="cursor-pointer hover:text-primary transition" />
+              </motion.div>
+            )
+          )}
         </div>
       </div>
 
