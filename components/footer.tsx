@@ -97,85 +97,88 @@ const Footer = () => {
             />
 
             <motion.div
-              initial={{ opacity: 0, scale: 0.8, y: 50 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.8, y: 50 }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-xl p-8 w-full max-w-md z-40 shadow-lg"
-            >
-              <button
-                onClick={() => setIsContactOpen(false)}
-                className="absolute top-4 right-4 text-gray-500 hover:text-black"
-              >
-                <FaXmark className="text-xl" />
-              </button>
+  initial={{ opacity: 0, scale: 0.8, y: 50 }}
+  animate={{ opacity: 1, scale: 1, y: 0 }}
+  exit={{ opacity: 0, scale: 0.8, y: 50 }}
+  transition={{ type: "spring", damping: 25, stiffness: 300 }}
+  className="fixed inset-0 flex items-center justify-center z-40 px-4"
+>
+  <div className="bg-white rounded-xl p-6 sm:p-8 w-full max-w-md shadow-lg relative">
+    <button
+      onClick={() => setIsContactOpen(false)}
+      className="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-500 hover:text-black"
+    >
+      <FaXmark className="text-xl" />
+    </button>
 
-              <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                  Get In Touch
-                </h3>
-                <p className="text-gray-500">
-                  Let's create something amazing together
-                </p>
-              </div>
+    <div className="text-center mb-6">
+      <h3 className="text-2xl font-bold text-gray-800 mb-2">
+        Get In Touch
+      </h3>
+      <p className="text-gray-500">
+        Let's create something amazing together
+      </p>
+    </div>
 
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="relative">
-                  <FaUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Your Name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    className="w-full border rounded-lg pl-10 pr-4 py-3 text-gray-800 placeholder-gray-400 focus:outline-none focus:border-primary transition"
-                    required
-                  />
-                </div>
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <div className="relative">
+        <FaUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+        <input
+          type="text"
+          name="name"
+          placeholder="Your Name"
+          value={formData.name}
+          onChange={handleInputChange}
+          className="w-full border rounded-lg pl-10 pr-4 py-3 text-gray-800 placeholder-gray-400 focus:outline-none focus:border-primary transition"
+          required
+        />
+      </div>
 
-                <div className="relative">
-                  <FaEnvelope className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Your Email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    className="w-full border rounded-lg pl-10 pr-4 py-3 text-gray-800 placeholder-gray-400 focus:outline-none focus:border-primary transition"
-                    required
-                  />
-                </div>
+      <div className="relative">
+        <FaEnvelope className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+        <input
+          type="email"
+          name="email"
+          placeholder="Your Email"
+          value={formData.email}
+          onChange={handleInputChange}
+          className="w-full border rounded-lg pl-10 pr-4 py-3 text-gray-800 placeholder-gray-400 focus:outline-none focus:border-primary transition"
+          required
+        />
+      </div>
 
-                <div>
-                  <textarea
-                    name="message"
-                    placeholder="Your Message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    rows={4}
-                    className="w-full border rounded-lg px-4 py-3 text-gray-800 placeholder-gray-400 focus:outline-none focus:border-primary transition resize-none"
-                    required
-                  />
-                </div>
+      <div>
+        <textarea
+          name="message"
+          placeholder="Your Message"
+          value={formData.message}
+          onChange={handleInputChange}
+          rows={4}
+          className="w-full border rounded-lg px-4 py-3 text-gray-800 placeholder-gray-400 focus:outline-none focus:border-primary transition resize-none"
+          required
+        />
+      </div>
 
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  type="submit"
-                  disabled={loading}
-                  className="w-full bg-body text-white py-3 rounded-lg font-semibold flex items-center justify-center gap-2 transition-all duration-300 disabled:opacity-50"
-                >
-                  <FaPaperPlane className="text-sm" />
-                  {loading ? "Sending..." : "Send Message"}
-                </motion.button>
+      <motion.button
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        type="submit"
+        disabled={loading}
+        className="w-full bg-body text-white py-3 rounded-lg font-semibold flex items-center justify-center gap-2 transition-all duration-300 disabled:opacity-50"
+      >
+        <FaPaperPlane className="text-sm" />
+        {loading ? "Sending..." : "Send Message"}
+      </motion.button>
 
-                {successMessage && (
-                  <p className="text-green-600 text-center mt-2">
-                    {successMessage}
-                  </p>
-                )}
-              </form>
-            </motion.div>
+      {successMessage && (
+        <p className="text-green-600 text-center mt-2">
+          {successMessage}
+        </p>
+      )}
+    </form>
+  </div>
+</motion.div>
+
           </>
         )}
       </AnimatePresence>
