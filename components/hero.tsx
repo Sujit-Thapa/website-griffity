@@ -2,18 +2,25 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
+
 const Hero = () => {
   const navItems = ["about us", "services", "clients", "career", "contact us"];
   const [visibleItems, setVisibleItems] = useState<number[]>([]);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
+    const timeouts: NodeJS.Timeout[] = [];
+
     navItems.forEach((_, index) => {
-      setTimeout(() => {
+      const timeout = setTimeout(() => {
         setVisibleItems((prev) => [...prev, index]);
-      }, 3800 + index * 200); // delay in ms
+      }, 3800 + index * 200);
+      timeouts.push(timeout);
     });
+
+    return () => {
+      timeouts.forEach(clearTimeout);
+    };
   }, []);
 
   const toggleMobileMenu = () => {
@@ -21,15 +28,31 @@ const Hero = () => {
   };
 
   return (
-<div className="relative h-screen w-full overflow-hidden">
-  <video
-    className="absolute top-0 left-0 w-full h-full object-cover z-10"
-    src="/reelsmedia/bg.mp4"
-    autoPlay
-    loop
-    muted
-    playsInline
-  />      <div className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 py-6 sm:py-8 md:py-10 flex flex-col  mx-auto h-full relative z-10">
+    <div className="relative h-screen w-full overflow-hidden">
+      {/* Background video moved up by 20px */}
+      <video
+        className="absolute top-0 left-0 w-full h-full object-cover z-10 transform -translate-y-5"
+        src="/reelsmedia/bg.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+      />
+
+      {/* Animated gradient overlay at bottom */}
+      <motion.div
+        initial={{ opacity: 0.4, y: 10 }}
+        animate={{ opacity: 0.7, y: 0 }}
+        transition={{
+          duration: 3,
+          ease: "easeInOut",
+          repeat: Infinity,
+          repeatType: "reverse",
+        }}
+        className="pointer-events-none absolute bottom-0 left-0 w-full h-40 z-20 bg-gradient-to-t from-secondary to-transparent"
+      />
+
+      <div className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 py-6 sm:py-8 md:py-10 flex flex-col mx-auto h-full relative z-30">
         <div className="flex justify-between items-center w-full">
           <motion.img
             initial={{ opacity: 0, x: -40 }}
@@ -37,7 +60,7 @@ const Hero = () => {
             transition={{ duration: 1, ease: "easeOut", delay: 3.8 }}
             src="/logos/griffity.png"
             alt="Logo"
-            className="w-6 sm:w-7 md:w-8 h-auto ml-5 z-10"
+            className="w-6 sm:w-7 md:w-8 h-auto ml-5 z-30"
           />
 
           {/* Burger Menu Button - Only visible on mobile/tablet */}
@@ -76,9 +99,9 @@ const Hero = () => {
         </div>
 
         <div className="flex items-center gap-10 h-full max-w-screen-3xl mx-auto">
-          <div className="z-10 flex-1">
+          <div className="z-30 flex-1">
             <div className="flex flex-col items-start lg:translate-x-[-5%]">
-              <p className="text-2xl xs:text-3xl sm:text-6xl  md:text-[4.2rem] xl:text-8xl 2xl:text-h2 font-medium leading-tight">
+              <p className="text-2xl xs:text-3xl sm:text-6xl md:text-[4.2rem] xl:text-8xl 2xl:text-h2 font-medium leading-tight">
                 welcome to <span className="font-bold">griffity</span>
               </p>
               <motion.p
