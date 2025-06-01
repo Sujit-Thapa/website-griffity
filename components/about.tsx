@@ -150,7 +150,7 @@ const About = () => {
         </motion.div>
 
         <motion.p
-          className="sm:p-base xs:text-sm text-[0.5rem] xl:text-[1.3rem] font-semibold md:w-[87%] text-left sm:text-center mx-auto z-10 mt-10"
+          className="sm:p-base xs:text-sm hidden sm:visible text-[0.5rem] xl:text-[1.3rem] font-semibold md:w-[87%] text-left sm:text-center mx-auto z-10 mt-10"
           initial={{ opacity: 0, y: 50 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8, delay: 0.8 }}
@@ -279,6 +279,88 @@ const About = () => {
           engage
         </motion.span>
       </motion.div>
+      <motion.p
+        className="sm:text-xl xs:text-2xl sm:hidden visible text-[1rem] font-semibold md:w-[87%] text-left sm:text-center mx-auto z-10 mt-10"
+        initial={{ opacity: 0, y: 50 }}
+        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+        transition={{ duration: 0.8, delay: 0.8 }}
+      >
+        <motion.span
+          className="text-primary/80 "
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 1.2 }}
+        >
+          GRIFFITY
+        </motion.span>{" "}
+        TURNS{" "}
+        <motion.span
+          className="text-primary/80 "
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 1.4 }}
+        >
+          {" "}
+          IDEAS
+        </motion.span>{" "}
+        INTO{" "}
+        <motion.span
+          className="text-primary/80 "
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 1.6 }}
+        >
+          VISUAL STORIES
+        </motion.span>{" "}
+        AND{" "}
+        <motion.span
+          className="text-primary/80"
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 1.8 }}
+        >
+          {" "}
+          MEANINGFUL EXPERIENCES.
+        </motion.span>{" "}
+        WE BLEND{" "}
+        <motion.span
+          className="text-primary/80"
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 2.0 }}
+        >
+          DESIGN STRATEGY
+        </motion.span>{" "}
+        AND{" "}
+        <motion.span
+          className="text-primary/90"
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 2.2 }}
+        >
+          {" "}
+          COLLABORATION{" "}
+        </motion.span>
+        TO BUILD BRANDS THAT ARE{" "}
+        <motion.span
+          className="text-primary/80"
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 2.4 }}
+        >
+          SEEN HEARD{" "}
+        </motion.span>
+        AND
+        <motion.span
+          className="text-primary/80"
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 2.6 }}
+        >
+          {" "}
+          REMEMBERED.
+        </motion.span>
+      </motion.p>
     </motion.div>
   );
 };
