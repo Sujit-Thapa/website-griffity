@@ -40,7 +40,7 @@ const Hero = () => {
       />
 
       {/* Animated gradient overlay at bottom */}
-      <motion.div
+      {/* <motion.div
         initial={{ opacity: 0.4, y: 10 }}
         animate={{ opacity: 0.7, y: 0 }}
         transition={{
@@ -50,7 +50,8 @@ const Hero = () => {
           repeatType: "reverse",
         }}
         className="pointer-events-none absolute bottom-0 left-0 w-full h-40 z-20 bg-gradient-to-t from-secondary to-transparent"
-      />
+      /> */}
+      <div className="absolute bottom-0 left-0 right-0 h-80 z-10 bg-gradient-to-b to-body from-transparent" />
 
       <div className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 py-6 sm:py-8 md:py-10 flex flex-col mx-auto h-full relative z-30">
         <div className="flex justify-between items-center w-full">
