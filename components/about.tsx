@@ -260,7 +260,7 @@ export default function About() {
 
         {/* Bottom Action Words */}
         <motion.div
-          className="flex w-full mt-36 justify-between md:px-16 mx-auto font-extralight xl:heading-h5 text-[0.8rem]  xs:text-lg md:text-3xl"
+          className="flex w-full md:mt-36 justify-between md:px-16 mx-auto font-extralight xl:heading-h5 text-[0.8rem]  xs:text-lg md:text-3xl"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}

@@ -12,14 +12,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           rel="icon"
           href="/logos/griffity.png"
           type="image/png"
-          sizes="7x32"
+          sizes="9x32"
         />
         {/* Optionally add other sizes for better browser support */}
         <link
           rel="icon"
           href="/logos/griffity.png"
           type="image/png"
-          sizes="16x16"
+          sizes="9x16"
         />
       </head>
       <body
