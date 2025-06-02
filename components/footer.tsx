@@ -226,7 +226,14 @@ const Footer = () => {
             GRIFFITY<span className="font-light">STUDIOS</span>
           </p>
           <p className="text-[1.2rem]">Mahalaxmisthan, Lalitpur</p>
-          <p className="text-[1.2rem]">+977 9861292675</p>
+          <a
+            href="https://wa.me/9779861292675"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[1.2rem] hover:text-primary transition"
+          >
+            +977 9861292675
+          </a>
           <p className="text-[1.2rem]">info@griffitystudios.com</p>
         </div>
         <div
