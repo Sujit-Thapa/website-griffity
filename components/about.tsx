@@ -123,13 +123,31 @@ export default function About() {
       isHighlighted ? ["#6b7280", "#ffffff"] : ["#6b7280", "#b9bec9"]
     );
 
+    // On-scroll glow effect for highlighted words
+    // const glowEffect = useTransform(
+    //   scrollYProgress,
+    //   [start, end],
+    //   isHighlighted
+    //     ? [
+    //         "0 0 0px #00e5ff",
+    //         "0 0 6px #00e5ff, 0 0 12px #00c2ff, 0 0 18px #00a3ff, 0 0 24px #0088ff",
+    //       ]
+    //     : ["0 0 0px #4a5568", "0 0 4px #4a5568, 0 0 6px #2d3748"]
+    // );
     return (
       <motion.span
         style={{ color }}
         className="sm:text-xl lg:text-3xl font-extralight inline-block mr-[10px]"
       >
         {isHighlighted ? (
-          <motion.span className="font-light">{word}</motion.span>
+          <motion.span
+            className="font-light"
+            // style={{
+            //   textShadow: glowEffect,
+            // }}
+          >
+            {word}
+          </motion.span>
         ) : (
           word
         )}
@@ -142,20 +160,6 @@ export default function About() {
     "At Griffity, we carry the warmth in everything we create. With the strength of the mountains and the soul of the valleys, we believe design is not just about visuals—it's about people, feelings, and stories that live in every heart.";
   const aboutText2 =
     "We craft with bold intention and precise care, honoring the trust you place in us. Every brand we touch becomes a part of our journey—your story becomes ours. Together, we create designs that reflect hope, resilience, and uncompromising beauty rooted in visionary storytelling.";
-
-  // Animated text with highlight transition
-  const HighlightedWord = ({ children }: { children: React.ReactNode }) => {
-    return (
-      <motion.span
-        className="font-light"
-        initial={{ color: "#6b7280" }} // text-gray-500
-        animate={inView ? { color: "#ffffff" } : {}}
-        transition={{ duration: 0.8, delay: 0.3 }}
-      >
-        {children}
-      </motion.span>
-    );
-  };
 
   return (
     <div

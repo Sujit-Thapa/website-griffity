@@ -4,13 +4,13 @@ import React from "react";
 
 const GriffityBg = () => {
   return (
-    <motion.div className="absolute z-10 right-0 bottom-0">
+    <motion.div className="absolute right-28  h-screen top-32">
       <Image
-        width={459}
-        height={562}
-        src="/images/griffity-bg.png"
+        width={680}
+        height={680}
+        src="/logos/bg-logo.svg"
         alt="Griffity Studios"
-        className="w-full h-full object-cover"
+        className=" object-cover"
       />
     </motion.div>
   );

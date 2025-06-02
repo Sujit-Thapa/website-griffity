@@ -15,6 +15,7 @@ import Reels from "@/components/reels";
 import Reels2 from "@/components/reels2";
 import About from "@/components/about";
 import JoinUs from "@/components/join-us";
+import GriffityBg from "@/components/bg-logo";
 
 const Page = () => {
   return (
@@ -35,8 +36,11 @@ const Page = () => {
         <TrustedClient />
 
         <Client />
-        <JoinUs />
-        <Footer />
+        <div className="relative overflow-hidden">
+          <GriffityBg />
+          <JoinUs />
+          <Footer />
+        </div>
       </main>
     </>
   );

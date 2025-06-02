@@ -88,7 +88,7 @@ const Services = () => {
             TO LIFE WITH DYNAMIC DESIGN SOLUTIONS
           </motion.span>
         </div>
-        <motion.h1 className="p-base w-fit font-semibold z-10 flex-shrink-0">
+        <motion.h1 className="p-base w-fit font-semibold text-primary z-10 flex-shrink-0">
           [OUR SERVICES ]
         </motion.h1>
       </div>
