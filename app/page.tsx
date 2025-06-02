@@ -25,7 +25,7 @@ const Page = () => {
         <div className="relative overflow-hidden">
           {/* <GradientRec /> */}
           <About />
-          <Clientnumber />
+          {/* <Clientnumber /> */}
           <Services />
         </div>
         <div className="h-screen flex flex-col justify-center items-center overflow-hidden mb-10 sm:mb-96">

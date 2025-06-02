@@ -1,47 +1,83 @@
 "use client";
 
-import { indigo } from "@/fonts";
-import { motion, useInView, useScroll } from "framer-motion";
-import { useRef } from "react";
+import type React from "react";
 
-const AnimatedText = ({
-  text,
-  className,
-  inView,
-  baseDelay = 0,
+import { Poppins } from "next/font/google";
+import { motion, useInView, useScroll } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+});
+
+// Animated counter component for statistics
+const AnimatedCounter = ({
+  end,
+  label,
+  accent,
 }: {
-  text: string;
-  className: string;
-  inView: boolean;
-  baseDelay?: number;
+  end: number;
+  label: string;
+  accent: string;
 }) => {
+  const counterRef = useRef(null);
+  const isVisible = useInView(counterRef, { once: true, amount: 0.3 });
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (isVisible && count === 0) {
+      let start = 0;
+      const duration = 1000;
+      const increment = Math.ceil(end / 60);
+      const interval = setInterval(() => {
+        start += increment;
+        if (start >= end) {
+          start = end;
+          clearInterval(interval);
+        }
+        setCount(Math.floor(start));
+      }, duration / (end / increment));
+    }
+  }, [isVisible, end, count]);
+
   return (
-    <span className={className}>
-      {text.split("").map((char, index) => (
-        <motion.span
-          key={index}
-          initial={{ y: 400 }}
-          animate={inView ? { y: 0 } : { y: 400 }}
-          transition={{
-            duration: 0.57,
-            ease: [0.6, 0.01, -0.05, 0.95],
-            delay: baseDelay + index * 0.1,
-          }}
-          style={{ display: "inline-block" }}
-        >
-          {char === " " ? "\u00A0" : char}
-        </motion.span>
-      ))}
-    </span>
+    <div className="text-center" ref={counterRef}>
+      <motion.div
+        className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold mb-1 sm:mb-2"
+        initial={{ opacity: 0, y: 30 }}
+        animate={isVisible ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6 }}
+      >
+        {end >= 1000 ? `+${count}k` : `+${count}`}
+      </motion.div>
+      <motion.div
+        className="text-sm sm:text-xl lg:text-2xl text-center font-extralight"
+        initial={{ opacity: 0, y: 20 }}
+        animate={isVisible ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6, delay: 0.2 }}
+      >
+        {label.split(" ").map((word, i, arr) => (
+          <span key={i}>
+            {i > 0 && " "}
+            {word === accent ? (
+              <span className="text-primary">{word}</span>
+            ) : (
+              word
+            )}
+          </span>
+        ))}
+      </motion.div>
+    </div>
   );
 };
 
-const About = () => {
+export default function About() {
   const containerRef = useRef(null);
   const ref = useRef(null);
   const inView = useInView(ref, {
     once: true,
-    margin: "-40% 0px",
+    margin: "-10% 0px",
   });
 
   const { scrollYProgress } = useScroll({
@@ -49,320 +85,179 @@ const About = () => {
     offset: ["start start", "end end"],
   });
 
-  const floatingAnimation = {
-    y: [0, -10, 0],
-    transition: {
-      duration: 3,
-      repeat: Number.POSITIVE_INFINITY,
-      ease: "easeInOut",
-    },
+  // Animated text with highlight transition
+  const HighlightedWord = ({ children }: { children: React.ReactNode }) => {
+    return (
+      <motion.span
+        className="font-light"
+        initial={{ color: "#6b7280" }} // text-gray-500
+        animate={inView ? { color: "#ffffff" } : {}}
+        transition={{ duration: 0.8, delay: 0.3 }}
+      >
+        {children}
+      </motion.span>
+    );
   };
 
   return (
-    <motion.div
+    <div
+      className={`min-h-screen  text-white ${poppins.className}`}
       ref={containerRef}
       id="about-us"
-      className="sticky flex flex-col  max-w-screen-3xl px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 py-2 w-full 2xl:mx-auto text-white about"
-      initial={{ opacity: 0, y: 30 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-      transition={{ duration: 1 }}
     >
-      <motion.div className="flex justify-center sm:justify-between items-center">
-        <motion.h1 className="text-primary p-base font-semibold z-10">
-          [ABOUT GRIFFITY ]
-        </motion.h1>
-        <motion.p
-          className="heading-h4 z-10 font-extralight hidden sm:block"
-          initial={{ opacity: 0, y: 40 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-        >
-          evolving mystery!
-        </motion.p>
-      </motion.div>
-
-      <div className="flex flex-col items-center justify-evenly flex-1">
-        <motion.div
-          ref={ref}
-          className="flex justify-center sm:mt-24 flex-col items-center sm:items-start sm:flex-row mx-auto gap-1 sm:gap-6"
-          initial={{ opacity: 0, scale: 0.95, y: 60 }}
-          animate={
-            inView
-              ? { opacity: 1, scale: 1, y: 0 }
-              : { opacity: 0, scale: 0.95, y: 60 }
-          }
-          transition={{ duration: 0.8, delay: 0.3 }}
-        >
+      <div
+        className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 xl:py-20 max-w-screen-3xl"
+        ref={ref}
+      >
+        {/* Header */}
+        <div className="text-center mb-8">
           <motion.p
-            className="text-[0.6rem] xs:text-[1.3rem] sm:text-[1.75rem] md:text-[2.4rem] lg:text-h4; font-extralight  z-10"
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
+            className="text-primary text-sm sm:text-base font-semibold tracking-wider uppercase mb-2 sm:mb-4"
+            initial={{ opacity: 0, y: -20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
           >
-            driven by
+            [ ABOUT US ]
           </motion.p>
-          <motion.div
-            className="-translate-y-10"
-            initial={{ opacity: 0, y: 40 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+          <motion.h1
+            className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-4 sm:mb-10"
+            initial={{ opacity: 0, y: -20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <motion.p
-              className={`${indigo.className} text-primary heading-h1 overflow-hidden`}
+            about <span className="text-primary">griffity!</span>
+          </motion.h1>
+          <motion.p
+            className="sm:text-xl lg:text-2xl text-muted font-extralight mb-6 sm:mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            Every{" "}
+            <motion.span
+              initial={{ color: "#6b7280" }}
+              animate={inView ? { color: "#ffffff" } : {}}
+              transition={{ duration: 1, delay: 0.8 }}
+              className="font-light"
             >
-              <AnimatedText
-                text="innovation,"
-                className=""
-                inView={inView}
-                baseDelay={0.1}
-              />
-            </motion.p>
+              dream
+            </motion.span>{" "}
+            needs a{" "}
+            <motion.span
+              initial={{ color: "#6b7280" }}
+              animate={inView ? { color: "#ffffff" } : {}}
+              transition={{ duration: 1, delay: 1.2 }}
+              className="font-light"
+            >
+              team!
+            </motion.span>
+          </motion.p>
+        </div>
 
-            <motion.p
-              className={`${indigo.className} text-primary overflow-hidden custom-c2 2xl:-translate-x-24 sm:-translate-x-20  -translate-x-6`}
-            >
-              <AnimatedText
-                text="creativity,"
-                className=""
-                inView={inView}
-                baseDelay={0.1}
-              />
-              &nbsp; &nbsp;
-              <AnimatedText
-                text="&"
-                inView={inView}
-                baseDelay={1.1}
-                className="text-white"
-              />
-            </motion.p>
-
-            <motion.p
-              className={`${indigo.className} text-primary overflow-hidden custom-c1 2xl:translate-x-2 lg:-translate-x-3 translate-x-8 `}
-            >
-              <AnimatedText
-                text="excellence"
-                className=""
-                inView={inView}
-                baseDelay={0.1}
-              />
-            </motion.p>
-          </motion.div>
+        {/* Main Content */}
+        <motion.div
+          className="text-justify mb-12 sm:mb-16 lg:mb-20 leading-relaxed lg:max-w-7xl mx-auto text-gray-300"
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.6 }}
+        >
+          <p className="mb-3 sm:mb-16 sm:text-xl lg:text-3xl font-extralight">
+            At Griffity, we carry the <HighlightedWord>warmth</HighlightedWord>{" "}
+            in everything we create. With the{" "}
+            <HighlightedWord>strength</HighlightedWord> of the mountains and the
+            soul of the valleys, we believe design is not just about
+            visuals—it's about <HighlightedWord>people</HighlightedWord>,{" "}
+            <HighlightedWord>feelings</HighlightedWord>, and{" "}
+            <HighlightedWord>stories</HighlightedWord> that live in every heart.
+          </p>
+          <p className="mb-3 sm:mb-4 font-extralight sm:text-xl lg:text-3xl">
+            We craft with <HighlightedWord>bold</HighlightedWord> intention and{" "}
+            <HighlightedWord>precise</HighlightedWord> care, honoring the{" "}
+            <HighlightedWord>trust</HighlightedWord> you place in us. Every
+            brand we touch becomes a part of our{" "}
+            <HighlightedWord>journey</HighlightedWord>—your story becomes ours.
+            Together, we create designs that reflect{" "}
+            <HighlightedWord>hope</HighlightedWord>,{" "}
+            <HighlightedWord>resilience</HighlightedWord>, and{" "}
+            <HighlightedWord>uncompromising</HighlightedWord> beauty rooted in{" "}
+            <HighlightedWord>visionary</HighlightedWord> storytelling.
+          </p>
         </motion.div>
 
-        <motion.p
-          className="sm:p-base xs:text-sm hidden sm:block text-[0.5rem] xl:text-[1.3rem] font-semibold md:w-[87%] text-left sm:text-center mx-auto z-10 mt-10"
-          initial={{ opacity: 0, y: 50 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-        >
+        {/* Statistics Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 xl:gap-10 mb-12 sm:mb-16 lg:mb-20">
+          <AnimatedCounter
+            end={4}
+            label="years of experience"
+            accent="experience"
+          />
+          <AnimatedCounter
+            end={21}
+            label="brands collaborated"
+            accent="collaborated"
+          />
+          <AnimatedCounter
+            end={31}
+            label="projects completed"
+            accent="completed"
+          />
+          <AnimatedCounter end={5} label="industry awards" accent="awards" />
+          <AnimatedCounter end={11} label="events managed" accent="managed" />
+          <AnimatedCounter
+            end={20}
+            label="regulated hours of operation"
+            accent="operation"
+          />
+        </div>
+
+        {/* Bottom Action Words */}
+        <motion.div className="flex w-full mt-14 justify-evenly mx-auto font-extralight xl:heading-h5 text-[0.7rem] xs:text-lg md:text-3xl">
           <motion.span
-            className="text-primary/80 "
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            initial={{ opacity: 0, scale: 0.9, y: 30 }}
+            animate={
+              inView
+                ? { opacity: 1, scale: 1, y: 0 }
+                : { opacity: 0, scale: 0.9, y: 30 }
+            }
+            transition={{ duration: 0.6, delay: 1.0 }}
+          >
+            inspire
+          </motion.span>
+          <motion.span
+            initial={{ opacity: 0, scale: 0.9, y: 30 }}
+            animate={
+              inView
+                ? { opacity: 1, scale: 1, y: 0 }
+                : { opacity: 0, scale: 0.9, y: 30 }
+            }
             transition={{ duration: 0.6, delay: 1.2 }}
           >
-            GRIFFITY
-          </motion.span>{" "}
-          TURNS{" "}
+            endure
+          </motion.span>
           <motion.span
-            className="text-primary/80 "
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            initial={{ opacity: 0, scale: 0.9, y: 30 }}
+            animate={
+              inView
+                ? { opacity: 1, scale: 1, y: 0 }
+                : { opacity: 0, scale: 0.9, y: 30 }
+            }
             transition={{ duration: 0.6, delay: 1.4 }}
           >
-            {" "}
-            IDEAS
-          </motion.span>{" "}
-          INTO{" "}
+            create
+          </motion.span>
           <motion.span
-            className="text-primary/80 "
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            initial={{ opacity: 0, scale: 0.9, y: 30 }}
+            animate={
+              inView
+                ? { opacity: 1, scale: 1, y: 0 }
+                : { opacity: 0, scale: 0.9, y: 30 }
+            }
             transition={{ duration: 0.6, delay: 1.6 }}
           >
-            VISUAL STORIES
-          </motion.span>{" "}
-          AND{" "}
-          <motion.span
-            className="text-primary/80"
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 1.8 }}
-          >
-            {" "}
-            MEANINGFUL EXPERIENCES.
-          </motion.span>{" "}
-          WE BLEND{" "}
-          <motion.span
-            className="text-primary/80"
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 2.0 }}
-          >
-            DESIGN STRATEGY
-          </motion.span>{" "}
-          AND{" "}
-          <motion.span
-            className="text-primary/90"
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 2.2 }}
-          >
-            {" "}
-            COLLABORATION{" "}
+            engage
           </motion.span>
-          TO BUILD BRANDS THAT ARE{" "}
-          <motion.span
-            className="text-primary/80"
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 2.4 }}
-          >
-            SEEN HEARD{" "}
-          </motion.span>
-          AND
-          <motion.span
-            className="text-primary/80"
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 2.6 }}
-          >
-            {" "}
-            REMEMBERED.
-          </motion.span>
-        </motion.p>
+        </motion.div>
       </div>
-
-      <motion.div className="flex w-full mt-14  justify-evenly mx-auto font-extralight xl:heading-h5 text-[0.7rem] xs:text-lg md:text-3xl ">
-        <motion.span
-          initial={{ opacity: 0, scale: 0.9, y: 30 }}
-          animate={
-            inView
-              ? { opacity: 1, scale: 1, y: 0 }
-              : { opacity: 0, scale: 0.9, y: 30 }
-          }
-          transition={{ duration: 0.6, delay: 1.0 }}
-        >
-          inspire
-        </motion.span>
-        <motion.span
-          initial={{ opacity: 0, scale: 0.9, y: 30 }}
-          animate={
-            inView
-              ? { opacity: 1, scale: 1, y: 0 }
-              : { opacity: 0, scale: 0.9, y: 30 }
-          }
-          transition={{ duration: 0.6, delay: 1.2 }}
-        >
-          endure
-        </motion.span>
-        <motion.span
-          initial={{ opacity: 0, scale: 0.9, y: 30 }}
-          animate={
-            inView
-              ? { opacity: 1, scale: 1, y: 0 }
-              : { opacity: 0, scale: 0.9, y: 30 }
-          }
-          transition={{ duration: 0.6, delay: 1.4 }}
-        >
-          create
-        </motion.span>
-        <motion.span
-          initial={{ opacity: 0, scale: 0.9, y: 30 }}
-          animate={
-            inView
-              ? { opacity: 1, scale: 1, y: 0 }
-              : { opacity: 0, scale: 0.9, y: 30 }
-          }
-          transition={{ duration: 0.6, delay: 1.6 }}
-        >
-          engage
-        </motion.span>
-      </motion.div>
-      <motion.p
-        className="sm:text-xl xs:text-2xl sm:hidden visible text-[1rem] font-semibold md:w-[87%] text-left sm:text-center mx-auto z-10 mt-10"
-        initial={{ opacity: 0, y: 50 }}
-        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-        transition={{ duration: 0.8, delay: 0.8 }}
-      >
-        <motion.span
-          className="text-primary/80 "
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, delay: 1.2 }}
-        >
-          GRIFFITY
-        </motion.span>{" "}
-        TURNS{" "}
-        <motion.span
-          className="text-primary/80 "
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, delay: 1.4 }}
-        >
-          {" "}
-          IDEAS
-        </motion.span>{" "}
-        INTO{" "}
-        <motion.span
-          className="text-primary/80 "
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, delay: 1.6 }}
-        >
-          VISUAL STORIES
-        </motion.span>{" "}
-        AND{" "}
-        <motion.span
-          className="text-primary/80"
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, delay: 1.8 }}
-        >
-          {" "}
-          MEANINGFUL EXPERIENCES.
-        </motion.span>{" "}
-        WE BLEND{" "}
-        <motion.span
-          className="text-primary/80"
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, delay: 2.0 }}
-        >
-          DESIGN STRATEGY
-        </motion.span>{" "}
-        AND{" "}
-        <motion.span
-          className="text-primary/90"
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, delay: 2.2 }}
-        >
-          {" "}
-          COLLABORATION{" "}
-        </motion.span>
-        TO BUILD BRANDS THAT ARE{" "}
-        <motion.span
-          className="text-primary/80"
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, delay: 2.4 }}
-        >
-          SEEN HEARD{" "}
-        </motion.span>
-        AND
-        <motion.span
-          className="text-primary/80"
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, delay: 2.6 }}
-        >
-          {" "}
-          REMEMBERED.
-        </motion.span>
-      </motion.p>
-    </motion.div>
+    </div>
   );
-};
-
-export default About;
+}

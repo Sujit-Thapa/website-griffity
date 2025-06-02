@@ -17,6 +17,7 @@ module.exports = {
         primary: "#DBA039",
         body: "#081C26",
         white: "#FFFFFF",
+        muted: "#e6e6e6",
       },
       screens: {
         xs: "375px", // added xs breakpoint
