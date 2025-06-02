@@ -5,7 +5,10 @@ import { poppins } from "@/fonts";
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/logos/griffity.png" type="image/png" />
+      </head>
       <body
         className={`bg-body ${poppins.className} text-white transition-all ease-in-out duration-700`}
       >
