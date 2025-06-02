@@ -2,14 +2,9 @@
 
 import type React from "react";
 
-import { Poppins } from "next/font/google";
-import { motion, useInView, useScroll } from "framer-motion";
+import { poppins } from "@/fonts";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-});
 
 // Animated counter component for statistics
 const AnimatedCounter = ({
@@ -24,6 +19,11 @@ const AnimatedCounter = ({
   const counterRef = useRef(null);
   const isVisible = useInView(counterRef, { once: true, amount: 0.3 });
   const [count, setCount] = useState(0);
+  const formatNumberNoDecimal = (num: number): string => {
+    if (num >= 1000000) return Math.floor(num / 1000000) + "M";
+    if (num >= 1000) return Math.floor(num / 1000) + "k";
+    return num.toString();
+  };
 
   useEffect(() => {
     if (isVisible && count === 0) {
@@ -49,7 +49,7 @@ const AnimatedCounter = ({
         animate={isVisible ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
       >
-        {end >= 1000 ? `+${count}k` : `+${count}`}
+        +{formatNumberNoDecimal(count)}
       </motion.div>
       <motion.div
         className="text-sm sm:text-xl lg:text-2xl text-center font-extralight"
@@ -77,13 +77,71 @@ export default function About() {
   const ref = useRef(null);
   const inView = useInView(ref, {
     once: true,
-    margin: "-10% 0px",
+    margin: "-40% 0px",
   });
 
+  // Scroll progress for the about section
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start start", "end end"],
+    offset: ["start 0.5", "end 1"],
   });
+
+  // Helper to animate each word's color based on scroll
+  const HIGHLIGHTED_WORDS = [
+    "warmth",
+    "strength",
+    "people",
+    "feelings",
+    "stories",
+    "bold",
+    "precise",
+    "trust",
+    "journey",
+    "hope",
+    "resilience",
+    "uncompromising",
+    "visionary",
+  ];
+
+  const AnimatedWord = ({ word, index }: { word: string; index: number }) => {
+    const totalWords =
+      aboutText1.split(" ").length + aboutText2.split(" ").length;
+
+    const maxDelay = 0.5;
+    const normalizedIndex = index / totalWords;
+
+    const start = normalizedIndex * maxDelay;
+    const end = start + 0.08;
+
+    const isHighlighted = HIGHLIGHTED_WORDS.includes(
+      word.replace(/[^\w]/g, "")
+    );
+
+    const color = useTransform(
+      scrollYProgress,
+      [start, end],
+      isHighlighted ? ["#6b7280", "#ffffff"] : ["#6b7280", "#b9bec9"]
+    );
+
+    return (
+      <motion.span
+        style={{ color }}
+        className="sm:text-xl lg:text-3xl font-extralight inline-block mr-[10px]"
+      >
+        {isHighlighted ? (
+          <motion.span className="font-light">{word}</motion.span>
+        ) : (
+          word
+        )}
+      </motion.span>
+    );
+  };
+
+  // Example paragraph text
+  const aboutText1 =
+    "At Griffity, we carry the warmth in everything we create. With the strength of the mountains and the soul of the valleys, we believe design is not just about visuals—it's about people, feelings, and stories that live in every heart.";
+  const aboutText2 =
+    "We craft with bold intention and precise care, honoring the trust you place in us. Every brand we touch becomes a part of our journey—your story becomes ours. Together, we create designs that reflect hope, resilience, and uncompromising beauty rooted in visionary storytelling.";
 
   // Animated text with highlight transition
   const HighlightedWord = ({ children }: { children: React.ReactNode }) => {
@@ -101,7 +159,7 @@ export default function About() {
 
   return (
     <div
-      className={`min-h-screen  text-white ${poppins.className}`}
+      className={`min-h-screen  text-white `}
       ref={containerRef}
       id="about-us"
     >
@@ -155,32 +213,20 @@ export default function About() {
         </div>
 
         {/* Main Content */}
-        <motion.div
-          className="text-justify mb-12 sm:mb-16 lg:mb-20 leading-relaxed lg:max-w-7xl mx-auto text-gray-300"
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
+        <motion.div className="text-justify mb-12 sm:mb-16 lg:mb-20 leading-relaxed lg:max-w-7xl  mx-auto text-gray-300">
           <p className="mb-3 sm:mb-16 sm:text-xl lg:text-3xl font-extralight">
-            At Griffity, we carry the <HighlightedWord>warmth</HighlightedWord>{" "}
-            in everything we create. With the{" "}
-            <HighlightedWord>strength</HighlightedWord> of the mountains and the
-            soul of the valleys, we believe design is not just about
-            visuals—it's about <HighlightedWord>people</HighlightedWord>,{" "}
-            <HighlightedWord>feelings</HighlightedWord>, and{" "}
-            <HighlightedWord>stories</HighlightedWord> that live in every heart.
+            {aboutText1.split(" ").map((word, i) => (
+              <AnimatedWord word={word} index={i} key={i} />
+            ))}
           </p>
           <p className="mb-3 sm:mb-4 font-extralight sm:text-xl lg:text-3xl">
-            We craft with <HighlightedWord>bold</HighlightedWord> intention and{" "}
-            <HighlightedWord>precise</HighlightedWord> care, honoring the{" "}
-            <HighlightedWord>trust</HighlightedWord> you place in us. Every
-            brand we touch becomes a part of our{" "}
-            <HighlightedWord>journey</HighlightedWord>—your story becomes ours.
-            Together, we create designs that reflect{" "}
-            <HighlightedWord>hope</HighlightedWord>,{" "}
-            <HighlightedWord>resilience</HighlightedWord>, and{" "}
-            <HighlightedWord>uncompromising</HighlightedWord> beauty rooted in{" "}
-            <HighlightedWord>visionary</HighlightedWord> storytelling.
+            {aboutText2.split(" ").map((word, i) => (
+              <AnimatedWord
+                word={word}
+                index={i + aboutText1.split(" ").length}
+                key={`p2-${i}`}
+              />
+            ))}
           </p>
         </motion.div>
 
@@ -204,7 +250,7 @@ export default function About() {
           <AnimatedCounter end={5} label="industry awards" accent="awards" />
           <AnimatedCounter end={11} label="events managed" accent="managed" />
           <AnimatedCounter
-            end={20}
+            end={20000}
             label="regulated hours of operation"
             accent="operation"
           />
