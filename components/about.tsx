@@ -1,8 +1,6 @@
 "use client";
 
 import type React from "react";
-
-import { poppins } from "@/fonts";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 
@@ -269,7 +267,7 @@ export default function About() {
                 ? { opacity: 1, scale: 1, y: 0 }
                 : { opacity: 0, scale: 0.9, y: 30 }
             }
-            transition={{ duration: 0.6, delay: 1.0 }}
+            transition={{ duration: 0.6, delay: 2.0 }}
           >
             inspire
           </motion.span>
@@ -280,7 +278,7 @@ export default function About() {
                 ? { opacity: 1, scale: 1, y: 0 }
                 : { opacity: 0, scale: 0.9, y: 30 }
             }
-            transition={{ duration: 0.6, delay: 1.2 }}
+            transition={{ duration: 0.6, delay: 2.2 }}
           >
             endure
           </motion.span>
@@ -291,7 +289,7 @@ export default function About() {
                 ? { opacity: 1, scale: 1, y: 0 }
                 : { opacity: 0, scale: 0.9, y: 30 }
             }
-            transition={{ duration: 0.6, delay: 1.4 }}
+            transition={{ duration: 0.6, delay: 2.4 }}
           >
             create
           </motion.span>
@@ -302,36 +300,9 @@ export default function About() {
                 ? { opacity: 1, scale: 1, y: 0 }
                 : { opacity: 0, scale: 0.9, y: 30 }
             }
-            transition={{ duration: 0.6, delay: 1.6 }}
+            transition={{ duration: 0.6, delay: 2.6 }}
           >
             engage
-          </motion.span>
-        </motion.div>
-        <motion.div className="text-primary flex w-full mt-36 justify-between px-4 mx-auto font-extralight xl:text-base text-[0.7rem]  xs:text-sm md:text-lg">
-          <motion.span
-            initial={{ opacity: 0, scale: 0.9, y: 30 }}
-            animate={
-              inView
-                ? { opacity: 1, scale: 1, y: 0 }
-                : { opacity: 0, scale: 0.9, y: 30 }
-            }
-            transition={{ duration: 0.6, delay: 2.0 }}
-            className="w-48"
-          >
-            Your growth is our mission and we will make it happen
-          </motion.span>
-
-          <motion.span
-            initial={{ opacity: 0, scale: 0.9, y: 30 }}
-            animate={
-              inView
-                ? { opacity: 1, scale: 1, y: 0 }
-                : { opacity: 0, scale: 0.9, y: 30 }
-            }
-            transition={{ duration: 0.6, delay: 2.6 }}
-            className="w-48"
-          >
-            we use next-gen technology to drive results
           </motion.span>
         </motion.div>
       </div>
