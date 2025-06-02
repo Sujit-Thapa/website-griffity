@@ -259,48 +259,45 @@ export default function About() {
         </div>
 
         {/* Bottom Action Words */}
-        <motion.div className="flex w-full mt-36 justify-between px-16 mx-auto font-extralight xl:heading-h5 text-[0.7rem]  xs:text-lg md:text-3xl">
+        <motion.div
+          className="flex w-full mt-36 justify-between md:px-16 mx-auto font-extralight xl:heading-h5 text-[0.8rem]  xs:text-lg md:text-3xl"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
           <motion.span
-            initial={{ opacity: 0, scale: 0.9, y: 30 }}
-            animate={
-              inView
-                ? { opacity: 1, scale: 1, y: 0 }
-                : { opacity: 0, scale: 0.9, y: 30 }
-            }
-            transition={{ duration: 0.6, delay: 2.0 }}
+            variants={{
+              hidden: { opacity: 0, scale: 0.9, y: 30 },
+              visible: { opacity: 1, scale: 1, y: 0 },
+            }}
+            transition={{ duration: 0.6, delay: 1.0 }}
           >
             inspire
           </motion.span>
           <motion.span
-            initial={{ opacity: 0, scale: 0.9, y: 30 }}
-            animate={
-              inView
-                ? { opacity: 1, scale: 1, y: 0 }
-                : { opacity: 0, scale: 0.9, y: 30 }
-            }
-            transition={{ duration: 0.6, delay: 2.2 }}
+            variants={{
+              hidden: { opacity: 0, scale: 0.9, y: 30 },
+              visible: { opacity: 1, scale: 1, y: 0 },
+            }}
+            transition={{ duration: 0.6, delay: 1.2 }}
           >
             endure
           </motion.span>
           <motion.span
-            initial={{ opacity: 0, scale: 0.9, y: 30 }}
-            animate={
-              inView
-                ? { opacity: 1, scale: 1, y: 0 }
-                : { opacity: 0, scale: 0.9, y: 30 }
-            }
-            transition={{ duration: 0.6, delay: 2.4 }}
+            variants={{
+              hidden: { opacity: 0, scale: 0.9, y: 30 },
+              visible: { opacity: 1, scale: 1, y: 0 },
+            }}
+            transition={{ duration: 0.6, delay: 1.4 }}
           >
             create
           </motion.span>
           <motion.span
-            initial={{ opacity: 0, scale: 0.9, y: 30 }}
-            animate={
-              inView
-                ? { opacity: 1, scale: 1, y: 0 }
-                : { opacity: 0, scale: 0.9, y: 30 }
-            }
-            transition={{ duration: 0.6, delay: 2.6 }}
+            variants={{
+              hidden: { opacity: 0, scale: 0.9, y: 30 },
+              visible: { opacity: 1, scale: 1, y: 0 },
+            }}
+            transition={{ duration: 0.6, delay: 1.6 }}
           >
             engage
           </motion.span>
