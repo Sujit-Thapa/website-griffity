@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Hero = () => {
-  const navItems = ["about us", "services", "clients", "career", "contact us"];
+  const navItems = ["about us", "services", "clients", "contact us"];
   const [visibleItems, setVisibleItems] = useState<number[]>([]);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 

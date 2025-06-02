@@ -36,7 +36,7 @@ const Page = () => {
         <TrustedClient />
 
         <Client />
-        <div className="relative overflow-hidden">
+        <div className="relative overflow-hidden max-w-screen-3xl mx-auto">
           <GriffityBg />
           <JoinUs />
           <Footer />

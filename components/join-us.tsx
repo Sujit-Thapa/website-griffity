@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { brush } from "@/fonts";
 import { motion } from "framer-motion";
+import GriffityBg from "./bg-logo";
 
 const JoinUs = () => {
   const formRef = useRef<HTMLFormElement>(null);
@@ -103,7 +104,7 @@ const JoinUs = () => {
           placeholder="HERE IS MY MESSAGE."
         />
         <div className="flex flex-col">
-          <label htmlFor="attachment" className=" mb-2">
+          <label htmlFor="attachment" className=" my-2 lg:text-2xl text-xl">
             UPLOAD ATTACHMENTS
           </label>
           <input
@@ -111,16 +112,16 @@ const JoinUs = () => {
             id="attachment"
             name="attachment"
             accept=".pdf,.doc,.docx" // Only allow these formats
-            className="text-white file:bg-white file:text-black file:font-normal file:rounded-md file:px-2 file:py-1 text-sm file:border-0"
+            className="text-white file:bg-white file:text-black file:font-normal font-extralight file:rounded-full mt-4 file:px-4 file:py-2 text-[1rem] file:border-0"
           />
-          <p className="sm:text-sm text-xs text-white mt-2">
+          <p className=" text-[1rem] font-light text-white mt-4">
             Accepted Formats:{" "}
             <span className="text-primary">.pdf, .doc, .docx</span>
           </p>
         </div>
         <button
           type="submit"
-          className="mt-8 sm:px-6 px-3 py-2 bg-primary text-white font-normal rounded-lg"
+          className="mt-5 sm:px-6 px-3 py-2 bg-primary text-body font-normal rounded-full"
         >
           {status === "sending"
             ? "Sending..."
