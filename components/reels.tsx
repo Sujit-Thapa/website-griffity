@@ -7,7 +7,7 @@ const cardContents = [
   { type: "image", src: "/reelsmedia/1.jpg" },
   { type: "image", src: "/reelsmedia/8.jpg" },
   { type: "image", src: "/reelsmedia/3.jpg" },
-  { type: "image", src: "/reelsmedia/4.jpg" },
+  { type: "video", src: "/reelsmedia/5.mp4" },
   { type: "image", src: "/reelsmedia/5.jpg" },
   { type: "image", src: "/reelsmedia/6.jpg" },
   { type: "image", src: "/reelsmedia/7.jpg" },
