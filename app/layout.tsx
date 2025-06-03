@@ -7,6 +7,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Griffity Studios</title>
         {/* Use a standard 32x32 favicon for best results */}
         <link
           rel="icon"
