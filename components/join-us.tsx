@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-import { brush } from "@/fonts";
 import { motion } from "framer-motion";
 import GriffityBg from "./bg-logo";
 
@@ -107,7 +106,7 @@ const JoinUs = () => {
           <label htmlFor="attachment" className=" my-2 lg:text-2xl text-xl">
             UPLOAD ATTACHMENTS
           </label>
-         <input
+        <input
   type="file"
   id="attachment"
   name="attachment"
@@ -120,12 +119,13 @@ const JoinUs = () => {
     font-extralight 
     file:rounded-full 
     mt-4 
-    file:px-2 sm:file:px-4 
-    file:py-1 sm:file:py-2 
-    text-[0.875rem] sm:text-[1rem] 
+    file:px-1 file:py-0.5
+    sm:file:px-4 sm:file:py-2
+    text-[0.75rem] sm:text-[1rem] 
     file:border-0
   "
 />
+
 
           <p className=" text-[1rem] font-light text-white mt-4">
             Accepted Formats:{" "}
@@ -136,9 +136,9 @@ const JoinUs = () => {
   type="submit"
   className="
     mt-5
-    text-xs   sm:text-sm  md:text-base
-    px-2      sm:px-4    md:px-6
-    py-1      sm:py-2    md:py-3
+    text-sm   sm:text-sm  md:text-base
+    px-3      sm:px-4    md:px-6
+    py-1.5      sm:py-2    md:py-3
     bg-primary text-body font-normal rounded-full
   "
 >
