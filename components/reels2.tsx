@@ -4,13 +4,13 @@ import React, { useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 const cardContents = [
-  { type: "image", src: "/reelsmedia/11.jpg" },
-  { type: "video", src: "/reelsmedia/3d.mp4" },
+  { type: "image", src: "/reelsmedia/11.png" },
+  { type: "video", src: "/reelsmedia/hi.mp4" },
   { type: "image", src: "/reelsmedia/2.jpg" },
   { type: "video", src: "/reelsmedia/2.mp4" },
-  { type: "image", src: "/reelsmedia/13.jpg" },
-  { type: "video", src: "/reelsmedia/2.mp4" },
-  { type: "image", src: "/reelsmedia/10.jpg" },
+  { type: "image", src: "/reelsmedia/4.jpg" },
+  { type: "video", src: "/reelsmedia/cos.mp4" },
+  { type: "image", src: "/reelsmedia/10.png" },
   { type: "image", src: "/reelsmedia/9.jpg" },
 ];
 
