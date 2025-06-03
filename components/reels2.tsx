@@ -10,7 +10,7 @@ const cardContents = [
   { type: "video", src: "/reelsmedia/2.mp4" },
   { type: "image", src: "/reelsmedia/4.jpg" },
   { type: "video", src: "/reelsmedia/cos.mp4" },
-  { type: "image", src: "/reelsmedia/10.png" },
+  { type: "video", src: "/reelsmedia/3d.mp4" },
   { type: "image", src: "/reelsmedia/9.jpg" },
 ];
 
