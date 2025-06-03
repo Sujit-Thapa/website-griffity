@@ -11,7 +11,9 @@ const cardContents = [
   { type: "image", src: "/reelsmedia/5.jpg" },
   { type: "image", src: "/reelsmedia/6.jpg" },
   { type: "image", src: "/reelsmedia/7.jpg" },
-  { type: "image", src: "/reelsmedia/10.png" },
+  { type: "video", src: "/reelsmedia/3d.mp4" },
+
+  // { type: "image", src: "/reelsmedia/10.png" },
 ];
 
 const Reels = () => {
