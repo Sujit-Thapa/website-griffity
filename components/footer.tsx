@@ -234,7 +234,7 @@ const Footer = () => {
             rel="noopener noreferrer"
             className="text-[1.2rem] hover:text-primary transition"
           >
-            <FaPhone /> +977 9861292675
+            +977 9861292675
           </a>
           <p className="text-[1.2rem]">info@griffitystudios.com</p>
         </div>
