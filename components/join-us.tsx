@@ -26,7 +26,7 @@ const JoinUs = () => {
   return (
     <section
       id="career"
-      className="relative max-w-screen-3xl mx-auto   bg-cover  mt-24  px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 py-6 sm:py-8 md:py-10  bg-center bg-no-repeat join-us"
+      className="relative max-w-screen-3xl mx-auto bg-cover mt-24 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 py-6 sm:py-8 md:py-10 bg-center bg-no-repeat join-us"
     >
       {/* <section
       id="career"
@@ -39,16 +39,16 @@ const JoinUs = () => {
       <form
         ref={formRef}
         onSubmit={handleSubmit}
-        className="relative max-w-screen-3xl p-base mx-auto px-4 sm:px-6 md:px-8 py-16 text-white z-10 font-light   /60"
+        className="relative max-w-screen-3xl p-base mx-auto px-4 sm:px-6 md:px-8 py-16 text-white z-10 font-light /60"
         encType="multipart/form-data"
       >
         <p
-          className={`text-3xl xs:text-4xl xsm:text-5xl  md:text-6xl lg:text-7xl xl:text-9xl 2xl:text-[8.4rem] 3xl:text-[8.7rem]   font-extrabold  leading-tight `}
+          className={`text-3xl xs:text-4xl xsm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl 2xl:text-[8.4rem] 3xl:text-[8.7rem] font-extrabold leading-tight `}
         >
           book a free
         </p>
         <p
-          className={`text-3xl xs:text-4xl xsm:text-5xl  md:text-6xl lg:text-7xl xl:text-9xl 2xl:text-[8.4rem] 3xl:text-[8.7rem]  font-extrabold leading-tight text-primary  `}
+          className={`text-3xl xs:text-4xl xsm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl 2xl:text-[8.4rem] 3xl:text-[8.7rem] font-extrabold leading-tight text-primary `}
         >
           consultation,
         </p>
@@ -62,7 +62,7 @@ const JoinUs = () => {
           id="fullName"
           name="fullName"
           required
-          className="mt-1 mb-4 p-2 border-b border-white w-full bg-transparent text-white   "
+          className="mt-1 mb-4 p-2 border-b border-white w-full bg-transparent text-white"
           placeholder="JOHN DOE"
         />
         <div className="flex flex-col md:flex-row md:gap-16">
@@ -75,7 +75,7 @@ const JoinUs = () => {
               id="email"
               name="email"
               required
-              className="mt-1 mb-4 p-2 border-b border-white w-full bg-transparent text-white  "
+              className="mt-1 mb-4 p-2 border-b border-white w-full bg-transparent text-white"
               placeholder="JOHN@EMAIL.COM"
             />
           </div>
@@ -88,7 +88,7 @@ const JoinUs = () => {
               id="contact"
               name="contact"
               required
-              className="mt-1 mb-4 p-2 border-b border-white w-full bg-transparent text-white   "
+              className="mt-1 mb-4 p-2 border-b border-white w-full bg-transparent text-white"
               placeholder="+977 (980) 123 4567"
             />
           </div>
@@ -100,35 +100,55 @@ const JoinUs = () => {
           id="coverLetter"
           name="coverLetter"
           rows={2}
-          className="mt-1 mb-4 p-2 border-b border-white w-full bg-transparent text-white    resize-none"
+          className="mt-1 mb-4 p-2 border-b border-white w-full bg-transparent text-white resize-none"
           placeholder="HERE IS MY MESSAGE."
         />
         <div className="flex flex-col">
           <label htmlFor="attachment" className=" my-2 lg:text-2xl text-xl">
             UPLOAD ATTACHMENTS
           </label>
-          <input
-            type="file"
-            id="attachment"
-            name="attachment"
-            accept=".pdf,.doc,.docx" // Only allow these formats
-            className="text-white file:bg-white file:text-black file:font-normal font-extralight file:rounded-full mt-4 file:px-4 file:py-2 text-[1rem] file:border-0"
-          />
+         <input
+  type="file"
+  id="attachment"
+  name="attachment"
+  accept=".pdf,.doc,.docx"
+  className="
+    text-white 
+    file:bg-white 
+    file:text-black 
+    file:font-normal 
+    font-extralight 
+    file:rounded-full 
+    mt-4 
+    file:px-2 sm:file:px-4 
+    file:py-1 sm:file:py-2 
+    text-[0.875rem] sm:text-[1rem] 
+    file:border-0
+  "
+/>
+
           <p className=" text-[1rem] font-light text-white mt-4">
             Accepted Formats:{" "}
             <span className="text-primary">.pdf, .doc, .docx</span>
           </p>
         </div>
         <button
-          type="submit"
-          className="mt-5 sm:px-6 px-4 py-2 text-[1rem] bg-primary text-body font-normal rounded-full"
-        >
-          {status === "sending"
-            ? "Sending..."
-            : status === "sent"
-            ? "Sent!"
-            : "Submit"}
-        </button>
+  type="submit"
+  className="
+    mt-5
+    text-xs   sm:text-sm  md:text-base
+    px-2      sm:px-4    md:px-6
+    py-1      sm:py-2    md:py-3
+    bg-primary text-body font-normal rounded-full
+  "
+>
+  {status === "sending"
+    ? "Sending..."
+    : status === "sent"
+    ? "Sent!"
+    : "Submit"}
+</button>
+
         {status === "error" && (
           <p className="text-red-500 mt-2">Failed to send. Please try again.</p>
         )}
