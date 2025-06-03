@@ -10,16 +10,16 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         {/* Use a standard 32x32 favicon for best results */}
         <link
           rel="icon"
-          href="/logos/griffity.png"
+          href="/logos/favicon.png"
           type="image/png"
-          sizes="9x32"
+          sizes="32x32"
         />
         {/* Optionally add other sizes for better browser support */}
         <link
           rel="icon"
-          href="/logos/griffity.png"
+          href="/logos/favicon.png"
           type="image/png"
-          sizes="9x16"
+          sizes="16x16"
         />
       </head>
       <body
