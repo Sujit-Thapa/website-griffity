@@ -11,7 +11,9 @@ const cardContents = [
   { type: "image", src: "/reelsmedia/5.jpg" },
   { type: "image", src: "/reelsmedia/6.jpg" },
   { type: "image", src: "/reelsmedia/7.jpg" },
-  { type: "image", src: "/reelsmedia/10.png" },
+  { type: "video", src: "/reelsmedia/3d.mp4" },
+
+  // { type: "image", src: "/reelsmedia/10.png" },
 ];
 
 const Reels = () => {
@@ -66,7 +68,7 @@ const Reels = () => {
       setGapSize(_gapSize);
 
       setHolesCount(Math.ceil(screenWidth / (_holeSize + _gapSize)));
-      setCardRepeatCount(Math.ceil(screenWidth / (8 * (_cardSize + _gapSize))));
+      setCardRepeatCount(Math.ceil(screenWidth / (_cardSize + _gapSize)));
     };
 
     updateLayout();
@@ -75,21 +77,21 @@ const Reels = () => {
   }, []);
 
   const renderHoles = () =>
-    Array.from({ length: 8 * holesCount }, (_, i) => (
+    Array.from({ length: 4 * holesCount }, (_, i) => (
       <span
         key={i}
         className="bg-body rounded-sm shrink-0"
         style={{
           width: holeSize,
           height: holeSize,
-          marginRight: i !== 4 * holesCount - 1 ? gapSize : 0,
+          marginRight: gapSize,
         }}
       ></span>
     ));
 
   const renderCards = () => {
     const cards = [];
-    for (let r = 0; r < 4 * cardRepeatCount; r++) {
+    for (let r = 0; r < cardRepeatCount; r++) {
       for (let i = 0; i < cardContents.length; i++) {
         const content = cardContents[i];
         cards.push(

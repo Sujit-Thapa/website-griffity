@@ -5,12 +5,12 @@ import { motion, useScroll, useTransform } from "framer-motion";
 
 const cardContents = [
   { type: "image", src: "/reelsmedia/11.png" },
-  { type: "video", src: "/reelsmedia/hi.mp4" },
-  { type: "image", src: "/reelsmedia/2.jpg" },
-  { type: "video", src: "/reelsmedia/2.mp4" },
-  { type: "image", src: "/reelsmedia/4.jpg" },
   { type: "video", src: "/reelsmedia/cos.mp4" },
-  { type: "video", src: "/reelsmedia/3d.mp4" },
+  { type: "image", src: "/reelsmedia/2.jpg" },
+  { type: "video", src: "/reelsmedia/hi.mp4" },
+  { type: "image", src: "/reelsmedia/4.jpg" },
+  { type: "video", src: "/reelsmedia/2.mp4" },
+  { type: "image", src: "/reelsmedia/10.png" },
   { type: "image", src: "/reelsmedia/9.jpg" },
 ];
 
@@ -64,7 +64,7 @@ const Reels2 = () => {
       setGapSize(_gapSize);
 
       setHolesCount(Math.ceil(screenWidth / (_holeSize + _gapSize)));
-      setCardRepeatCount(Math.ceil(screenWidth / (8 * (_cardSize + _gapSize))));
+      setCardRepeatCount(Math.ceil(screenWidth / (_cardSize + _gapSize)));
     };
 
     updateLayout();
@@ -73,21 +73,21 @@ const Reels2 = () => {
   }, []);
 
   const renderHoles = () =>
-    Array.from({ length: 8 * holesCount }, (_, i) => (
+    Array.from({ length: 4 * holesCount }, (_, i) => (
       <span
         key={i}
         className="bg-body rounded-sm shrink-0"
         style={{
           width: holeSize,
           height: holeSize,
-          marginRight: i !== 4 * holesCount - 1 ? gapSize : 0,
+          marginRight: gapSize,
         }}
       ></span>
     ));
 
   const renderCards = () => {
     const cards = [];
-    for (let r = 0; r < 4 * cardRepeatCount; r++) {
+    for (let r = 0; r < cardRepeatCount; r++) {
       for (let i = 0; i < cardContents.length; i++) {
         const content = cardContents[i];
         cards.push(

@@ -80,7 +80,7 @@ const Services = () => {
       className=" max-w-screen-3xl mt-20  px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 py-6 sm:py-8 md:py-10 mx-auto w-full justify-center items-center z-"
     >
       <div className="flex md:justify-between leading-tight items-start  mt-2">
-        <div className="flex flex-col mt-5 gap-2">
+        <div className="flex flex-col mt-5 ">
           <motion.span className="heading-h4 z-10 font-semibold ">
             WE BRING YOUR VISION{" "}
           </motion.span>

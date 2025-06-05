@@ -12,6 +12,8 @@ import {
   FaEnvelope,
   FaUser,
   FaXmark,
+  FaPhone,
+  FaWhatsapp,
 } from "react-icons/fa6";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -278,6 +280,11 @@ const Footer = () => {
               Icon: FaLinkedinIn,
               href: "https://linkedin.com/company/griffitystudios",
               label: "LinkedIn",
+            },
+            {
+              Icon: FaWhatsapp,
+              href: "https://wa.me/9779861292675",
+              label: "WhatsApp",
             },
           ].map(({ Icon, href, label }, index) => (
             <motion.a
