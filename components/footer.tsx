@@ -236,7 +236,7 @@ const Footer = () => {
           >
             +977 9861292675
           </a>
-          <p className="text-[1.2rem]">info@griffitystudios.com</p>
+          <p className="text-[1.2rem]">griffitystudios@gmail.com</p>
         </div>
         <div
           className={`
