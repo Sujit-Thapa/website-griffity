@@ -238,6 +238,7 @@ const Footer = () => {
           </a>
           <p className="text-[1.2rem]">griffitystudios@gmail.com</p>
         </div>
+        
         <div
           className={`
             w-full text-center text-white text-[1.2rem] hidden
