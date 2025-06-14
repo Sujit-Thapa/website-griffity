@@ -25,13 +25,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
         {/* Open Graph Meta Tags for Link Previews */}
         <meta property="og:title" content="Griffity Studios" />
-        <meta
-          property="og:description"
-          content="At Griffity, we carry the warmth in everything we create. With the strength of the mountains and the soul of the valleys, we believe design is not just about visuals—it’s about people, feelings, and stories that live in every heart."
-        />
+        <meta property="og:description" content="Evolving mystery" />
         <meta
           property="og:image"
-          content="https://griffitystudios.com/images/logos/favicon.svg"
+          content="https://griffitystudios.com/images/logos/griffity.png"
         />
         <meta property="og:url" content="https://griffitystudios.com" />
         <meta property="og:type" content="website" />
