@@ -31,7 +31,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         />
         <meta
           property="og:image"
-          content="https://griffitystudios.com/images/logos/bg-logo.svg"
+          content="https://griffitystudios.com/images/logos/favicon.svg"
         />
         <meta property="og:url" content="https://griffitystudios.com" />
         <meta property="og:type" content="website" />
