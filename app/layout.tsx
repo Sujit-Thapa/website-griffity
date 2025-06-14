@@ -28,7 +28,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <meta property="og:description" content="Evolving mystery" />
         <meta
           property="og:image"
-          content="https://griffitystudios.com/images/logos/griffity.png"
+          content="https://griffitystudios.com/logos/griffity.png"
         />
         <meta property="og:url" content="https://griffitystudios.com" />
         <meta property="og:type" content="website" />
