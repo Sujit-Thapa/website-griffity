@@ -138,13 +138,15 @@ const JoinUs = () => {
         </div>
         <button
           type="submit"
+          disabled={status === "sent"}
           className="
-    mt-5
-    text-sm   sm:text-sm  md:text-base
-    px-3      sm:px-4    md:px-6
-    py-1.5      sm:py-2    md:py-3
-    bg-primary text-body font-normal rounded-full
-  "
+          mt-5
+          text-sm   sm:text-sm  md:text-base
+          px-3      sm:px-4    md:px-6
+          py-1.5      sm:py-2    md:py-3
+          bg-primary text-body font-normal rounded-full
+          disabled:opacity-60 disabled:cursor-not-allowed
+        "
         >
           {status === "sending"
             ? "Sending..."
