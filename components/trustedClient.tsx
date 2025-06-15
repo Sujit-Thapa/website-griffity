@@ -29,9 +29,7 @@ const TrustedClients = () => {
       ) as HTMLElement | null;
       const aboutHeight = aboutSection ? aboutSection.offsetHeight : 0;
       const joinUsHeight = joinUsSection ? joinUsSection.offsetHeight : 0;
-      console.log(
-        `About Height: ${aboutHeight}, Join Us Height: ${joinUsHeight}`
-      );
+
       // Check if near the bottom (within 100px + about + join-us heights)
       if (
         scrollTop + windowHeight >=
