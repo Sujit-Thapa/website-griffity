@@ -18,8 +18,13 @@ const JoinUs = () => {
       body: formData,
     });
 
-    if (res.ok) setStatus("sent");
-    else setStatus("error");
+    if (res.ok) {
+      setStatus("sent");
+      alert("Your message has been sent! We will get back to you soon.");
+    } else {
+      setStatus("error");
+      alert("Failed to send. Please try again.");
+    }
   };
 
   return (
@@ -106,12 +111,12 @@ const JoinUs = () => {
           <label htmlFor="attachment" className=" my-2 lg:text-2xl text-xl">
             UPLOAD ATTACHMENTS
           </label>
-        <input
-  type="file"
-  id="attachment"
-  name="attachment"
-  accept=".pdf,.doc,.docx"
-  className="
+          <input
+            type="file"
+            id="attachment"
+            name="attachment"
+            accept=".pdf,.doc,.docx"
+            className="
     text-white 
     file:bg-white 
     file:text-black 
@@ -124,8 +129,7 @@ const JoinUs = () => {
     text-[0.75rem] sm:text-[1rem] 
     file:border-0
   "
-/>
-
+          />
 
           <p className=" text-[1rem] font-light text-white mt-4">
             Accepted Formats:{" "}
@@ -133,21 +137,21 @@ const JoinUs = () => {
           </p>
         </div>
         <button
-  type="submit"
-  className="
+          type="submit"
+          className="
     mt-5
     text-sm   sm:text-sm  md:text-base
     px-3      sm:px-4    md:px-6
     py-1.5      sm:py-2    md:py-3
     bg-primary text-body font-normal rounded-full
   "
->
-  {status === "sending"
-    ? "Sending..."
-    : status === "sent"
-    ? "Sent!"
-    : "Submit"}
-</button>
+        >
+          {status === "sending"
+            ? "Sending..."
+            : status === "sent"
+            ? "Sent!"
+            : "Submit"}
+        </button>
 
         {status === "error" && (
           <p className="text-red-500 mt-2">Failed to send. Please try again.</p>
