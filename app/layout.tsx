@@ -1,6 +1,8 @@
 import "../globals.css";
 import { ReactNode } from "react";
 import { poppins } from "@/fonts";
+import { Analytics } from "@vercel/analytics/next"
+
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
@@ -22,6 +24,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           type="image/png"
           sizes="16x16"
         />
+               <Analytics />
 
         {/* Open Graph Meta Tags for Link Previews */}
         <meta property="og:title" content="Griffity Studios" />
