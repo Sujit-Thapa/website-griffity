@@ -32,6 +32,7 @@ const useInView = (
   return [ref, isVisible];
 };
 
+
 type DescType =
   | "of experience"
   | "collaborated"
